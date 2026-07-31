@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<html lang="ko" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>10장: CLI, 패키지 API, 보고서 - TradingAgents 소스 읽기</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="LangGraph 상태, 금융 데이터 도구, 토론과 리스크 관리, 기억과 재개로 읽는 TradingAgents 한국어 해설">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../theme.css">
+        <link rel="stylesheet" href="../mermaid.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">TradingAgents 소스 읽기</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/nfbs2000/speaky-TradingAgents" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="10장-cli-패키지-api-보고서"><a class="header" href="#10장-cli-패키지-api-보고서">10장: CLI, 패키지 API, 보고서</a></h1>
+<h2 id="같은-graph를-두-표면에서-사용한다"><a class="header" href="#같은-graph를-두-표면에서-사용한다">같은 graph를 두 표면에서 사용한다</a></h2>
+<p>TradingAgents의 제품 표면은 크게 interactive CLI와 Python package API다. 둘 다
+<code>TradingAgentsGraph</code>를 사용한다.</p>
+<h3 id="cli"><a class="header" href="#cli">CLI</a></h3>
+<pre><code class="language-bash">tradingagents
+python -m cli.main
+</code></pre>
+<p>사용자는 ticker, 날짜, analyst, provider, quick/deep model, debate 깊이와 출력 언어를 고른다.
+Typer가 command를 정의하고 Rich와 questionary가 terminal UI를 만든다.</p>
+<p><img src="../assets/cli-init.png" alt="TradingAgents CLI 시작 화면" /></p>
+<h3 id="python-api"><a class="header" href="#python-api">Python API</a></h3>
+<pre><code class="language-python">from tradingagents.default_config import DEFAULT_CONFIG
+from tradingagents.graph.trading_graph import TradingAgentsGraph
+
+config = DEFAULT_CONFIG.copy()
+config["llm_provider"] = "anthropic"
+config["output_language"] = "Korean"
+
+graph = TradingAgentsGraph(config=config)
+state, decision = graph.propagate("NVDA", "2026-01-15")
+report = graph.save_reports(state, "NVDA")
+</code></pre>
+<p>이 예제는 구조를 보여 주기 위한 것이며 실제 실행에는 provider key와 data source의 network
+접근이 필요하다.</p>
+<h2 id="설정-우선순위"><a class="header" href="#설정-우선순위">설정 우선순위</a></h2>
+<p>기본값은 <code>DEFAULT_CONFIG</code>에 있다. <code>TRADINGAGENTS_*</code> 환경 변수는 같은 config key를 덮어쓴다.
+boolean, int, float는 기존 default type을 기준으로 변환하고 잘못된 값은 startup에서
+실패한다.</p>
+<p>대표 환경 변수는 다음과 같다.</p>
+<ul>
+<li><code>TRADINGAGENTS_LLM_PROVIDER</code></li>
+<li><code>TRADINGAGENTS_DEEP_THINK_LLM</code></li>
+<li><code>TRADINGAGENTS_QUICK_THINK_LLM</code></li>
+<li><code>TRADINGAGENTS_OUTPUT_LANGUAGE</code></li>
+<li><code>TRADINGAGENTS_MAX_DEBATE_ROUNDS</code></li>
+<li><code>TRADINGAGENTS_MAX_RISK_ROUNDS</code></li>
+<li><code>TRADINGAGENTS_CHECKPOINT_ENABLED</code></li>
+<li><code>TRADINGAGENTS_TEMPERATURE</code></li>
+<li><code>TRADINGAGENTS_LLM_MAX_RETRIES</code></li>
+</ul>
+<p>잘못 쓴 <code>treu</code>를 false로 조용히 처리하지 않고 정확한 오류를 내는 것이 unattended run에서
+중요하다.</p>
+<h2 id="보고서-tree"><a class="header" href="#보고서-tree">보고서 tree</a></h2>
+<p><code>write_report_tree()</code>는 CLI와 package API가 함께 사용한다.</p>
+<pre><code class="language-text">reports/&lt;run&gt;/
+├── 1_analysts/
+│   ├── market.md
+│   ├── sentiment.md
+│   ├── news.md
+│   └── fundamentals.md
+├── 2_research/
+│   ├── bull.md
+│   ├── bear.md
+│   └── manager.md
+├── 3_trading/
+│   └── trader.md
+├── 4_risk/
+│   ├── aggressive.md
+│   ├── conservative.md
+│   └── neutral.md
+├── 5_portfolio/
+│   └── decision.md
+└── complete_report.md
+</code></pre>
+<p>한 파일의 최종 답만 저장하지 않고 조직의 각 단계 산출물을 남긴다. 이는 어느 역할이 어떤
+판단을 추가했는지 사람이 읽는 데 유리하다.</p>
+<h2 id="final-state-json과-report-tree의-차이"><a class="header" href="#final-state-json과-report-tree의-차이">final state JSON과 report tree의 차이</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>산출물</th><th>장점</th><th>주의점</th></tr></thead><tbody>
+<tr><td>full state JSON</td><td>field와 history 구조 보존</td><td>사람이 읽기 길고 내부 state에 가까움</td></tr>
+<tr><td>Markdown tree</td><td>역할별 검토와 공유가 쉬움</td><td>node execution metadata는 없음</td></tr>
+<tr><td>complete report</td><td>한 문서로 전체 결론 확인</td><td>중간 tool call은 보이지 않음</td></tr>
+<tr><td>memory log</td><td>여러 실행 사이의 결과·반성 연결</td><td>현재 run 전체 transcript가 아님</td></tr>
+</tbody></table>
+</div>
+<p>보고서가 있다는 사실은 tool call이 모두 성공했다는 observability 증거가 아니다. tool
+latency, retry, provider raw response를 연구하려면 별도 callback이나 tracing이 필요하다.</p>
+<h2 id="docker-표면"><a class="header" href="#docker-표면">Docker 표면</a></h2>
+<p>Dockerfile과 <code>docker-compose.yml</code>은 CLI 실행 환경을 격리한다. Ollama profile도 제공한다.
+그러나 container를 쓴다고 API key, 외부 vendor rate limit, live data 변동이 사라지지는
+않는다.</p>
+<h2 id="출력-언어"><a class="header" href="#출력-언어">출력 언어</a></h2>
+<p><code>output_language</code>는 analyst report와 최종 결정에 language instruction을 넣는다. 내부 토론
+품질을 위해 일부 prompt 구조와 label은 영어 contract를 유지한다. speaker prefix가 router에
+쓰이는 구간이 있으므로 단순 번역은 control flow에도 영향을 줄 수 있다.</p>
+<h2 id="핵심-정리"><a class="header" href="#핵심-정리">핵심 정리</a></h2>
+<ul>
+<li>CLI와 Python API는 같은 <code>TradingAgentsGraph</code>를 사용한다.</li>
+<li>환경 변수 override는 type 오류를 조용히 삼키지 않는다.</li>
+<li>report tree는 역할별 산출물을 보존하지만 raw 실행 trace는 아니다.</li>
+<li>Docker는 실행 환경을 묶을 뿐 외부 데이터와 모델의 불확실성을 제거하지 않는다.</li>
+<li>출력 언어와 내부 routing label은 같은 문제가 아니다.</li>
+</ul>
+<h2 id="원본-소스"><a class="header" href="#원본-소스">원본 소스</a></h2>
+<ul>
+<li><a href="https://github.com/nfbs2000/speaky-TradingAgents/blob/a33fd4c0f134485a43553a2c23a63cb14adbd88f/cli/main.py"><code>CLI entry</code></a></li>
+<li><a href="https://github.com/nfbs2000/speaky-TradingAgents/blob/a33fd4c0f134485a43553a2c23a63cb14adbd88f/cli/config.py"><code>CLI config</code></a></li>
+<li><a href="https://github.com/nfbs2000/speaky-TradingAgents/blob/a33fd4c0f134485a43553a2c23a63cb14adbd88f/tradingagents/default_config.py"><code>default config</code></a></li>
+<li><a href="https://github.com/nfbs2000/speaky-TradingAgents/blob/a33fd4c0f134485a43553a2c23a63cb14adbd88f/tradingagents/reporting.py"><code>report writer</code></a></li>
+<li><a href="https://github.com/nfbs2000/speaky-TradingAgents/blob/a33fd4c0f134485a43553a2c23a63cb14adbd88f/docker-compose.yml"><code>Docker Compose</code></a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../part4/ch09-memory-resume.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../part5/ch11-boundaries.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../part4/ch09-memory-resume.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../part5/ch11-boundaries.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-init.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

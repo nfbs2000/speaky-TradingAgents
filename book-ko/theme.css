@@ -1,0 +1,90 @@
+:root {
+  --trading-green: #087f5b;
+  --trading-cyan: #087ea4;
+  --trading-amber: #b45309;
+  --trading-red: #b42318;
+  --trading-ink: #17212b;
+}
+
+.content main {
+  max-width: 860px;
+}
+
+.content main h1 {
+  border-bottom: 3px solid var(--trading-green);
+  padding-bottom: 0.45em;
+}
+
+.content main h2 {
+  border-left: 4px solid var(--trading-cyan);
+  padding-left: 0.65em;
+}
+
+.content main img {
+  display: block;
+  max-height: 560px;
+  margin: 1.5rem auto;
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  border-radius: 6px;
+}
+
+.content main blockquote {
+  margin: 1.25rem 0;
+  border-left: 4px solid var(--trading-amber);
+  background: color-mix(in srgb, var(--trading-amber) 8%, transparent);
+}
+
+.content main table {
+  width: 100%;
+}
+
+.content main th {
+  background: color-mix(in srgb, var(--trading-cyan) 10%, transparent);
+}
+
+.source-note,
+.truth-note,
+.risk-note {
+  margin: 1.25rem 0;
+  padding: 0.9rem 1rem;
+  border-left: 4px solid var(--trading-cyan);
+  background: color-mix(in srgb, var(--trading-cyan) 8%, transparent);
+}
+
+.truth-note {
+  border-left-color: var(--trading-green);
+  background: color-mix(in srgb, var(--trading-green) 8%, transparent);
+}
+
+.risk-note {
+  border-left-color: var(--trading-red);
+  background: color-mix(in srgb, var(--trading-red) 7%, transparent);
+}
+
+.source-note strong,
+.truth-note strong,
+.risk-note strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+code {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 720px) {
+  .content {
+    padding: 0 14px;
+  }
+
+  .content main {
+    min-width: 0;
+  }
+
+  .content main table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+

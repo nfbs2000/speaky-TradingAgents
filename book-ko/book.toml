@@ -1,0 +1,18 @@
+[book]
+authors = ["TauricResearch 원작 · nfbs2000 한국어 해설"]
+language = "ko"
+src = "src"
+title = "TradingAgents 소스 읽기"
+description = "LangGraph 상태, 금융 데이터 도구, 토론과 리스크 관리, 기억과 재개로 읽는 TradingAgents 한국어 해설"
+
+[build]
+build-dir = "../docs"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "ayu"
+site-url = "/speaky-TradingAgents/"
+git-repository-url = "https://github.com/nfbs2000/speaky-TradingAgents"
+additional-js = ["mermaid-init.js"]
+additional-css = ["theme.css", "mermaid.css"]
+

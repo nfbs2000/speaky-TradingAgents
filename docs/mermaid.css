@@ -1,0 +1,15 @@
+.mermaid {
+  overflow-x: auto;
+  margin: 1.4rem 0;
+  padding: 1rem;
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  border-radius: 6px;
+  background: var(--bg);
+  text-align: center;
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+

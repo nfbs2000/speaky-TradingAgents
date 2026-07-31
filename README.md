@@ -25,6 +25,10 @@
   <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=zh">中文</a>
 </div>
 
+<div align="center">
+  <strong><a href="https://nfbs2000.github.io/speaky-TradingAgents/">한국어 소스 해설: TradingAgents를 상태, 데이터, 토론, 기억으로 읽기</a></strong>
+</div>
+
 ---
 
 # TradingAgents: Multi-Agents LLM Financial Trading Framework
