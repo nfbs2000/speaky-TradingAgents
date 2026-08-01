@@ -1,114 +1,114 @@
-# NVDA — News & Sentiment Analysis
+# NVDA — 뉴스 & 센티먼트 분석
 
-**Ticker:** NVDA (NVIDIA Corp)
-**Date of analysis:** 2026-08-01
-**Reference price:** $198.97 (close Fri 2026-07-31, +3.46% on the day; dispatch quoted ~$197)
-**Analyst:** ta-news-sentiment
+**티커:** NVDA (NVIDIA Corp)
+**분석일:** 2026-08-01
+**기준 가격:** $198.97 (2026-07-31 금요일 종가, 당일 +3.46%; 디스패치는 ~$197로 제시)
+**애널리스트:** ta-news-sentiment
 
 ---
 
-## 1. Key News — Past 1–2 Weeks
+## 1. 주요 뉴스 — 최근 1–2주
 
-| Date | Event | Source |
+| 날짜 | 이벤트 | 출처 |
 |---|---|---|
-| Jul 16, 2026 | TSMC beat earnings but raised 2026 capex guidance to $60–64B, spooking investors on AI-spend returns; kicked off the sector slide | eciks.org / Yahoo Finance |
-| Jul 22, 2026 | NVDA closed $212.06 (+2.3%) on Alphabet's capex increase | TheStreet |
-| Jul 27, 2026 | NVDA fell >5% below $200 — largest single-day drop since Feb 2026 — after reports NVIDIA is in talks to provide up to a **$250B guarantee** helping OpenAI lease a SoftBank-subsidiary data center project in Ohio; revived "circular financing" fears | FX Leaders, Yahoo Finance |
-| Jul 28, 2026 | NVDA -4.99% to $196.51, erasing ~$250B market value; **Apple overtook NVIDIA as world's most valuable company**. Google earnings (rising costs, shrinking margins) added to AI-profitability worries | TradingKey, FX Leaders |
-| Jul 29, 2026 | Chip stocks collectively shed >$1 trillion (SK Hynix, Samsung, Micron, AMD, TSMC each lost >$100B) | CNBC |
-| Jul 30, 2026 | NVDA traded below $190 intraday; sector rout continued (AMD -5.7%); BofA reiterated Buy/$350 calling the selloff an "enhanced buy opportunity" | 24/7 Wall St, eciks.org, TheStreet |
-| Jul 31, 2026 | Rebound: NVDA closed $198.97, +3.46% | TradingKey |
-| July 2026 | Jensen Huang signed Toyota, Fanuc, Kioxia + 5 other Japanese industrials into NVIDIA's "Physical AI Coalition" | Motley Fool / NVIDIA Newsroom |
-| July 2026 | Washington began issuing licenses for NVIDIA to resume H20 chip sales into China; separately, H200 sales were greenlit earlier in 2026 (with a reported 25% tariff), and China is reportedly weighing only limited H200 approvals on its side | Yahoo Finance, CRN Asia, Capital.com |
-| Jul 7, 2026 | Reuters: DeepSeek is developing its own proprietary AI chip, a potential long-term demand risk in China | Kavout / truthsandnews.com |
+| 2026년 7월 16일 | TSMC가 실적은 상회했으나 2026년 capex 가이던스를 $60–64B로 상향하면서 AI 투자 수익성에 대한 우려를 자극, 섹터 하락의 방아쇠를 당김 | eciks.org / Yahoo Finance |
+| 2026년 7월 22일 | Alphabet의 capex 증액에 NVDA가 $212.06(+2.3%)로 마감 | TheStreet |
+| 2026년 7월 27일 | NVIDIA가 OpenAI의 오하이오 SoftBank 자회사 데이터센터 프로젝트 임차를 돕기 위해 최대 **$250B 보증**을 제공하는 협상을 진행 중이라는 보도 이후, NVDA가 5% 넘게 하락해 $200 아래로 밀림 — 2026년 2월 이후 최대 일간 낙폭. "순환 금융" 우려 재점화 | FX Leaders, Yahoo Finance |
+| 2026년 7월 28일 | NVDA -4.99%로 $196.51, 시가총액 ~$250B 증발. **Apple이 NVIDIA를 제치고 세계 최대 시총 기업 등극.** Google 실적(비용 증가, 마진 축소)이 AI 수익성 우려를 가중 | TradingKey, FX Leaders |
+| 2026년 7월 29일 | 반도체 주식 전체에서 $1T 이상 증발 (SK Hynix, Samsung, Micron, AMD, TSMC 각각 $100B 이상 손실) | CNBC |
+| 2026년 7월 30일 | NVDA가 장중 $190 아래 거래; 섹터 급락 지속(AMD -5.7%). BofA는 이 매도세를 "강화된 매수 기회"로 규정하며 Buy/$350 재확인 | 24/7 Wall St, eciks.org, TheStreet |
+| 2026년 7월 31일 | 반등: NVDA $198.97, +3.46% 마감 | TradingKey |
+| 2026년 7월 | Jensen Huang이 Toyota, Fanuc, Kioxia와 그 외 일본 산업 기업 5곳을 NVIDIA "Physical AI Coalition"에 합류시킴 | Motley Fool / NVIDIA Newsroom |
+| 2026년 7월 | 워싱턴이 NVIDIA의 중국向 H20 칩 판매 재개 라이선스 발급 개시. 별도로 H200 판매는 2026년 초 승인(보도된 25% 관세 부과)됐으며, 중국 측은 제한적인 H200 승인만 검토 중인 것으로 알려짐 | Yahoo Finance, CRN Asia, Capital.com |
+| 2026년 7월 7일 | Reuters: DeepSeek이 자체 AI 칩을 개발 중 — 중국 내 장기 수요 리스크 요인 | Kavout / truthsandnews.com |
 
-**Upcoming catalyst:** FQ2 FY2027 earnings (quarter ended Jul 26, 2026) — conference call **Wednesday, Aug 26, 2026, 2 p.m. PT**. Company-side claims circulating in coverage: Blackwell sold out through mid-2026 and "$1 trillion in confirmed demand through 2027."
+**예정된 촉매:** FQ2 FY2027 실적 (2026년 7월 26일 종료 분기) — 컨퍼런스 콜 **2026년 8월 26일 수요일 오후 2시 PT**. 보도에 돌고 있는 회사 측 주장: Blackwell은 2026년 중반까지 완판, "2027년까지 확정 수요 1조 달러".
 
-Context: NVDA is down roughly 16–18% from its May–June 2026 record high (June alone -10.7%), while still up ~12% YTD 2026 — a milder pullback than most semis peers.
+맥락: NVDA는 2026년 5–6월 사상 최고가 대비 약 16–18% 하락한 상태다(6월 한 달만 -10.7%). 그럼에도 2026년 연초 대비로는 ~12% 상승해 있으며, 이는 대부분의 반도체 동종업체보다 완만한 조정이다.
 
 ---
 
-## 2. Analyst Targets & Rating Changes
+## 2. 애널리스트 목표주가 및 등급 변경
 
-| Date | Firm / Analyst | Action | Target |
+| 날짜 | 기관 / 애널리스트 | 조치 | 목표주가 |
 |---|---|---|---|
-| Jul 14, 2026 | KeyBanc (John Vinh) | Maintained Overweight | $310 → **$330** |
-| Jul 20, 2026 | Zacks Research | Upgraded to **Strong Buy** | — |
-| ~Jul 29–30, 2026 | Bank of America (Vivek Arya) | Reiterated Buy; called selloff an "enhanced buy opportunity for a unique, durable growth franchise now trading at a 7-year low 18x forward P/E" | **$350** (26x CY2027 EPS ex-cash) |
-| July 2026 | TD Cowen | Noted "underappreciated competitive edge"; valuation lowest since 2019 | — |
+| 2026년 7월 14일 | KeyBanc (John Vinh) | Overweight 유지 | $310 → **$330** |
+| 2026년 7월 20일 | Zacks Research | **Strong Buy**로 상향 | — |
+| ~2026년 7월 29–30일 | Bank of America (Vivek Arya) | Buy 재확인. 매도세를 "7년래 최저인 18x 포워드 P/E에 거래되는, 독보적이고 지속력 있는 성장 프랜차이즈에 대한 강화된 매수 기회"로 규정 | **$350** (현금 제외 CY2027 EPS의 26x) |
+| 2026년 7월 | TD Cowen | "저평가된 경쟁 우위" 언급; 밸류에이션은 2019년 이후 최저 | — |
 
-**Consensus (late July 2026, S&P Global, 61 analysts):** Strong Buy; average target **$302.83** (~+52% vs $198.97 close); range **$180 (low) to $500 (high)**. One widely covered bull case (Jul 30, 24/7 Wall St) argues for ~165% upside, consistent with the $500 street-high.
+**컨센서스 (2026년 7월 말, S&P Global, 애널리스트 61명):** Strong Buy; 평균 목표주가 **$302.83** ($198.97 종가 대비 ~+52%); 범위 **$180(최저) ~ $500(최고)**. 널리 인용된 한 강세 시나리오(7/30, 24/7 Wall St)는 ~165% 상승 여력을 주장하며, 이는 시장 최고치 $500과 부합한다.
 
-No downgrades or target cuts surfaced in the searched period — the notable bear is not a sell-side firm but Michael Burry (below).
-
----
-
-## 3. Social / Retail Sentiment
-
-**StockTwits** (whipsawed hard through July):
-- Mid-July: retail sentiment declined over two weeks, dipping to "extremely bearish" before recovering to "bearish" (StockTwits news desk).
-- ~Week of Jul 20: flipped from "bearish" to "extremely bullish."
-- Jul 29 (Wed, per Yahoo Finance/StockTwits): shifted "neutral" → **"bullish"** with **"high" message volume** into the rebound.
-- Volume: averaging **7,918 mentions/day** as of Jul 30, 2026, **up 21% vs three months ago** (TrendEdge); baseline >4,000 posts/day with event spikes >13,000 (Bitget). One AltIndex-sourced report claims message volume *fell* 42% over 30 days — this conflicts with the TrendEdge figure and could not be reconciled; treat volume trend as uncertain, level as high.
-- StockTwits does not publish a public bullish/bearish percentage I could retrieve (direct page fetch was blocked, HTTP 403); the readings above are StockTwits' own categorical labels as reported in its news articles.
-
-**Reddit** (two high-engagement threads, both bearish-leaning; r/wallstreetbets, which skews exuberant/contrarian):
-- A viral post — "34% of the S&P is 10 stocks making the same bet. We're basically all in a leveraged ETF with extra steps" — **4,824 upvotes** in days (market-concentration fear, NVDA-adjacent).
-- A thread on Michael Burry's NVDA short drew **6,372 upvotes**.
-- I could not retrieve a systematic bullish/bearish post ratio with counts for Reddit — **not available**. The two threads above indicate where the *attention* is (risk/bubble framing), not a measured ratio.
-
-**Notable bear:** Michael Burry (no 13F since Scion deregistered Nov 2025; disclosures via his Substack "Cassandra Unchained"): as of May 2026, ~80% of his personal portfolio in NVDA + PLTR puts (~$1.1B notional); recently reported adding NVDA puts expiring Dec 18, 2026 at low-$100s strikes (TheStreet, Yahoo Finance).
+검색 기간 중 등급 하향이나 목표주가 인하는 발견되지 않았다 — 눈에 띄는 약세 진영은 셀사이드 기관이 아니라 Michael Burry다(아래 참조).
 
 ---
 
-## 4. Insider Activity
+## 3. 소셜 / 리테일 센티먼트
 
-- **July 2026: effectively no open-market insider selling filed.** Only an administrative Form 4 (Suzanne M. Nora Johnson, Director, Jul 15 — 0 shares) and a Jul 1 share-gift transfer (StockTitan, secform4.com).
-- **June 2026 (context):** Director **Mark A. Stevens'** trusts sold **1,000,000 shares** Jun 2–4 at ~$217.66–$222.38, and **885,000 shares** Jun 18 at ~$209–210 — roughly $400M+ combined, sold well above the current price.
-- **Congressional trades (Quiver Quantitative):** Rep. Sam Liccardo sale Jul 21 ($15k–$50k); Rep. Dan Newhouse sale Jul 10 ($1k–$15k). Small sizes; low signal.
-- No insider buys of note found in June–July 2026.
+**StockTwits** (7월 내내 심하게 요동):
+- 7월 중순: 리테일 센티먼트가 2주에 걸쳐 하락, "극도의 약세"까지 내려갔다가 "약세"로 회복 (StockTwits 뉴스 데스크).
+- ~7월 20일 주간: "약세"에서 "극도의 강세"로 전환.
+- 7월 29일 (수, Yahoo Finance/StockTwits 기준): 반등 국면에서 "중립" → **"강세"**로 이동, 메시지 볼륨 **"높음"**.
+- 볼륨: 2026년 7월 30일 기준 일평균 **7,918건 언급**, **3개월 전 대비 21% 증가** (TrendEdge); 기준선은 하루 4,000건 이상이며 이벤트 시 13,000건 초과 급증 (Bitget). AltIndex를 출처로 한 한 리포트는 메시지 볼륨이 30일간 42% *감소*했다고 주장하는데, TrendEdge 수치와 충돌하며 조정할 수 없었다. 볼륨 추세는 불확실, 수준은 높음으로 취급한다.
+- StockTwits는 내가 취득할 수 있는 형태의 공개 강세/약세 비율을 게시하지 않는다(직접 페이지 접근이 HTTP 403으로 차단됨). 위 판독값은 StockTwits가 자사 뉴스 기사에서 보고한 자체 범주형 레이블이다.
 
----
+**Reddit** (참여도 높은 두 스레드, 둘 다 약세 성향; 낙관/역발상 편향이 강한 r/wallstreetbets):
+- 바이럴 게시물 — "S&P의 34%가 10개 종목이고 그들이 같은 베팅을 하고 있다. 우리는 사실상 단계만 추가된 레버리지 ETF에 들어 있는 셈이다" — 며칠 만에 **업보트 4,824개** (시장 집중도 공포, NVDA 인접 주제).
+- Michael Burry의 NVDA 숏에 관한 스레드가 **업보트 6,372개** 획득.
+- Reddit에 대해 표본 수를 갖춘 체계적인 강세/약세 게시물 비율은 취득할 수 없었다 — **not available**. 위 두 스레드는 측정된 비율이 아니라 *관심*이 어디에 쏠려 있는지(리스크/버블 프레이밍)를 보여준다.
 
-## 5. Institutional Ownership
-
-Latest complete data is **Q1 2026** (Mar 31); Q2 13Fs are due ~mid-August 2026 and not yet aggregated.
-- Institutional ownership **53.8%** across 5,598 reporting institutions (Fintel).
-- Q1 flows: 423 new positions, 363 full exits, 1,286 added, **3,872 trimmed**; institutional ownership **fell 6.04 percentage points** quarter-over-quarter (InsiderSet) — net trimming into strength.
-- BlackRock largest holder (~1.93B shares, ~$336B as of Q1 2026).
-
----
-
-## 6. Sector News & Trends
-
-- Broad AI-chip rout in July: Philadelphia Semiconductor Index **-20%+ from its June peak in ~3 weeks**; Intel -21% in the month; >$1T of sector market cap erased in the late-July leg (Forbes, CNBC).
-- Drivers: circular-financing worries (NVIDIA/OpenAI/SoftBank guarantee structure), TSMC's capex jump, hyperscaler cost pressure in earnings (Google), Chinese competition (DeepSeek in-house chip; domestic Chinese accelerators), and "AI spending may be peaking faster than expected" narratives.
-- Offsets: China market reopening (H20 licenses; H200 greenlight with tariff), Alphabet raising capex (Jul 22), NVIDIA's Physical AI/robotics expansion in Japan.
-- NVDA's ~16% drawdown is *smaller* than most peers', and it reclaimed some ground into the Jul 31 close.
+**주목할 약세론자:** Michael Burry (Scion이 2025년 11월 등록을 말소한 이후 13F 없음; 공개는 자신의 Substack "Cassandra Unchained"를 통해): 2026년 5월 기준 개인 포트폴리오의 ~80%가 NVDA + PLTR 풋(~$1.1B 명목). 최근에는 2026년 12월 18일 만기, $100 초반 행사가의 NVDA 풋을 추가한 것으로 보도됐다 (TheStreet, Yahoo Finance).
 
 ---
 
-## 7. Cross-Source Divergence (the key finding)
+## 4. 내부자 거래
 
-The three source classes point in **different directions and the gap is unusually wide**:
-- **Sell-side: strongly bullish** — Strong Buy consensus, target hikes into the selloff, avg target ~52% above spot, zero downgrades found.
-- **News flow: bearish-tilted** — circular-financing fears, lost #1 market-cap crown, $1T sector wipeout, bubble comparisons to dot-com.
-- **Retail: volatile, currently lean-bullish** — StockTwits flipped to bullish on the Jul 30–31 rebound after an extremely bearish mid-July, while the highest-engagement Reddit threads are bearish/bubble-framed.
+- **2026년 7월: 공개시장 내부자 매도는 사실상 없음.** 행정적 성격의 Form 4 한 건(Suzanne M. Nora Johnson 이사, 7/15 — 0주)과 7/1 주식 증여 이전만 존재 (StockTitan, secform4.com).
+- **2026년 6월 (맥락):** **Mark A. Stevens** 이사의 신탁이 6/2–4에 **1,000,000주**를 ~$217.66–222.38에, 6/18에 **885,000주**를 ~$209–210에 매도 — 합산 약 $400M 이상이며, 모두 현재가보다 훨씬 높은 가격이다.
+- **의회 거래 (Quiver Quantitative):** Sam Liccardo 하원의원 7/21 매도($15k–$50k), Dan Newhouse 하원의원 7/10 매도($1k–$15k). 규모가 작아 신호 강도는 낮다.
+- 2026년 6–7월에 주목할 만한 내부자 매수는 발견되지 않았다.
 
-This is a contested narrative, not a consensus — sentiment risk runs both ways into the Aug 26 earnings print.
+---
+
+## 5. 기관 보유 현황
+
+가장 최신의 완전한 데이터는 **2026년 1분기**(3/31) 기준이다. 2분기 13F는 2026년 8월 중순경 제출 예정이며 아직 집계되지 않았다.
+- 기관 보유 비중 **53.8%**, 보고 기관 5,598곳 (Fintel).
+- 1분기 자금 흐름: 신규 진입 423건, 전량 청산 363건, 추가 매수 1,286건, **비중 축소 3,872건**. 기관 보유 비중은 전분기 대비 **6.04%포인트 하락** (InsiderSet) — 강세 국면에서의 순 비중 축소다.
+- BlackRock이 최대 보유자 (~19.3억 주, 2026년 1분기 기준 ~$336B).
+
+---
+
+## 6. 섹터 뉴스 및 트렌드
+
+- 7월 AI 칩 전반의 급락: 필라델피아 반도체 지수가 **약 3주 만에 6월 고점 대비 -20% 이상**; Intel은 한 달간 -21%; 7월 말 구간에서만 섹터 시가총액 $1T 이상 증발 (Forbes, CNBC).
+- 요인: 순환 금융 우려(NVIDIA/OpenAI/SoftBank 보증 구조), TSMC의 capex 급증, 실적에 드러난 하이퍼스케일러 비용 압박(Google), 중국 경쟁(DeepSeek 자체 칩, 중국 국내 가속기), 그리고 "AI 지출이 예상보다 빨리 정점을 찍고 있을 수 있다"는 서사.
+- 상쇄 요인: 중국 시장 재개(H20 라이선스, 관세 부과 조건의 H200 승인), Alphabet의 capex 상향(7/22), 일본에서의 NVIDIA Physical AI/로보틱스 확장.
+- NVDA의 ~16% 낙폭은 대부분의 동종업체보다 *작으며*, 7/31 종가로 일부를 되찾았다.
+
+---
+
+## 7. 출처 그룹 간 괴리 (핵심 발견)
+
+세 부류의 출처가 **서로 다른 방향을 가리키며, 그 격차가 이례적으로 크다**:
+- **셀사이드: 강한 강세** — Strong Buy 컨센서스, 매도세 한복판의 목표가 상향, 현재가 대비 ~52% 높은 평균 목표가, 하향 0건.
+- **뉴스 흐름: 약세 편향** — 순환 금융 우려, 시총 1위 상실, $1T 섹터 증발, 닷컴 버블과의 비교.
+- **리테일: 변동성 크고 현재는 강세 쪽** — StockTwits는 7월 중순 극도의 약세 이후 7/30–31 반등에 강세로 전환했지만, 참여도가 가장 높은 Reddit 스레드들은 약세/버블 프레임이다.
+
+이는 컨센서스가 아니라 다투어지는 서사다 — 8월 26일 실적을 향해 센티먼트 리스크가 양방향으로 열려 있다.
 
 ---
 
 ## Data Gaps
 
-- No retrievable numeric bullish/bearish **ratio with sample size** for StockTwits or Reddit (StockTwits sentiment page returned HTTP 403; readings are StockTwits' own categorical labels via its news desk). Retail read is directional only — confidence lowered accordingly.
-- Conflicting StockTwits message-volume trend (+21% vs -42% over similar windows from different aggregators); level is clearly high, trend uncertain.
-- Q2 2026 13F data not yet published; institutional read is one quarter stale.
-- The $250B OpenAI guarantee is *reported talks*, not a confirmed signed deal; terms unverified.
-- Exact date of the BofA $350 reiteration could only be pinned to ~Jul 29–30 from secondary coverage.
+- StockTwits나 Reddit에 대해 **표본 수를 갖춘 수치화된 강세/약세 비율**을 취득할 수 없었다 (StockTwits 센티먼트 페이지가 HTTP 403 반환; 판독값은 뉴스 데스크를 통해 전달된 StockTwits 자체 범주형 레이블). 리테일 판독은 방향성만 유효하며, 신뢰도를 그만큼 낮췄다.
+- StockTwits 메시지 볼륨 추세가 상충(비슷한 기간에 서로 다른 집계처가 +21% vs -42%). 수준이 높다는 점은 명확하나 추세는 불확실하다.
+- 2026년 2분기 13F 데이터가 아직 공시되지 않았다. 기관 판독은 한 분기 지연 상태다.
+- $250B OpenAI 보증은 *보도된 협상*이며 확정 서명 계약이 아니다. 조건은 미검증이다.
+- BofA의 $350 재확인 정확한 날짜는 2차 보도로 ~7/29–30까지만 특정할 수 있었다.
 
 ---
 
 ## Sentiment Direction: **Mixed**
 
-Sell-side analysts are aggressively bullish (Strong Buy consensus, ~$303 average target, BofA at $350 calling an "enhanced buy" at a 7-year-low 18x forward P/E), but the past two weeks of news flow were bearish — a ~10% two-day slide on $250B OpenAI circular-financing fears, loss of the most-valuable-company crown to Apple, and a $1T sector wipeout — while retail sentiment whipsawed from extremely bearish mid-July to bullish on the Jul 30–31 rebound, and the loudest Reddit threads plus Michael Burry's put position carry the bear case. June insider selling (Stevens trusts, ~1.9M shares at $209–222) and Q1 institutional trimming lean cautious but predate the drawdown. The split across sources is genuine; this reads as a contested narrative heading into Aug 26 earnings, and none of it is predictive of price — it is one input for the trader to weigh.
+셀사이드 애널리스트는 공격적으로 강세다(Strong Buy 컨센서스, 평균 목표가 ~$303, BofA는 7년래 최저 18x 포워드 P/E를 근거로 "강화된 매수"를 주장하며 $350). 반면 지난 2주의 뉴스 흐름은 약세였다 — $250B OpenAI 순환 금융 우려에 따른 이틀간 ~10% 하락, Apple에 시총 1위 왕좌 상실, $1T 규모 섹터 증발. 리테일 센티먼트는 7월 중순 극도의 약세에서 7/30–31 반등에 강세로 요동쳤고, 가장 시끄러운 Reddit 스레드들과 Michael Burry의 풋 포지션이 약세 논지를 떠받친다. 6월 내부자 매도(Stevens 신탁, $209–222에 ~190만 주)와 1분기 기관 비중 축소는 신중 쪽으로 기울지만 낙폭 이전 시점의 데이터다. 출처 간 분열은 실재한다. 이는 8월 26일 실적을 향해 다투어지는 서사로 읽히며, 그중 어느 것도 가격을 예측하지 못한다 — 트레이더가 저울에 올릴 하나의 입력일 뿐이다.

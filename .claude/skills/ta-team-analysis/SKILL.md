@@ -1,56 +1,56 @@
 ---
 name: ta-team-analysis
-description: This skill should be used when the user asks to "run trading analysis", "analyze stock with team", "team trading analysis", "run TLRY analysis", "stock analysis team", "trading team report", "multi-agent stock analysis", "run team analysis for [TICKER]", "종목 분석 팀 실행", or wants a multi-agent trading analysis driven by Claude Code subagents with automatic report saving.
+description: 사용자가 "run trading analysis", "analyze stock with team", "team trading analysis", "run TLRY analysis", "stock analysis team", "trading team report", "multi-agent stock analysis", "run team analysis for [TICKER]", "종목 분석 팀 실행" 등을 요청하거나, Claude Code 서브에이전트로 구동되고 리포트를 자동 저장하는 멀티 에이전트 트레이딩 분석을 원할 때 사용하는 스킬.
 version: 0.2.0
 ---
 
 # TradingAgents Team Analysis Orchestration
 
-Run a Claude Code subagent team that produces a multi-perspective trading analysis
-and saves every report to disk.
+Claude Code 서브에이전트 팀을 실행해 여러 관점의 트레이딩 분석을 만들고
+모든 리포트를 디스크에 저장한다.
 
-## Choose the right tool first
+## 먼저 올바른 도구를 골라라
 
-This skill uses **Claude Code subagents with web search**. It does not run the
-Python pipeline. Pick deliberately:
+이 스킬은 **웹 검색을 쓰는 Claude Code 서브에이전트**를 사용한다. Python 파이프라인은
+실행하지 않는다. 의도적으로 선택하라:
 
-| Want | Use |
+| 원하는 것 | 사용할 것 |
 |---|---|
-| The framework's real 12-agent LangGraph pipeline, structured output, memory log, saved report tree | `tradingagents analyze`, or `ta-eval-backtest` / `run_single_eval.py` |
-| A live web-research analysis right now, no API key or install needed | **this skill** |
-| To compare the two | run both and diff the final signals |
+| 프레임워크의 실제 12-에이전트 LangGraph 파이프라인, 구조화 출력, memory 로그, 저장된 리포트 트리 | `tradingagents analyze`, 또는 `ta-eval-backtest` / `run_single_eval.py` |
+| 지금 당장 실행하는 라이브 웹 리서치 분석, API 키나 설치 불필요 | **이 스킬** |
+| 둘을 비교 | 둘 다 실행하고 최종 시그널을 diff |
 
-The Python pipeline is the product; this skill is a research harness that mirrors its
-*shape* (analysts → debate → risk → decision) using web search instead of vendor APIs.
-Its output is **not** interchangeable with pipeline output: no structured schemas, no
-5-tier `parse_rating` contract, no memory log entry.
+Python 파이프라인이 제품이고, 이 스킬은 벤더 API 대신 웹 검색으로 그 *형태*
+(analysts → debate → risk → decision)를 모사하는 리서치 하네스다. 출력은 파이프라인
+출력과 **호환되지 않는다**: 구조화 스키마 없음, 5단계 `parse_rating` 계약 없음,
+memory 로그 항목 없음.
 
-## Prerequisites
+## 사전 조건
 
-- Subagent spawning available (the `Agent` tool).
-- `WebSearch` / `WebFetch` available to subagents.
-- No environment variable is required. Older versions of this skill asked for
-  `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` and used `TeamCreate` / `TeamDelete`;
-  **those tools no longer exist** — the session has a single implicit team, and
-  `Agent`'s `team_name` parameter is deprecated and ignored. Do not call them.
+- 서브에이전트 스폰 가능 (`Agent` 도구).
+- 서브에이전트가 `WebSearch` / `WebFetch`를 사용할 수 있어야 한다.
+- 환경 변수는 필요 없다. 이 스킬의 예전 버전은 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`을
+  요구하고 `TeamCreate` / `TeamDelete`를 사용했지만, **그 도구들은 더 이상 존재하지 않는다** —
+  세션에는 암묵적 팀 하나만 있으며 `Agent`의 `team_name` 파라미터는 deprecated이고 무시된다.
+  호출하지 마라.
 
-## Input Variables
+## 입력 변수
 
-Collect from the user before starting (ask if missing):
+시작 전에 사용자에게서 수집한다 (없으면 물어라):
 
-| Variable | Description | Example |
+| 변수 | 설명 | 예시 |
 |----------|-------------|---------|
-| `{TICKER}` | Ticker symbol | `TLRY` |
-| `{PRICE}` | Current approximate price | `~$7.99` |
-| `{DATE}` | Analysis date (YYYY-MM-DD) | `2026-07-31` |
+| `{TICKER}` | 티커 심볼 | `TLRY` |
+| `{PRICE}` | 현재 대략적인 가격 | `~$7.99` |
+| `{DATE}` | 분석 날짜 (YYYY-MM-DD) | `2026-07-31` |
 
-Derive: `{OUTPUT_DIR}` = `output/{TICKER}/{DATE}`
+파생: `{OUTPUT_DIR}` = `output/{TICKER}/{DATE}`
 
-Default `{DATE}` to today and confirm. If `{PRICE}` is unknown, say so in the
-prompts rather than inventing one — a fabricated anchor price corrupts every
-support/resistance and risk/reward figure downstream.
+`{DATE}`는 오늘로 기본 설정하고 확인받아라. `{PRICE}`를 모르면 지어내지 말고 프롬프트에
+모른다고 명시하라 — 조작된 기준 가격은 이후의 모든 지지/저항선과 risk/reward 수치를
+오염시킨다.
 
-## Output Directory Structure
+## 출력 디렉터리 구조
 
 ```
 output/{TICKER}/{DATE}/
@@ -61,7 +61,7 @@ output/{TICKER}/{DATE}/
 └── 05-final-report.md             ← you (orchestrator)
 ```
 
-## Team Structure
+## 팀 구조
 
 ```
 you = orchestrator (ta-lead, or the main conversation)
@@ -71,49 +71,48 @@ you = orchestrator (ta-lead, or the main conversation)
 └── ta-risk-trader              bull/bear debate + risk assessment + final signal
 ```
 
-**These four are defined as agents in `.claude/agents/`.** Spawn them by
-`subagent_type` — each already carries its own role, analysis requirements, evidence
-discipline, report format, and output protocol:
+**이 넷은 `.claude/agents/`에 에이전트로 정의되어 있다.** `subagent_type`으로 스폰하라 —
+각자 이미 자신의 역할, 분석 요구사항, 근거 원칙, 리포트 형식, 출력 프로토콜을 갖고 있다:
 
 ```
 Agent(subagent_type: "ta-market-analyst", name: "ta-market-analyst", ...)
 ```
 
-The agent definition is the single source of truth for **how** each one works. This
-skill owns only the orchestration and the **per-run variables** you pass in. Do not
-restate an agent's instructions in its spawn prompt — two copies of the same prompt
-drift apart, and the agent file wins.
+각 에이전트가 **어떻게** 동작하는지에 대한 단일 진실 공급원은 에이전트 정의 파일이다.
+이 스킬은 오케스트레이션과 넘겨주는 **실행별 변수**만 담당한다. 스폰 프롬프트에
+에이전트의 지시사항을 다시 적지 마라 — 같은 프롬프트가 두 벌 있으면 서로 어긋나고,
+에이전트 파일이 우선한다.
 
-## Execution Workflow
+## 실행 워크플로우
 
-### Step 1 — Create the output directory
+### Step 1 — 출력 디렉터리 생성
 
 ```
 Bash: mkdir -p output/{TICKER}/{DATE}
 ```
 
-### Step 2 — Create tasks
+### Step 2 — 태스크 생성
 
-`TaskCreate` five tasks:
+`TaskCreate`로 태스크 5개를 만든다:
 
 | # | Subject | Description |
 |---|---------|-------------|
-| 1 | Technical analysis for {TICKER} | Price trends, indicators, chart patterns |
-| 2 | Fundamentals analysis for {TICKER} | Financials, valuation, competitive position |
-| 3 | News/sentiment analysis for {TICKER} | Recent news, analyst ratings, social sentiment |
-| 4 | Risk assessment & trading decision for {TICKER} | Bull/bear debate, risk evaluation, signal |
-| 5 | Final synthesis report for {TICKER} | Combine all four into a final recommendation |
+| 1 | Technical analysis for {TICKER} | 가격 추세, 지표, 차트 패턴 |
+| 2 | Fundamentals analysis for {TICKER} | 재무, 밸류에이션, 경쟁 지위 |
+| 3 | News/sentiment analysis for {TICKER} | 최근 뉴스, 애널리스트 등급, 소셜 센티먼트 |
+| 4 | Risk assessment & trading decision for {TICKER} | 강세/약세 논쟁, 리스크 평가, 시그널 |
+| 5 | Final synthesis report for {TICKER} | 넷을 종합해 최종 추천 도출 |
 
-Then wire dependencies with `TaskUpdate`:
+그다음 `TaskUpdate`로 의존관계를 연결한다:
 - task 4: `addBlockedBy: ["1", "2", "3"]`
 - task 5: `addBlockedBy: ["1", "2", "3", "4"]`
 
-Assign each with `TaskUpdate` `owner` matching the agent name you will spawn.
+각 태스크는 스폰할 에이전트 이름과 일치하도록 `TaskUpdate`의 `owner`로 배정한다.
 
-### Step 3 — Spawn the three analysts in parallel
+### Step 3 — 애널리스트 3명을 병렬로 스폰
 
-Spawn `ta-market-analyst`, `ta-fundamentals-analyst`, and `ta-news-sentiment-analyst`
-in a **single message with three `Agent` calls** so they run concurrently:
+`ta-market-analyst`, `ta-fundamentals-analyst`, `ta-news-sentiment-analyst`를
+**하나의 메시지에서 `Agent` 호출 3개로** 스폰해 동시에 실행시킨다:
 
 ```
 Agent(
@@ -125,11 +124,11 @@ Agent(
 )
 ```
 
-Do not pass `team_name` — it is ignored.
+`team_name`은 넘기지 마라 — 무시된다.
 
-#### Dispatch variables (the whole spawn prompt)
+#### 디스패치 변수 (스폰 프롬프트 전체)
 
-Each agent already knows its job. Pass only the run-specific values:
+각 에이전트는 자기 일을 이미 안다. 실행별 값만 넘겨라:
 
 ```
 TICKER: {TICKER}
@@ -140,43 +139,42 @@ TASK_ID: <the task you assigned this agent>
 REPORT_TO: ta-lead                 # or "main" if the main conversation is orchestrating
 ```
 
-Add extra context only when the user gave some (a thesis to test, a specific catalyst,
-a time horizon). Never re-specify the analysis requirements or the output protocol —
-they live in `.claude/agents/ta-*.md`.
+사용자가 추가 맥락(검증할 논지, 특정 촉매, 시간 지평)을 준 경우에만 덧붙여라. 분석
+요구사항이나 출력 프로토콜은 절대 다시 지정하지 마라 — 그것들은 `.claude/agents/ta-*.md`에 있다.
 
-If `{PRICE}` is unknown, pass the literal `unknown`. The agents are instructed to treat
-it as unanchored rather than inventing a number.
+`{PRICE}`를 모르면 문자 그대로 `unknown`을 넘겨라. 에이전트들은 숫자를 지어내는 대신
+기준값 없음으로 취급하도록 지시받았다.
 
-### Step 4 — Spawn ta-risk-trader after 1–3 complete
+### Step 4 — 1–3 완료 후 ta-risk-trader 스폰
 
-Wait for all three completion notifications, **verify the three files exist and are
-non-empty**, then spawn `ta-risk-trader` with the same dispatch variables. It reads the
-three files from disk and is instructed to refuse and report back if any is missing, so
-spawning it early wastes a run rather than producing a bad one.
+셋의 완료 알림을 모두 기다리고, **세 파일이 존재하며 비어 있지 않은지 검증한** 뒤 같은
+디스패치 변수로 `ta-risk-trader`를 스폰하라. 이 에이전트는 세 파일을 디스크에서 읽고
+하나라도 없으면 거부하고 보고하도록 지시받았으므로, 일찍 스폰하면 나쁜 결과가 나오는 게
+아니라 실행 한 번을 낭비하게 된다.
 
-### Step 5 — Receive results and synthesize
+### Step 5 — 결과 수신 및 종합
 
-As each agent completes:
-1. `Glob` / `Read` to confirm its report file exists and has content.
-2. `TaskUpdate` its task to `completed` (agents are told to do this themselves;
-   verify rather than assume).
+각 에이전트가 완료될 때마다:
+1. `Glob` / `Read`로 리포트 파일이 존재하고 내용이 있는지 확인한다.
+2. `TaskUpdate`로 해당 태스크를 `completed`로 바꾼다 (에이전트가 직접 하도록
+   지시받았지만, 가정하지 말고 검증하라).
 
-After all four reports exist:
-1. Read all four files.
-2. Write `05-final-report.md`.
-3. `TaskUpdate` task 5 to `completed`.
+네 리포트가 모두 존재하면:
+1. 네 파일을 모두 읽는다.
+2. `05-final-report.md`를 작성한다.
+3. `TaskUpdate`로 task 5를 `completed`로 바꾼다.
 
-### Step 6 — Report to the user
+### Step 6 — 사용자에게 보고
 
-Summarize the final signal and the four agents' conclusions in your reply, and give
-the path to `05-final-report.md`. **Do not** send `shutdown_request` to the agents
-and do not call `TeamDelete` — background subagents finish on their own, and
-originating a shutdown request is reserved for when the user asks for it.
+최종 시그널과 네 에이전트의 결론을 답변에 요약하고 `05-final-report.md` 경로를 알려줘라.
+에이전트들에게 `shutdown_request`를 보내지 **말고** `TeamDelete`도 호출하지 마라 —
+백그라운드 서브에이전트는 스스로 끝나며, 셧다운 요청을 먼저 보내는 것은 사용자가 요청할
+때만 하는 일이다.
 
-## Agent Prompt Templates
+## 에이전트 프롬프트 템플릿
 
-**There are none here by design.** Each agent's role, analysis requirements, evidence
-discipline, report format, and output protocol live in its own definition:
+**여기에는 의도적으로 없다.** 각 에이전트의 역할, 분석 요구사항, 근거 원칙, 리포트 형식,
+출력 프로토콜은 각자의 정의 파일에 있다:
 
 | Agent | Definition | Writes |
 |---|---|---|
@@ -185,27 +183,26 @@ discipline, report format, and output protocol live in its own definition:
 | `ta-news-sentiment-analyst` | `.claude/agents/ta-news-sentiment-analyst.md` | `03-news-sentiment-analysis.md` |
 | `ta-risk-trader` | `.claude/agents/ta-risk-trader.md` | `04-risk-trade-decision.md` |
 
-Read the agent file if you need to know what one will produce. Editing an agent's
-behavior means editing that file, not this skill.
+어떤 에이전트가 무엇을 만들어낼지 알아야 하면 그 에이전트 파일을 읽어라. 에이전트 동작을
+바꾸려면 이 스킬이 아니라 그 파일을 편집해야 한다.
 
-Each agent is instructed to, in order: `Write` its report to the path above,
-`TaskUpdate` its task to `completed`, then `SendMessage` the full report text to
-`REPORT_TO`. Each also ends its report with a fixed verdict line
-(`## Technical Direction:`, `## Fundamental Rating:`, `## Sentiment Direction:`,
-`## FINAL SIGNAL:`) plus a **Data Gaps** section — that is what you key the synthesis
-table off.
+각 에이전트는 순서대로 다음을 하도록 지시받았다: 위 경로에 리포트를 `Write`하고,
+`TaskUpdate`로 태스크를 `completed`로 바꾸고, 리포트 전문을 `REPORT_TO`에 `SendMessage`한다.
+또한 각자 리포트를 고정된 판정 라인(`## Technical Direction:`, `## Fundamental Rating:`,
+`## Sentiment Direction:`, `## FINAL SIGNAL:`)과 **Data Gaps** 섹션으로 끝맺는다 —
+종합 표는 그것을 기준으로 작성한다.
 
-## Orchestrator Synthesis Protocol
+## 오케스트레이터 종합 프로토콜
 
-### 1. Verify files
+### 1. 파일 검증
 ```
 Glob: output/{TICKER}/{DATE}/0*.md
 ```
-Confirm `01` through `04` exist and are non-empty.
+`01`부터 `04`까지 존재하고 비어 있지 않은지 확인한다.
 
-### 2. Read all four reports
+### 2. 네 리포트를 모두 읽는다
 
-### 3. Write `05-final-report.md`
+### 3. `05-final-report.md` 작성
 
 ```markdown
 # {TICKER} Comprehensive Trading Report
@@ -232,83 +229,81 @@ Confirm `01` through `04` exist and are non-empty.
 
 | Agent | Role | Conclusion |
 |-------|------|-----------|
-| ta-market-analyst | Technical | [direction] |
-| ta-fundamentals-analyst | Fundamental | [rating] |
-| ta-news-sentiment-analyst | News/Sentiment | [direction] |
-| ta-risk-trader | Risk & Decision | [signal + confidence] |
+| ta-market-analyst | Technical | [방향] |
+| ta-fundamentals-analyst | Fundamental | [등급] |
+| ta-news-sentiment-analyst | News/Sentiment | [방향] |
+| ta-risk-trader | Risk & Decision | [시그널 + 확신도] |
 
 ---
 
 ## 1. Technical Analysis
-[summary of 01 — key indicators, support/resistance, direction]
+[01 요약 — 핵심 지표, 지지/저항, 방향]
 
 ## 2. Fundamentals Analysis
-[summary of 02 — financials, valuation, rating]
+[02 요약 — 재무, 밸류에이션, 등급]
 
 ## 3. News/Sentiment Analysis
-[summary of 03 — key news, analyst views, sentiment]
+[03 요약 — 핵심 뉴스, 애널리스트 견해, 센티먼트]
 
 ## 4. Risk Assessment & Trading Decision
-[summary of 04 — bull/bear cases, risks, trading plan]
+[04 요약 — 강세/약세 논거, 리스크, 트레이딩 플랜]
 
 ## 5. Final Synthesis
-[your own synthesis across all four perspectives]
+[네 관점을 아우르는 본인의 종합]
 
 ### Key Takeaway
-[1-2 sentences]
+[1-2문장]
 
 ### Data Gaps
-[anything the agents reported as unavailable, and how it limits confidence]
+[에이전트들이 확보 불가로 보고한 항목과 그것이 확신도를 어떻게 제한하는지]
 
 ### Critical Monitoring Points
-[numbered list of events/levels to watch]
+[주시할 이벤트/가격대의 번호 목록]
 
 ---
 
 ## Sources
-[combined sources from all reports]
+[모든 리포트의 출처 통합]
 
 ---
 
-> **Disclaimer**: This is AI-agent research based on public web sources, not
-> investment advice. It was not produced by the TradingAgents Python pipeline and
-> carries no backtest or realized-return validation. All investment decisions are
-> your own responsibility.
+> **Disclaimer**: 이것은 공개 웹 소스에 기반한 AI 에이전트 리서치이며 투자 자문이
+> 아니다. TradingAgents Python 파이프라인으로 생성된 것이 아니며 백테스트나 실현
+> 수익 검증을 거치지 않았다. 모든 투자 결정의 책임은 본인에게 있다.
 ```
 
-Keep the **Data Gaps** section even when empty — write "none". Silently dropping it
-makes a thin analysis look complete.
+**Data Gaps** 섹션은 비어 있어도 유지하고 "none"이라고 써라. 조용히 빼먹으면 빈약한
+분석이 완전해 보이게 된다.
 
-### 4. Save
+### 4. 저장
 ```
 Write: output/{TICKER}/{DATE}/05-final-report.md
 ```
 
-## Validation Checklist
+## 검증 체크리스트
 
-- [ ] `output/{TICKER}/{DATE}/` exists
-- [ ] `01-technical-analysis.md` exists, non-empty, ends with a Technical Direction line
-- [ ] `02-fundamentals-analysis.md` exists, non-empty, ends with a Fundamental Rating line
-- [ ] `03-news-sentiment-analysis.md` exists, non-empty, ends with a Sentiment Direction line
-- [ ] `04-risk-trade-decision.md` exists, non-empty, ends with a FINAL SIGNAL line
-- [ ] `05-final-report.md` exists with the full synthesis
-- [ ] Final report carries FINAL SIGNAL plus entry/target/stop
-- [ ] Data Gaps section present (even if "none")
-- [ ] All 5 tasks marked completed
+- [ ] `output/{TICKER}/{DATE}/`가 존재한다
+- [ ] `01-technical-analysis.md`가 존재하고, 비어 있지 않으며, Technical Direction 라인으로 끝난다
+- [ ] `02-fundamentals-analysis.md`가 존재하고, 비어 있지 않으며, Fundamental Rating 라인으로 끝난다
+- [ ] `03-news-sentiment-analysis.md`가 존재하고, 비어 있지 않으며, Sentiment Direction 라인으로 끝난다
+- [ ] `04-risk-trade-decision.md`가 존재하고, 비어 있지 않으며, FINAL SIGNAL 라인으로 끝난다
+- [ ] `05-final-report.md`가 존재하고 종합 내용이 모두 담겨 있다
+- [ ] 최종 리포트에 FINAL SIGNAL과 entry/target/stop이 있다
+- [ ] Data Gaps 섹션이 있다 ("none"이라도)
+- [ ] 태스크 5개가 모두 completed로 표시되었다
 
-## Troubleshooting
+## 트러블슈팅
 
-**Agent sent a report but did not save the file** — extract the content from its
-message, `Write` it to the correct path yourself, then continue.
+**에이전트가 리포트를 보냈지만 파일을 저장하지 않음** — 메시지에서 내용을 추출해
+직접 올바른 경로에 `Write`한 뒤 계속 진행하라.
 
-**Agent went idle without completing** — `SendMessage` to it by name (a send resumes
-it from its transcript) reminding it of the Output Protocol. If it still does not
-respond, write the report from the material it did send and note the gap in the final
-report.
+**에이전트가 완료하지 않고 유휴 상태가 됨** — 이름으로 `SendMessage`해서(메시지를 보내면
+해당 에이전트가 자신의 트랜스크립트에서 재개된다) 출력 프로토콜을 상기시켜라. 그래도
+응답하지 않으면 그 에이전트가 보낸 자료로 리포트를 작성하고 최종 리포트에 그 공백을 기록하라.
 
-**ta-risk-trader reports missing inputs** — it was spawned before 1–3 finished. Verify
-the three files, then re-spawn it.
+**ta-risk-trader가 입력 누락을 보고함** — 1–3이 끝나기 전에 스폰된 것이다. 세 파일을
+검증한 뒤 다시 스폰하라.
 
-**A `TeamCreate` / `TeamDelete` / `shutdown_request` step from an older runbook
-fails** — expected. Those tools are gone; skip the step. Task assignment is via
-`TaskUpdate`'s `owner`, and background agents need no shutdown.
+**예전 런북의 `TeamCreate` / `TeamDelete` / `shutdown_request` 단계가 실패함** — 정상이다.
+그 도구들은 사라졌으니 해당 단계를 건너뛰어라. 태스크 배정은 `TaskUpdate`의 `owner`로 하고,
+백그라운드 에이전트는 셧다운이 필요 없다.

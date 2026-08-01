@@ -1,22 +1,22 @@
-# LLM Provider Client Details
+# LLM 프로바이더 클라이언트 상세
 
-## Client Files
+## 클라이언트 파일
 
-| File | Contents | Serves |
+| 파일 | 내용 | 대상 |
 |------|----------|--------|
-| `llm_clients/base_client.py` | `BaseLLMClient`, `normalize_content()` | all |
-| `llm_clients/factory.py` | `create_llm_client()` | entry point |
-| `llm_clients/openai_client.py` | `ProviderSpec`, `OPENAI_COMPATIBLE_PROVIDERS`, `OpenAIClient`, `NormalizedChatOpenAI`, `DeepSeekChatOpenAI`, `MinimaxChatOpenAI`, `LocalCompatibleChatOpenAI`, `is_openai_compatible()` | 16 providers |
+| `llm_clients/base_client.py` | `BaseLLMClient`, `normalize_content()` | 전체 |
+| `llm_clients/factory.py` | `create_llm_client()` | 진입점 |
+| `llm_clients/openai_client.py` | `ProviderSpec`, `OPENAI_COMPATIBLE_PROVIDERS`, `OpenAIClient`, `NormalizedChatOpenAI`, `DeepSeekChatOpenAI`, `MinimaxChatOpenAI`, `LocalCompatibleChatOpenAI`, `is_openai_compatible()` | 프로바이더 16개 |
 | `llm_clients/anthropic_client.py` | `AnthropicClient`, `NormalizedChatAnthropic`, `_supports_effort()` | Anthropic |
 | `llm_clients/google_client.py` | `GoogleClient`, `NormalizedChatGoogleGenerativeAI` | Google |
 | `llm_clients/azure_client.py` | `AzureOpenAIClient`, `NormalizedAzureChatOpenAI` | Azure OpenAI |
 | `llm_clients/bedrock_client.py` | `BedrockClient`, `_bedrock_class()` | Amazon Bedrock |
-| `llm_clients/api_key_env.py` | `PROVIDER_API_KEY_ENV`, `get_api_key_env()` | all + CLI |
-| `llm_clients/model_catalog.py` | `MODEL_OPTIONS`, `get_model_options()`, `get_known_models()` | CLI + validators |
-| `llm_clients/validators.py` | `VALID_MODELS`, `validate_model()`, `_ANY_MODEL_PROVIDERS` | all |
-| `llm_clients/capabilities.py` | `ModelCapabilities`, `get_capabilities()` | OpenAI-compatible |
+| `llm_clients/api_key_env.py` | `PROVIDER_API_KEY_ENV`, `get_api_key_env()` | 전체 + CLI |
+| `llm_clients/model_catalog.py` | `MODEL_OPTIONS`, `get_model_options()`, `get_known_models()` | CLI + 검증기 |
+| `llm_clients/validators.py` | `VALID_MODELS`, `validate_model()`, `_ANY_MODEL_PROVIDERS` | 전체 |
+| `llm_clients/capabilities.py` | `ModelCapabilities`, `get_capabilities()` | OpenAI 호환 |
 
-`llm_clients/__init__.py` exports only `BaseLLMClient` and `create_llm_client`.
+`llm_clients/__init__.py`는 `BaseLLMClient`와 `create_llm_client`만 내보낸다.
 
 ## `BaseLLMClient`
 
@@ -25,8 +25,8 @@ class BaseLLMClient(ABC):
     def __init__(self, model: str, base_url: str | None = None, **kwargs):
         self.model, self.base_url, self.kwargs = model, base_url, kwargs
 
-    def get_provider_name(self) -> str      # self.provider, else classname minus "Client"
-    def warn_if_unknown_model(self) -> None # RuntimeWarning, never raises
+    def get_provider_name(self) -> str      # self.provider, 없으면 클래스명에서 "Client" 제거
+    def warn_if_unknown_model(self) -> None # RuntimeWarning, 절대 예외를 던지지 않음
     @abstractmethod
     def get_llm(self) -> Any
     @abstractmethod
@@ -35,61 +35,61 @@ class BaseLLMClient(ABC):
 
 ### `normalize_content(response)`
 
-Several providers return content as a list of typed blocks, e.g.
-`[{'type': 'reasoning', ...}, {'type': 'text', 'text': '...'}]` — the OpenAI
-Responses API, Gemini 3, and Anthropic with extended thinking or tool use.
-Downstream agents assume `response.content` is a `str`, so this joins the `text`
-blocks and discards reasoning/metadata blocks. Every provider client has a
-`Normalized*` chat subclass whose `invoke()` applies it.
+일부 프로바이더는 콘텐츠를 타입 블록 리스트로 반환한다. 예:
+`[{'type': 'reasoning', ...}, {'type': 'text', 'text': '...'}]` — OpenAI
+Responses API, Gemini 3, 그리고 확장 사고나 도구 사용을 하는 Anthropic이 그렇다.
+하위 에이전트들은 `response.content`가 `str`이라고 가정하므로, 이 함수가 `text`
+블록을 이어 붙이고 reasoning/메타데이터 블록은 버린다. 모든 프로바이더 클라이언트에는
+`invoke()`에서 이를 적용하는 `Normalized*` 채팅 서브클래스가 있다.
 
-**If you add a client and skip this, every agent that does
-`response.content` on a reasoning model gets a list and downstream string
-formatting breaks.**
+**클라이언트를 추가하면서 이를 빠뜨리면, 추론 모델에서
+`response.content`를 쓰는 모든 에이전트가 리스트를 받게 되고 이후의 문자열
+포매팅이 깨진다.**
 
-## OpenAI-Compatible Client
+## OpenAI 호환 클라이언트
 
-### `ProviderSpec` fields
+### `ProviderSpec` 필드
 
-| Field | Default | Meaning |
+| 필드 | 기본값 | 의미 |
 |---|---|---|
-| `chat_class` | `NormalizedChatOpenAI` | subclass carrying wire-format quirks |
-| `base_url` | `None` | default endpoint; `None` → SDK default |
-| `base_url_env` | `None` | env var that overrides it (only `OLLAMA_BASE_URL` today) |
-| `key_optional` | `False` | don't require or prompt for a key |
-| `placeholder_key` | `"EMPTY"` | sent when no key is available |
-| `require_base_url` | `False` | raise if none resolved |
-| `use_responses_api` | `False` | native OpenAI `/v1/responses` |
+| `chat_class` | `NormalizedChatOpenAI` | 와이어 포맷 특이사항을 담는 서브클래스 |
+| `base_url` | `None` | 기본 엔드포인트. `None` → SDK 기본값 |
+| `base_url_env` | `None` | 이를 덮어쓰는 환경변수 (현재는 `OLLAMA_BASE_URL`뿐) |
+| `key_optional` | `False` | 키를 요구하거나 묻지 않음 |
+| `placeholder_key` | `"EMPTY"` | 키가 없을 때 전송 |
+| `require_base_url` | `False` | 해결되지 않으면 예외 |
+| `use_responses_api` | `False` | 네이티브 OpenAI `/v1/responses` |
 
-### `get_llm()` resolution order
+### `get_llm()` 해석 순서
 
 1. `warn_if_unknown_model()`
 2. `spec = OPENAI_COMPATIBLE_PROVIDERS.get(self.provider)`; `chat_cls = spec.chat_class`
 3. base_url: `self.base_url` → `os.environ[spec.base_url_env]` → `spec.base_url`.
-   `require_base_url` with none resolved raises a `ValueError` that names
-   `backend_url` / `TRADINGAGENTS_LLM_BACKEND_URL` and gives vLLM / LM Studio examples.
-4. API key: `os.environ[get_api_key_env(provider)]` → if absent and `key_optional`,
-   `spec.placeholder_key` → else raise a `ValueError` naming the env var and
-   suggesting a `.env` entry.
-5. Responses API only if `spec.use_responses_api and _is_native_openai_base_url(base_url)`.
-   `_is_native_openai_base_url` parses the host and accepts `api.openai.com` or any
-   `*.openai.com`; unset counts as native (upstream #1024).
-6. Forward the whitelisted `_PASSTHROUGH_KWARGS`, skipping `reasoning_effort` when
-   `_supports_reasoning_effort(model)` is false
+   `require_base_url`인데 아무것도 해결되지 않으면 `backend_url` /
+   `TRADINGAGENTS_LLM_BACKEND_URL`을 짚어 주고 vLLM / LM Studio 예시를 담은 `ValueError`를 낸다.
+4. API 키: `os.environ[get_api_key_env(provider)]` → 없고 `key_optional`이면
+   `spec.placeholder_key` → 아니면 환경변수 이름을 알려 주고 `.env` 항목을
+   제안하는 `ValueError`를 낸다.
+5. Responses API는 `spec.use_responses_api and _is_native_openai_base_url(base_url)`일 때만.
+   `_is_native_openai_base_url`은 호스트를 파싱해서 `api.openai.com` 또는 임의의
+   `*.openai.com`을 허용한다. 값이 없으면 네이티브로 간주한다(upstream #1024).
+6. 허용 목록인 `_PASSTHROUGH_KWARGS`를 전달하되,
+   `_supports_reasoning_effort(model)`가 거짓이면 `reasoning_effort`는 건너뛴다
    (`_OPENAI_REASONING_MODEL = re.compile(r"^(gpt-5|o[1-9])")`).
 7. `return chat_cls(**llm_kwargs)`
 
-### Chat subclasses
+### 채팅 서브클래스
 
-| Class | Purpose |
+| 클래스 | 용도 |
 |---|---|
-| `NormalizedChatOpenAI` | `normalize_content` on `invoke`; capability-aware `with_structured_output` (suppresses `tool_choice` when `supports_tool_choice` is false) |
-| `DeepSeekChatOpenAI` | overrides `_get_request_payload` / `_create_chat_result` to echo `reasoning_content` back on the next request (thinking models 400 otherwise) |
-| `MinimaxChatOpenAI` | overrides `_get_request_payload` to set `reasoning_split=True` for M2.x so `<think>` lands in `reasoning_details` instead of `content` (upstream #826) |
-| `LocalCompatibleChatOpenAI` | leniency for generic local servers |
+| `NormalizedChatOpenAI` | `invoke`에서 `normalize_content` 적용. 능력을 인지하는 `with_structured_output`(`supports_tool_choice`가 거짓이면 `tool_choice` 억제) |
+| `DeepSeekChatOpenAI` | `_get_request_payload` / `_create_chat_result`를 오버라이드해 다음 요청에 `reasoning_content`를 되돌려 보낸다 (그러지 않으면 thinking 모델이 400을 낸다) |
+| `MinimaxChatOpenAI` | `_get_request_payload`를 오버라이드해 M2.x에 `reasoning_split=True`를 설정, `<think>`가 `content` 대신 `reasoning_details`로 가게 한다 (upstream #826) |
+| `LocalCompatibleChatOpenAI` | 범용 로컬 서버를 위한 관대한 처리 |
 
-`_input_to_messages(input_)` normalizes the several shapes LangChain hands in.
+`_input_to_messages(input_)`는 LangChain이 넘겨주는 여러 형태를 정규화한다.
 
-## Anthropic Client
+## Anthropic 클라이언트
 
 ```python
 _PASSTHROUGH = ("timeout", "max_retries", "api_key", "max_tokens",
@@ -97,8 +97,8 @@ _PASSTHROUGH = ("timeout", "max_retries", "api_key", "max_tokens",
                 "http_async_client", "effort")
 ```
 
-`_supports_effort(model)` gates the extended-thinking `effort` parameter by a
-**per-family minimum version**, so it is forward-compatible with new releases:
+`_supports_effort(model)`는 확장 사고용 `effort` 파라미터를
+**계열별 최소 버전**으로 제어하므로, 새 릴리스에 대해 전방 호환된다:
 
 ```python
 _EFFORT_MODEL = re.compile(r"^claude-(opus|sonnet|fable)-(\d+)(?:-(\d+))?$")
@@ -106,47 +106,47 @@ _EFFORT_MIN_VERSION = {"opus": (4, 5), "sonnet": (4, 6), "fable": (5, 0)}
 _EFFORT_EXACT = {"claude-mythos-preview", "claude-mythos-5"}
 ```
 
-A single-number version (`sonnet-5`, `fable-5`) parses as minor `0`. Verified
-behavior:
+숫자가 하나뿐인 버전(`sonnet-5`, `fable-5`)은 마이너 `0`으로 파싱된다. 검증된
+동작:
 
-| Model | effort |
+| 모델 | effort |
 |---|---|
 | `claude-fable-5` | ✓ |
 | `claude-opus-4-8`, `claude-opus-4-7` | ✓ |
 | `claude-sonnet-5`, `claude-sonnet-4-6` | ✓ |
 | `claude-sonnet-4-5` | ✗ |
-| `claude-haiku-4-5` (any Haiku) | ✗ |
+| `claude-haiku-4-5` (모든 Haiku) | ✗ |
 | `claude-opus-4-4` | ✗ |
 
-Unsupported models return HTTP 400 `"This model does not support the effort
-parameter"` (upstream #831), so `get_llm()` drops the kwarg instead of sending it.
-`claude-mythos-5` is the Fable 5 twin (Project Glasswing); both mythos names are
-non-standard so they bypass the regex via `_EFFORT_EXACT`.
+지원하지 않는 모델은 HTTP 400 `"This model does not support the effort
+parameter"`를 반환하므로(upstream #831), `get_llm()`이 kwarg를 보내지 않고 제거한다.
+`claude-mythos-5`는 Fable 5의 쌍둥이다(Project Glasswing). 두 mythos 이름 모두
+표준 형식이 아니라서 `_EFFORT_EXACT`를 통해 정규식을 우회한다.
 
-`NormalizedChatAnthropic.invoke()` applies `normalize_content` — needed because
-extended thinking and tool use both return block lists.
+`NormalizedChatAnthropic.invoke()`는 `normalize_content`를 적용한다. 확장 사고와
+도구 사용이 모두 블록 리스트를 반환하기 때문에 필요하다.
 
-## Google Client
+## Google 클라이언트
 
-`NormalizedChatGoogleGenerativeAI` extends `ChatGoogleGenerativeAI` and normalizes
-content in `invoke()` (Gemini returns `[{'type': 'text', 'text': '...'}]` in some
-modes).
+`NormalizedChatGoogleGenerativeAI`는 `ChatGoogleGenerativeAI`를 상속하고
+`invoke()`에서 콘텐츠를 정규화한다(일부 모드에서 Gemini는
+`[{'type': 'text', 'text': '...'}]`를 반환한다).
 
-Thinking configuration:
+Thinking 설정:
 
 ```python
 thinking_level = self.kwargs.get("thinking_level")
 if thinking_level:
     if "pro" in self.model.lower() and thinking_level == "minimal":
-        thinking_level = "low"          # Pro rejects "minimal"
+        thinking_level = "low"          # Pro는 "minimal"을 거부한다
     llm_kwargs["thinking_level"] = thinking_level
 ```
 
-Gemini 3.x takes the **string** `thinking_level`. The integer `thinking_budget`
-(`-1` dynamic / `0` disabled) belonged to the retired 2.5 line and is no longer in
-this codebase — a doc mentioning `thinking_budget` is stale.
+Gemini 3.x는 **문자열** `thinking_level`을 받는다. 정수형 `thinking_budget`
+(`-1` 동적 / `0` 비활성)은 단종된 2.5 라인의 것이며 이 코드베이스에는 더 이상
+없다. `thinking_budget`을 언급하는 문서는 낡은 것이다.
 
-## Azure Client
+## Azure 클라이언트
 
 ```python
 llm_kwargs = {
@@ -155,44 +155,44 @@ llm_kwargs = {
 }
 ```
 
-Required env: `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT`, `OPENAI_API_VERSION`
-(e.g. `2025-03-01-preview`). `AZURE_OPENAI_DEPLOYMENT_NAME` is optional and defaults
-to the model name. `validate_model()` returns `True` for anything — any deployed
-name is valid, which is why `azure` has no `MODEL_OPTIONS` entry.
+필수 환경변수: `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT`, `OPENAI_API_VERSION`
+(예: `2025-03-01-preview`). `AZURE_OPENAI_DEPLOYMENT_NAME`은 선택이며 기본값은
+모델 이름이다. `validate_model()`은 무엇이든 `True`를 반환한다. 배포된 이름은
+무엇이든 유효하고, 그래서 `azure`에는 `MODEL_OPTIONS` 항목이 없다.
 
-## Bedrock Client
+## Bedrock 클라이언트
 
-Optional dependency: `pip install "tradingagents[bedrock]"` → `langchain-aws>=1.5.0`.
-`_bedrock_class()` imports and subclasses `ChatBedrockConverse` **on demand**, so
-neither `langchain-aws` nor `boto3` is required for a core install.
-`tests/test_bedrock_provider.py` skips when the module is absent.
+선택적 의존성: `pip install "tradingagents[bedrock]"` → `langchain-aws>=1.5.0`.
+`_bedrock_class()`는 `ChatBedrockConverse`를 **필요할 때만** 임포트하고 상속하므로,
+코어 설치에는 `langchain-aws`도 `boto3`도 필요 없다.
+모듈이 없으면 `tests/test_bedrock_provider.py`는 건너뛴다.
 
-- Auth: the AWS credential chain (env vars, profile, instance role) — there is no
-  single key env var, so `PROVIDER_API_KEY_ENV["bedrock"] is None`.
-- Region: falls back to `us-west-2` — Bedrock has no global default region and
-  us-west-2 hosts the broadest model set. The bearer token carries no region.
-- Model: a Bedrock model ID or cross-region inference profile ID, e.g.
+- 인증: AWS 자격증명 체인(환경변수, 프로파일, 인스턴스 역할). 단일 키 환경변수가
+  없으므로 `PROVIDER_API_KEY_ENV["bedrock"] is None`이다.
+- 리전: `us-west-2`로 폴백한다. Bedrock에는 전역 기본 리전이 없고 us-west-2가 가장
+  넓은 모델 집합을 제공한다. 베어러 토큰에는 리전 정보가 없다.
+- 모델: Bedrock 모델 ID 또는 교차 리전 추론 프로파일 ID. 예:
   `us.anthropic.claude-opus-4-8-v1:0`.
 
-## Capability Rows
+## 능력 테이블 행
 
-| Row | supports_tool_choice | json_mode | json_schema | preferred | extra |
+| 행 | supports_tool_choice | json_mode | json_schema | preferred | 추가 |
 |---|---|---|---|---|---|
 | `_DEFAULT` | ✓ | ✓ | ✓ | `function_calling` | — |
 | `_DEEPSEEK_CHAT` | ✓ | ✓ | ✗ | `function_calling` | — |
 | `_DEEPSEEK_THINKING` | ✗ | ✓ | ✗ | `function_calling` | `requires_reasoning_content_roundtrip` |
 | `_MINIMAX_THINKING` | ✗ | ✗ | ✗ | `function_calling` | `requires_reasoning_split` |
 
-Exact-ID map `_BY_ID` covers `deepseek-chat`, `deepseek-reasoner`,
-`deepseek-v4-flash`, `deepseek-v4-pro`, and `MiniMax-M2` / `M2.1` / `M2.5` / `M2.7`
-(± `-highspeed`).
+정확한 ID 맵 `_BY_ID`는 `deepseek-chat`, `deepseek-reasoner`,
+`deepseek-v4-flash`, `deepseek-v4-pro`, 그리고 `MiniMax-M2` / `M2.1` / `M2.5` / `M2.7`
+(`-highspeed` 유무 포함)을 다룬다.
 
-Forward-compat patterns `_BY_PATTERN` — `^deepseek-v\d`, `^deepseek-reasoner`,
-`^MiniMax-M\d` — so new variants inherit the quirks automatically.
+전방 호환 패턴 `_BY_PATTERN` — `^deepseek-v\d`, `^deepseek-reasoner`,
+`^MiniMax-M\d` — 덕분에 새 변형도 특이사항을 자동으로 물려받는다.
 
-Resolution order: exact ID → pattern → `_DEFAULT`.
+해석 순서: 정확한 ID → 패턴 → `_DEFAULT`.
 
-## How `TradingAgentsGraph` Creates LLMs
+## `TradingAgentsGraph`가 LLM을 만드는 방식
 
 ```python
 llm_kwargs = self._get_provider_kwargs()
@@ -209,7 +209,7 @@ self.deep_thinking_llm  = deep_client.get_llm()
 self.quick_thinking_llm = quick_client.get_llm()
 ```
 
-`_get_provider_kwargs()` is provider-branched, then two cross-provider knobs:
+`_get_provider_kwargs()`는 프로바이더별로 분기한 뒤, 프로바이더 공통 노브 두 개를 처리한다:
 
 ```python
 provider == "google"    → thinking_level   = config["google_thinking_level"]
@@ -220,54 +220,54 @@ temperature      → float(config["temperature"])          if set and != ""
 max_retries      → _coerce_max_retries(config["llm_max_retries"])  if set and != ""
 ```
 
-Two consequences worth knowing:
+알아둘 만한 결과 두 가지:
 
-- **Reasoning knobs are provider-gated.** Setting `openai_reasoning_effort` while
-  `llm_provider="xai"` silently does nothing, even though xAI goes through
-  `OpenAIClient`. Add a branch here if you want a knob on another provider.
-- **Callbacks reach the LLM via the constructor**, not via graph args. Tool-execution
-  callbacks are separate — `Propagator.get_graph_args(callbacks=...)` puts those in
-  the LangGraph config.
+- **추론 노브는 프로바이더로 게이팅된다.** xAI가 `OpenAIClient`를 거치더라도
+  `llm_provider="xai"` 상태에서 `openai_reasoning_effort`를 설정하면 조용히
+  아무 일도 일어나지 않는다. 다른 프로바이더에 노브를 주고 싶으면 여기에 분기를 추가한다.
+- **콜백은 그래프 인자가 아니라 생성자를 통해 LLM에 전달된다.** 도구 실행
+  콜백은 별개다 — `Propagator.get_graph_args(callbacks=...)`가 그것들을
+  LangGraph 설정에 넣는다.
 
-`_coerce_max_retries(value)` rejects booleans (`llm_max_retries must be an integer,
-not a boolean`) and negatives, so a misconfiguration fails at startup instead of
-silently disabling retries.
+`_coerce_max_retries(value)`는 bool(`llm_max_retries must be an integer,
+not a boolean`)과 음수를 거부하므로, 잘못된 설정은 재시도를 조용히 비활성화하는 대신
+시작 시점에 실패한다.
 
-## Model Catalog Layout
+## 모델 카탈로그 구조
 
 ```python
 MODEL_OPTIONS: dict[str, dict[str, list[tuple[str, str]]]]
 # provider -> {"quick": [(label, model_id), ...], "deep": [...]}
 ```
 
-Shared lists avoid duplication for dual-region providers: `_QWEN_MODELS`,
-`_GLM_MODELS`, `_MINIMAX_MODELS` are each referenced by both the global and CN keys.
-`_CUSTOM_ONLY` (a single `("Custom model ID", "custom")` entry for both modes) serves
-`openai_compatible`, `mistral`, `kimi`, `groq`, `nvidia`, `bedrock`.
+공유 리스트로 이중 리전 프로바이더의 중복을 피한다. `_QWEN_MODELS`,
+`_GLM_MODELS`, `_MINIMAX_MODELS`는 각각 글로벌 키와 CN 키 양쪽에서 참조된다.
+`_CUSTOM_ONLY`(두 모드 모두에 대해 `("Custom model ID", "custom")` 항목 하나)는
+`openai_compatible`, `mistral`, `kimi`, `groq`, `nvidia`, `bedrock`을 담당한다.
 
-`get_known_models()` collapses the catalog into `{provider: sorted(model_ids)}`, and
-`validators.VALID_MODELS` is that dict minus `_ANY_MODEL_PROVIDERS`. So the CLI
-dropdown and the validator are literally the same data — they cannot drift.
+`get_known_models()`는 카탈로그를 `{provider: sorted(model_ids)}`로 접고,
+`validators.VALID_MODELS`는 거기서 `_ANY_MODEL_PROVIDERS`를 뺀 것이다. 즉 CLI
+드롭다운과 검증기는 문자 그대로 같은 데이터이며 서로 어긋날 수 없다.
 
-`VALID_MODELS` therefore covers exactly 11 providers: `anthropic`, `deepseek`,
+따라서 `VALID_MODELS`는 정확히 11개 프로바이더를 다룬다: `anthropic`, `deepseek`,
 `glm`, `glm-cn`, `google`, `minimax`, `minimax-cn`, `openai`, `qwen`, `qwen-cn`,
 `xai`.
 
-Note the sentinel `"custom"` is a member of `VALID_MODELS` for the seven providers
-that keep a `("Custom model ID", "custom")` catalog row (`deepseek`, `qwen`,
-`qwen-cn`, `glm`, `glm-cn`, `minimax`, `minimax-cn`). It is a CLI marker, not a real
-model ID — the CLI replaces it with the user's input before it reaches a client.
-Passing `"custom"` programmatically would pass validation and then fail at the API.
+`("Custom model ID", "custom")` 카탈로그 행을 가진 7개 프로바이더(`deepseek`, `qwen`,
+`qwen-cn`, `glm`, `glm-cn`, `minimax`, `minimax-cn`)에 대해서는 센티널 `"custom"`이
+`VALID_MODELS`의 원소라는 점에 주의한다. 이는 CLI 마커일 뿐 실제 모델 ID가 아니며,
+CLI가 클라이언트에 도달하기 전에 사용자 입력으로 치환한다.
+코드에서 `"custom"`을 넘기면 검증은 통과하지만 API 호출에서 실패한다.
 
-## Provider-Specific Notes from the Catalog
+## 카탈로그의 프로바이더별 참고사항
 
-- **DeepSeek**: the `deepseek-chat` / `deepseek-reasoner` aliases were deprecated
-  2026-07-24 and now map to V4 Flash. The catalog exposes the V4 IDs directly.
-  V4 Flash serves both thinking and non-thinking modes.
-- **Qwen**: only versioned IDs are exposed. Version-less aliases (`qwen-plus`,
-  `qwen-flash`) are auto-upgrading pointers whose backing model shifts, so users who
-  want auto-latest must enter them via "Custom model ID".
-- **Ollama**: labels omit a "local" marker because the endpoint is configurable via
-  `OLLAMA_BASE_URL`; `cli.utils.confirm_ollama_endpoint()` surfaces the resolved
-  endpoint right after provider selection.
-- **MiniMax**: M3 carries a 1M-token context window; the M2.x line is 204,800.
+- **DeepSeek**: `deepseek-chat` / `deepseek-reasoner` 별칭은 2026-07-24에
+  폐기되었고 이제 V4 Flash로 매핑된다. 카탈로그는 V4 ID를 직접 노출한다.
+  V4 Flash는 thinking 모드와 non-thinking 모드를 모두 제공한다.
+- **Qwen**: 버전이 붙은 ID만 노출한다. 버전 없는 별칭(`qwen-plus`,
+  `qwen-flash`)은 백엔드 모델이 바뀌는 자동 업그레이드 포인터이므로, 항상 최신을
+  원하는 사용자는 "Custom model ID"로 직접 입력해야 한다.
+- **Ollama**: 엔드포인트를 `OLLAMA_BASE_URL`로 바꿀 수 있어서 라벨에 "local" 표시를
+  넣지 않는다. `cli.utils.confirm_ollama_endpoint()`가 프로바이더 선택 직후에
+  해석된 엔드포인트를 보여 준다.
+- **MiniMax**: M3는 1M 토큰 컨텍스트 윈도를 가지며, M2.x 라인은 204,800이다.

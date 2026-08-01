@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TradingAgents Claude Team | Skills, Agents, Runs</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../">
+        <img src="../favicon.svg" alt="">
+        <span>TradingAgents Claude Team</span>
+      </a>
+      <nav aria-label="주요 링크">
+        <a href="../">소스 가이드</a>
+        <a href="../part5/ch12-claude-team-skills.html">12장 팀/스킬</a>
+        <a href="https://github.com/nfbs2000/speaky-TradingAgents/tree/main/.claude">GitHub .claude</a>
+        <a href="#runs">팀 런</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div class="intro-copy">
+          <p class="eyebrow">CLAUDE NATIVE TEAM ARTIFACT</p>
+          <h1>TradingAgents 포크를 Claude 스킬과 팀으로 운영하는 공개판</h1>
+          <p class="lead">
+            이 페이지는 저장소의 <code>.claude</code> 폴더를 그대로 읽어 팀 정의, 에이전트,
+            스킬, 워크플로, 실제 팀 런 산출물을 보여준다. 핵심은 두 분석을 섞지 않는 것이다:
+            제품 코드는 <code>tradingagents/</code>의 Python LangGraph 파이프라인이고,
+            여기의 런타임 리서치 팀은 Claude Code 서브에이전트와 웹 검색으로 별도 리포트를 만든다.
+          </p>
+        </div>
+        <img class="intro-image" src="../assets/schema.png" alt="TradingAgents 그래프 구조">
+      </section>
+
+      <section class="commentary-grid" aria-label="Codex 확인 코멘트">
+        <article>
+          <p class="eyebrow">CODEX COMMENT</p>
+          <h2>이 팀이 하는 일</h2>
+          <p>
+            팀은 두 갈래다. 개발/유지보수 전문가는 agent, graph, data, LLM, memory, eval,
+            upstream drift를 담당하고, 런타임 리서치 팀은 market, fundamentals, news/sentiment,
+            risk/trade 네 역할로 종목 리포트를 만든다. 스킬은 코드베이스 사실과 절차의 단일 출처다.
+          </p>
+        </article>
+        <article>
+          <p class="eyebrow">LATEST RUN</p>
+          <h2>이번 런에서 해결된 것</h2>
+          <p>
+            <strong>2026-08-01-NVDA</strong> 런은 NVDA를 네 명의 Claude 리서치 에이전트로 분석했다.
+            3명은 병렬 리서치, <code>ta-risk-trader</code>는 세 보고서 검증 후 순차 실행됐다.
+            특히 가격 앵커 불일치, 기술지표 출처 충돌, 뉴스와 셀사이드 의견의 괴리를 숨기지 않았다.
+          </p>
+        </article>
+        <article>
+          <p class="eyebrow">QUALITY READ</p>
+          <h2>최종 리포트 수준</h2>
+          <p>
+            최종 산출물은 <strong>HOLD</strong>, 신뢰도 <strong>55%</strong>로 정리됐다.
+            기술적 분석은 Neutral, 펀더멘털은 Strong, 뉴스/센티먼트는 Mixed다.
+            Data Gaps와 면책을 유지해 “강한 회사지만 지금 가격에서는 신규 BUY가 아니다”는 판단 근거를 보존했다.
+          </p>
+        </article>
+        <article>
+          <p class="eyebrow">BOUNDARY</p>
+          <h2>남은 문제와 경계</h2>
+          <p>
+            이 팀 런은 공개 웹 기반 AI 리서치이지 투자 자문도 백테스트도 아니다.
+            <code>BUY/SELL/HOLD</code>는 Python 파이프라인의 5단계 레이팅과 호환되지 않는다.
+            문서 안의 API 키 이름은 설정 설명이며 실제 비밀값은 공개하지 않는다.
+          </p>
+        </article>
+      </section>
+
+      <section class="boundary-band" aria-label="두 분석 경계">
+        <div>
+          <p class="eyebrow">DO NOT MIX</p>
+          <h2>Python 파이프라인과 Claude 리서치 팀은 다른 실행물이다</h2>
+        </div>
+        <div class="compare">
+          <div>
+            <h3>Python LangGraph 파이프라인</h3>
+            <p><code>tradingagents analyze</code>, yfinance/Alpha Vantage/FRED, 12개 제품 에이전트, 5단계 <code>Buy/Overweight/Hold/Underweight/Sell</code> 레이팅, memory log와 백테스트 대상.</p>
+          </div>
+          <div>
+            <h3>Claude 런타임 리서치 팀</h3>
+            <p><code>.claude/agents/ta-*-analyst.md</code>, WebSearch/WebFetch, 네 개 마크다운 리포트와 최종 종합, <code>BUY/SELL/HOLD</code> 서술 신호, 교육용 실행 기록.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-row" id="stats" aria-live="polite">
+        <div><span class="stat-value">-</span><span class="stat-label">skills</span></div>
+        <div><span class="stat-value">-</span><span class="stat-label">agents</span></div>
+        <div><span class="stat-value">-</span><span class="stat-label">workflows</span></div>
+        <div><span class="stat-value">-</span><span class="stat-label">runs</span></div>
+      </section>
+
+      <section class="layout">
+        <aside class="browser" aria-label=".claude 파일 목록">
+          <div class="browser-header">
+            <h2>.claude 원문</h2>
+            <p>커밋된 <code>main</code> 기준 파일을 GitHub raw에서 불러온다.</p>
+          </div>
+          <div id="file-groups" class="file-groups">
+            <p class="loading">파일 목록을 불러오는 중입니다.</p>
+          </div>
+        </aside>
+
+        <section class="viewer" aria-label="선택 파일 원문">
+          <div class="viewer-toolbar">
+            <div>
+              <p class="eyebrow">RAW FILE VIEW</p>
+              <h2 id="viewer-title">파일을 선택하세요</h2>
+            </div>
+            <a id="github-link" class="button" href="https://github.com/nfbs2000/speaky-TradingAgents/tree/main/.claude">GitHub에서 보기</a>
+          </div>
+          <pre id="file-content" class="file-content">왼쪽 목록에서 팀 정의, 스킬, 에이전트, 워크플로 또는 팀 런 파일을 선택하면 원문이 그대로 표시됩니다.</pre>
+        </section>
+      </section>
+
+      <section class="runs-band" id="runs">
+        <div class="section-heading">
+          <p class="eyebrow">TEAM RUNS</p>
+          <h2>매번 갱신되는 팀 런 산출물</h2>
+          <p>
+            <code>.claude/team-runs</code> 아래의 커밋된 파일을 자동으로 묶어 보여준다.
+            새 런을 이 경로에 추가하고 <code>main</code>에 푸시하면 이 목록도 같이 갱신된다.
+          </p>
+        </div>
+        <div id="run-map" class="run-map"></div>
+      </section>
+    </main>
+
+    <footer>
+      <strong>TradingAgents Claude Team</strong>
+      <span>공개 학습용 팀/스킬/런 문서이며, 웹 리서치와 제품 파이프라인 결과를 구분한다.</span>
+    </footer>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>

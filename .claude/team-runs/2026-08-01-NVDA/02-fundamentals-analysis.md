@@ -1,15 +1,15 @@
-# NVDA — Fundamentals Analysis
+# NVDA — 펀더멘털 분석
 
-**Ticker:** NVDA (NVIDIA Corporation) | **Price:** ~$197 (last close 2026-07-31) | **Analysis date:** 2026-08-01
-**Fiscal calendar note:** NVIDIA's fiscal year ends late January. "FY2026" = year ended 2026-01-25. "Q1 FY2027" = quarter ended 2026-04-26 (most recent reported quarter). Q2 FY2027 (ending ~late July 2026) has **not** been reported yet; results are expected late August 2026. All figures in USD.
+**티커:** NVDA (NVIDIA Corporation) | **가격:** ~$197 (직전 종가 2026-07-31) | **분석일:** 2026-08-01
+**회계연도 주의:** NVIDIA의 회계연도는 1월 말에 끝난다. "FY2026"은 2026-01-25에 종료된 연도, "Q1 FY2027"은 2026-04-26에 종료된 분기(가장 최근 보고 분기)를 뜻한다. Q2 FY2027(2026년 7월 말경 종료)은 **아직** 발표되지 않았고, 실적은 2026년 8월 말로 예상된다. 모든 수치는 USD 기준.
 
 ---
 
-## 1. Latest Earnings
+## 1. 최근 실적
 
-### Q1 FY2027 (quarter ended 2026-04-26; press release / 8-K filed May 2026)
+### Q1 FY2027 (2026-04-26 종료 분기; 2026년 5월 보도자료 / 8-K 제출)
 
-| Metric | Q1 FY2027 | Change |
+| 지표 | Q1 FY2027 | 변동 |
 |---|---|---|
 | Revenue | $81.615B | +85% YoY, +20% QoQ |
 | Gross margin (GAAP) | 74.9% | non-GAAP 75.0% |
@@ -18,22 +18,22 @@
 | Net income (GAAP) | $58.321B | — |
 | Diluted EPS (GAAP) | $2.39 | non-GAAP $1.87 |
 
-**Important quality-of-earnings flag:** GAAP net income ($58.3B) *exceeds* operating income ($53.5B), and GAAP EPS ($2.39) exceeds non-GAAP EPS ($1.87) — the inversion of the usual pattern. The gap is driven by large (substantially unrealized) gains on marketable equity securities held on the balance sheet ($30.2B of marketable equity securities at quarter-end). The **non-GAAP $1.87** figure better reflects operating earnings power.
+**중요한 이익의 질 플래그:** GAAP 순이익($58.3B)이 영업이익($53.5B)을 *초과*하고, GAAP EPS($2.39)가 non-GAAP EPS($1.87)를 넘어선다 — 통상적인 패턴의 역전이다. 이 격차는 재무상태표에 보유한 시장성 지분증권의 대규모(상당 부분 미실현) 평가익에서 비롯된다(분기말 시장성 지분증권 $30.2B). 영업 수익력을 더 잘 반영하는 수치는 **non-GAAP $1.87**이다.
 
-Segment detail (Q1 FY2027, company press release):
+부문별 상세 (Q1 FY2027, 회사 보도자료):
 
-| Segment | Revenue | Change |
+| 부문 | 매출 | 변동 |
 |---|---|---|
 | Data Center | $75.2B | +92% YoY, +21% QoQ |
-| — of which Compute | $60.4B | +77% YoY |
-| — of which Networking | $14.8B | +199% YoY |
-| Other (gaming/edge/pro-viz/auto) | ~$6.4B | +29% YoY (reported as combined "edge" bucket in the summary source) |
+| — 중 Compute | $60.4B | +77% YoY |
+| — 중 Networking | $14.8B | +199% YoY |
+| 기타 (gaming/edge/pro-viz/auto) | ~$6.4B | +29% YoY (요약 출처에서 통합 "edge" 버킷으로 보고) |
 
-**Guidance for Q2 FY2027** (company outlook, May 2026): revenue $91.0B ±2%, GAAP gross margin 74.9% ±50bps, GAAP opex ~$8.5B. **The outlook explicitly excludes China Data Center compute revenue** — any China sales would be incremental.
+**Q2 FY2027 가이던스** (회사 전망, 2026년 5월): 매출 $91.0B ±2%, GAAP 총마진 74.9% ±50bps, GAAP 영업비용 ~$8.5B. **이 전망은 중국 데이터센터 컴퓨트 매출을 명시적으로 제외한다** — 중국 매출이 발생하면 전부 증분이다.
 
-### FY2026 annual (year ended 2026-01-25; Q4/FY press release, Feb 2026)
+### FY2026 연간 (2026-01-25 종료 연도; Q4/FY 보도자료, 2026년 2월)
 
-| Metric | FY2026 | FY2025 (prior yr) |
+| 지표 | FY2026 | FY2025 (전년) |
 |---|---|---|
 | Revenue | $215.938B (+65% YoY) | ~$130.5B |
 | Gross margin (GAAP) | 71.1% | — |
@@ -42,109 +42,109 @@ Segment detail (Q1 FY2027, company press release):
 | Diluted EPS | GAAP $4.90 / non-GAAP $4.77 | — |
 | Data Center revenue | $193.7B (+68% YoY) | — |
 
-Q4 FY2026 (quarter ended 2026-01-25): revenue $68.127B, GAAP operating income $44.299B, GAAP net income $42.960B, GAAP diluted EPS $1.76 (non-GAAP $1.62).
+Q4 FY2026 (2026-01-25 종료 분기): 매출 $68.127B, GAAP 영업이익 $44.299B, GAAP 순이익 $42.960B, GAAP 희석 EPS $1.76 (non-GAAP $1.62).
 
-Revenue has accelerated three consecutive quarters (Q3 FY26 → Q4 FY26 → Q1 FY27: roughly $57B → $68B → $82B), driven by the Blackwell ramp across hyperscalers, sovereign AI programs, and AI-native cloud providers.
+매출은 3개 분기 연속 가속했고(Q3 FY26 → Q4 FY26 → Q1 FY27: 대략 $57B → $68B → $82B), 하이퍼스케일러 전반의 Blackwell 램프, 국가 주도 AI 프로그램, AI 네이티브 클라우드 사업자가 그 동력이다.
 
 ---
 
-## 2. Balance Sheet Health (as of 2026-04-26, Q1 FY2027)
+## 2. 재무상태표 건전성 (2026-04-26 기준, Q1 FY2027)
 
-| Item | Amount |
+| 항목 | 금액 |
 |---|---|
-| Total assets | $259.474B |
-| Total liabilities | ~$64.0B |
-| Shareholders' equity | $195.474B |
-| Cash & equivalents | $13.237B |
-| Marketable debt securities | $37.098B |
-| Marketable equity securities | $30.237B |
-| Accounts receivable | $40.710B |
-| Inventories | $25.797B |
-| Short-term debt | $1.0B |
-| Long-term debt | $7.470B |
-| **Debt-to-equity (total debt / equity, derived)** | **~0.04x** |
+| 총자산 | $259.474B |
+| 총부채 | ~$64.0B |
+| 자기자본 | $195.474B |
+| 현금및현금성자산 | $13.237B |
+| 시장성 채무증권 | $37.098B |
+| 시장성 지분증권 | $30.237B |
+| 매출채권 | $40.710B |
+| 재고자산 | $25.797B |
+| 단기차입금 | $1.0B |
+| 장기차입금 | $7.470B |
+| **부채비율 (총차입금 / 자기자본, 파생 산출)** | **~0.04x** |
 
-Prior fiscal year-end (2026-01-25) for reference: total assets $206.803B, total liabilities $49.510B, equity $157.293B, cash + marketable securities $62.556B, total debt $8.468B.
+직전 회계연도말(2026-01-25) 참고치: 총자산 $206.803B, 총부채 $49.510B, 자기자본 $157.293B, 현금 + 시장성증권 $62.556B, 총차입금 $8.468B.
 
-The balance sheet is exceptionally strong: ~$80B of cash + securities against ~$8.5B of total debt (net cash position of roughly $72B, derived). Two items worth monitoring: **accounts receivable ($40.7B) and inventories ($25.8B) are large and growing** with the revenue ramp — receivables represent roughly 45 days of quarterly revenue, consistent with heavy concentration in a small number of very large customers. The $30.2B marketable equity securities book (strategic stakes in AI-ecosystem companies) introduces mark-to-market volatility into GAAP net income.
+재무상태표는 예외적으로 튼튼하다: 총차입금 ~$8.5B에 대해 현금 + 증권 ~$80B(순현금 약 $72B, 파생 산출). 감시할 항목은 둘이다: **매출채권($40.7B)과 재고자산($25.8B)이 매출 램프와 함께 크고 빠르게 늘고 있다** — 매출채권은 분기 매출의 약 45일치로, 소수의 초대형 고객에 대한 심한 집중과 부합한다. $30.2B 규모의 시장성 지분증권 장부(AI 생태계 기업들에 대한 전략적 지분)는 GAAP 순이익에 시가평가 변동성을 끌어들인다.
 
-## 3. Cash Flow
+## 3. 현금흐름
 
-| Item | Q1 FY2027 (3 mo. ended 2026-04-26) | FY2026 (full year) |
+| 항목 | Q1 FY2027 (2026-04-26 종료 3개월) | FY2026 (연간) |
 |---|---|---|
-| Operating cash flow | $50.344B | $102.718B |
-| Investing cash flow | $(26.429)B | — |
-| Financing cash flow | $(21.283)B | — |
-| Capital expenditures | $1.757B | $6.042B |
-| Free cash flow | $48.554B | $96.575B |
+| 영업활동 현금흐름 | $50.344B | $102.718B |
+| 투자활동 현금흐름 | $(26.429)B | — |
+| 재무활동 현금흐름 | $(21.283)B | — |
+| 자본적지출 | $1.757B | $6.042B |
+| 잉여현금흐름 | $48.554B | $96.575B |
 
-FCF conversion is outstanding — Q1 FY2027 FCF of $48.6B on $81.6B revenue (~60% FCF margin). Capital returns: Q1 FY2027 buybacks $19.312B plus dividends $243M (~$20B returned in one quarter); FY2026 total returned $41.1B. In May 2026 the board approved an **additional $80B buyback authorization** ($38.5B remained at Q1-end) and raised the quarterly dividend from $0.01 to **$0.25/share** (still <1% yield at $197, but a 25x increase signals confidence in cash durability).
+FCF 전환율은 탁월하다 — Q1 FY2027 매출 $81.6B에 FCF $48.6B(~60% FCF 마진). 주주환원: Q1 FY2027 자사주 매입 $19.312B에 배당 $243M(한 분기에 ~$20B 환원); FY2026 총 환원액 $41.1B. 2026년 5월 이사회는 **추가 $80B 자사주 매입 승인**을 의결했고(분기말 잔여 $38.5B), 분기 배당을 $0.01에서 **주당 $0.25**로 인상했다($197 기준 여전히 1% 미만 수익률이지만, 25배 인상은 현금창출 지속성에 대한 자신감의 신호다).
 
 ---
 
-## 4. Valuation vs Peers
+## 4. 동종업계 대비 밸류에이션
 
-Basis: price ~$197 (2026-07-31 close), shares outstanding ~24.3B (companiesmarketcap.com, July 2026) → market cap ~$4.8–4.9T (third-party trackers showed $4.9–5.1T during late July 2026 at slightly higher prices).
+기준: 가격 ~$197 (2026-07-31 종가), 발행주식수 ~24.3B (companiesmarketcap.com, 2026년 7월) → 시가총액 ~$4.8–4.9T (제3자 트래커들은 2026년 7월 말 다소 높은 가격대에서 $4.9–5.1T로 표시).
 
-Derived NVDA trailing multiples (labeled as derived, computed from reported figures above):
+파생 산출한 NVDA 후행 멀티플 (위 보고 수치로 계산한 파생값임을 명시):
 - **TTM GAAP EPS** = FY2026 $4.90 − Q1 FY2026 $0.76 + Q1 FY2027 $2.39 = **$6.53** → **P/E ≈ 30x TTM GAAP**
-- **TTM non-GAAP EPS** = $4.77 − $0.81 + $1.87 = **$5.83** → **~34x TTM non-GAAP** (cleaner, excludes equity-securities gains)
-- **TTM revenue** = $215.94B − $44.06B + $81.62B = **$253.5B** → **P/S ≈ 19x TTM**
-- **P/B ≈ 25x** ($4.8T / $195.5B equity, Q1 FY2027 book value)
+- **TTM non-GAAP EPS** = $4.77 − $0.81 + $1.87 = **$5.83** → **~34x TTM non-GAAP** (지분증권 평가익을 제외한 더 깨끗한 기준)
+- **TTM 매출** = $215.94B − $44.06B + $81.62B = **$253.5B** → **P/S ≈ 19x TTM**
+- **P/B ≈ 25x** ($4.8T / 자기자본 $195.5B, Q1 FY2027 장부가)
 
-Peer comparison (third-party data, mid/late July 2026; forward P/E on consensus NTM earnings):
+동종업계 비교 (제3자 데이터, 2026년 7월 중·하순; 포워드 P/E는 컨센서스 NTM 이익 기준):
 
-| Company | Forward P/E | Basis / source date |
+| 기업 | 포워드 P/E | 기준 / 출처 일자 |
 |---|---|---|
-| **NVDA** | **~16x–22x** (sources disagree; see Data Gaps) | investingwpurpose.com 2026-07-17 says ~16x; GuruFocus 2026-07-31 says 22.45x |
+| **NVDA** | **~16x–22x** (출처 간 불일치; Data Gaps 참조) | investingwpurpose.com 2026-07-17은 ~16x, GuruFocus 2026-07-31은 22.45x |
 | AMD | ~37x | investingwpurpose.com, 2026-07-17 |
 | Broadcom (AVGO) | ~19x | investingwpurpose.com, 2026-07-17 |
-| TSMC (TSM) | ~33–35x **trailing** (forward not retrieved) | public.com / fullratio.com, 2026-07-24 |
+| TSMC (TSM) | ~33–35x **후행** (포워드는 미취득) | public.com / fullratio.com, 2026-07-24 |
 
-EV/EBITDA for the peer set was not retrieved from a consistent source and is listed as a data gap rather than mixed-basis numbers.
+동종업계의 EV/EBITDA는 일관된 출처에서 확보하지 못해, 기준이 뒤섞인 숫자를 싣는 대신 데이터 갭으로 남긴다.
 
-**Read:** On forward earnings NVDA trades roughly in line with or *below* Broadcom and at roughly half AMD's multiple, despite faster current growth (+85% YoY revenue vs. peers) and higher margins. The trailing 30x GAAP P/E is undemanding relative to the growth rate if — and only if — the AI-capex cycle holds through calendar 2027. The valuation embeds continuation of hyperscaler spending; it is a cyclical-durability bet, not a multiple-compression risk per se.
+**판독:** 포워드 이익 기준으로 NVDA는 Broadcom과 비슷하거나 *그보다 낮게*, AMD의 대략 절반 수준의 멀티플에 거래된다 — 현재 성장률(매출 +85% YoY)이 동종업계보다 빠르고 마진도 높은데도 그렇다. 후행 30x GAAP P/E는 성장률 대비 부담스럽지 않다 — 단, AI capex 사이클이 2027년(역년)까지 유지된다는 조건이 붙는다. 밸류에이션에는 하이퍼스케일러 지출의 지속이 내재돼 있다. 이는 멀티플 압축 리스크라기보다 사이클 지속성에 대한 베팅이다.
 
 ---
 
-## 5. Industry Outlook and Regulatory Environment
+## 5. 산업 전망 및 규제 환경
 
-**Industry outlook.** Hyperscaler AI capex remains the demand engine. Third-party estimates for calendar 2026 combined hyperscaler capex range widely ($250B for the top four in some tallies to $600–700B+ in broader definitions — sources disagree materially on scope), but the direction is uniform: sharply up, with Amazon guiding ~$200B (from ~$131B in 2025), Microsoft ~$90–95B FY2026, and Alphabet ~$75–80B. NVIDIA's own Q2 FY2027 guide of $91B (+~12% QoQ) implies the buildout has not decelerated as of May 2026. Two-thirds of AI compute is shifting toward inference, where custom ASICs compete hardest. TSMC 3nm capacity is fully utilized — supply, not demand, remains a governing constraint.
+**산업 전망.** 하이퍼스케일러 AI capex가 여전히 수요 엔진이다. 2026년(역년) 하이퍼스케일러 합산 capex에 대한 제3자 추정치는 편차가 크지만(상위 4개사 기준 $250B부터 광의 정의의 $600–700B+까지 — 범위 정의에서 출처들이 실질적으로 갈린다), 방향은 일치한다: 가파른 증가. Amazon은 ~$200B(2025년 ~$131B에서), Microsoft는 FY2026 ~$90–95B, Alphabet은 ~$75–80B를 제시했다. NVIDIA 자체의 Q2 FY2027 가이던스 $91B(+~12% QoQ)는 2026년 5월 시점까지 구축 속도가 둔화되지 않았음을 시사한다. AI 컴퓨트의 3분의 2가 추론으로 이동 중이며, 그곳이 커스텀 ASIC의 경쟁이 가장 치열한 영역이다. TSMC 3nm 캐파는 완전 가동 중이다 — 여전히 수요가 아니라 공급이 지배적 제약이다.
 
-**Regulatory environment (China).** Chronology from public reporting: H20 export licenses were denied (Apr 2025), then reversed (Jul 2025) with a reported 15%-of-revenue-to-USG arrangement, but Chinese authorities discouraged domestic purchases and NVIDIA halted H20 production. In **December 2025 the US approved H200 exports to China**; a China-specific Blackwell derivative (**B30**, reportedly ~80% of standard Blackwell performance) has been shown to the US government with **approval still pending** as of mid-2026. China was historically ~13–14% of revenue. Critically, **NVIDIA's guidance excludes China Data Center compute entirely** — the current growth story requires zero China contribution, making China re-entry pure upside optionality and further restrictions largely already absorbed. Residual regulatory risks: potential antitrust scrutiny given >90% share of merchant AI accelerators, and Chinese-government security-review pressure on domestic buyers.
+**규제 환경 (중국).** 공개 보도 기준 연대기: H20 수출 라이선스는 거부됐다가(2025년 4월), 매출의 15%를 미국 정부에 내는 것으로 알려진 합의와 함께 번복됐지만(2025년 7월), 중국 당국이 자국 내 구매를 만류하면서 NVIDIA는 H20 생산을 중단했다. **2025년 12월 미국은 중국向 H200 수출을 승인**했고, 중국 전용 Blackwell 파생 제품(**B30**, 표준 Blackwell 성능의 ~80% 수준으로 보도)은 미국 정부에 시연됐으나 2026년 중반 기준 **승인은 여전히 계류 중**이다. 중국은 과거 매출의 ~13–14%를 차지했다. 결정적으로 **NVIDIA의 가이던스는 중국 데이터센터 컴퓨트를 전면 제외한다** — 현재의 성장 서사는 중국 기여가 0이어도 성립하며, 따라서 중국 재진입은 순수한 업사이드 옵션이고 추가 규제는 이미 대체로 흡수돼 있다. 잔여 규제 리스크: 상용 AI 가속기 점유율 90% 초과에 따른 반독점 조사 가능성, 그리고 중국 정부의 자국 구매자 대상 보안 심사 압박.
 
-## 6. Competitive Positioning
+## 6. 경쟁 포지션
 
-- **vs AMD:** MI400-series is the credible merchant-silicon alternative (reported ~$7B Meta deal). AMD is gaining absolute dollars but from a small base; NVIDIA's CUDA software moat, NVLink rack-scale systems, and networking attach ($14.8B/quarter, +199% YoY) keep switching costs high.
-- **vs custom ASICs (the real long-term threat):** Google TPU v7, Amazon Trainium 3, Microsoft Maia 200, Meta MTIA — enabled largely by Broadcom — are growing fast (one estimate: ~45% CAGR) and target inference. Third-party estimates put NVIDIA's share of AI accelerators declining from ~70% (2023) toward ~55–60% by 2026 in the broadest definitions — a falling share of a much faster-growing pie.
-- **vs Intel:** not currently a material competitive factor in AI accelerators.
-- NVIDIA's differentiation has moved up-stack: full rack-scale systems (GB200/GB300 NVL), networking (Spectrum-X/InfiniBand), and software — harder to displace than a chip-vs-chip comparison suggests. Gross margin at ~75% with revenue accelerating is direct evidence pricing power is intact as of Q1 FY2027.
+- **vs AMD:** MI400 시리즈는 신뢰할 만한 상용 실리콘 대안이다(보도된 Meta와의 ~$7B 계약). AMD는 절대 금액을 늘리고 있지만 기반이 작다. NVIDIA의 CUDA 소프트웨어 해자, NVLink 랙 스케일 시스템, 네트워킹 어태치(분기 $14.8B, +199% YoY)가 전환 비용을 높게 유지한다.
+- **vs 커스텀 ASIC (진짜 장기 위협):** Google TPU v7, Amazon Trainium 3, Microsoft Maia 200, Meta MTIA — 대체로 Broadcom이 지원한다 — 이 빠르게 성장하며(한 추정치는 ~45% CAGR) 추론을 겨냥한다. 제3자 추정은 가장 넓은 정의 기준으로 NVIDIA의 AI 가속기 점유율이 ~70%(2023년)에서 2026년 ~55–60%로 하락한다고 본다 — 훨씬 빠르게 커지는 파이의 줄어드는 몫이다.
+- **vs Intel:** 현재 AI 가속기 시장에서 유의미한 경쟁 변수가 아니다.
+- NVIDIA의 차별화는 스택 위쪽으로 이동했다: 풀 랙 스케일 시스템(GB200/GB300 NVL), 네트워킹(Spectrum-X/InfiniBand), 소프트웨어 — 칩 대 칩 비교가 시사하는 것보다 대체하기 어렵다. 매출이 가속하는 와중에 ~75% 총마진을 유지한다는 사실은 Q1 FY2027 시점에 가격결정력이 온전하다는 직접 증거다.
 
-Key structural risk: **customer concentration** — the largest hyperscaler customers are simultaneously NVIDIA's biggest buyers and its most capable emerging competitors, and several are increasingly debt-financing their AI capex.
+핵심 구조적 리스크: **고객 집중** — 최대 하이퍼스케일러 고객들이 동시에 NVIDIA의 최대 구매자이자 가장 유능한 신흥 경쟁자이며, 그중 다수가 AI capex를 점점 부채로 조달하고 있다.
 
 ---
 
 ## Data Gaps
 
-- **Customer-concentration percentages** for Q1 FY2027 (the "Customer A/B/C % of revenue" disclosure) were not retrieved; the Q1 FY2027 10-Q has them.
-- **EV/EBITDA** for NVDA and peers on a consistent basis was not retrieved; a data provider (e.g., FactSet/Koyfin) or computation from each peer's filings would be needed.
-- **NVDA forward P/E discrepancy:** ~16x (investingwpurpose.com, 2026-07-17) vs 22.45x (GuruFocus, 2026-07-31). Different consensus estimate sets and dates; the true figure at $197 is likely in the high-teens to low-20s. Flagged rather than averaged.
-- **TSMC forward P/E** not retrieved (only trailing), so the TSM row is not directly comparable to the forward figures for AMD/AVGO.
-- **Hyperscaler capex totals** vary widely by source and scope ($250B to $700B+ for CY2026); ranges reported rather than a single figure.
-- Q1 FY2026 comparatives (EPS $0.76 GAAP / $0.81 non-GAAP, revenue $44.06B) are from the May 2025 press release as retained knowledge, not re-verified against the filing in this session.
+- Q1 FY2027의 **고객 집중도 비율**("Customer A/B/C의 매출 비중" 공시)은 취득하지 못했다. Q1 FY2027 10-Q에 수록돼 있다.
+- NVDA와 동종업계의 일관된 기준 **EV/EBITDA**를 취득하지 못했다. 데이터 제공업체(예: FactSet/Koyfin)나 각 사 공시로부터의 직접 계산이 필요하다.
+- **NVDA 포워드 P/E 불일치:** ~16x (investingwpurpose.com, 2026-07-17) vs 22.45x (GuruFocus, 2026-07-31). 컨센서스 추정치 세트와 기준일이 다르다. $197 기준 실제 값은 10대 후반~20대 초반일 가능성이 크다. 평균 내지 않고 플래그만 한다.
+- **TSMC 포워드 P/E**를 취득하지 못해(후행만 확보), TSM 행은 AMD/AVGO의 포워드 수치와 직접 비교할 수 없다.
+- **하이퍼스케일러 capex 총액**은 출처와 범위 정의에 따라 편차가 크다(CY2026 기준 $250B ~ $700B+). 단일 수치 대신 범위로 보고한다.
+- Q1 FY2026 비교치(EPS GAAP $0.76 / non-GAAP $0.81, 매출 $44.06B)는 2025년 5월 보도자료에 대한 보유 지식이며, 이번 세션에서 공시 원문과 재검증하지 않았다.
 
 ## Sources
 
-- [NVIDIA Q1 FY2027 press release (NVIDIA Newsroom, May 2026)](https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2027) — also filed as an [8-K exhibit with the SEC](https://www.sec.gov/Archives/edgar/data/1045810/000104581026000051/q1fy27pr.htm)
-- [NVIDIA Q4 & FY2026 press release (NVIDIA Newsroom, Feb 2026)](https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026)
-- [StockTitan: Q1 FY27 dividend/buyback detail](https://www.stocktitan.net/news/NVDA/nvidia-announces-financial-results-for-first-quarter-fiscal-fq78amc9h84m.html)
-- [GuruFocus: NVDA forward P/E, 2026-07-31](https://www.gurufocus.com/term/forward-pe-ratio/NVDA); [Investing With Purpose: AI chip multiples, 2026-07-17](https://www.investingwpurpose.com/p/is-the-ai-chip-trade-about-to-change); [public.com TSM P/E](https://public.com/stocks/tsm/pe-ratio)
-- [companiesmarketcap.com: NVDA shares outstanding](https://companiesmarketcap.com/nvidia/shares-outstanding/); [Capital.com: NVDA market cap July 2026](https://capital.com/en-int/markets/shares/nvidia-corp-share-price/market-cap)
-- [Brookings: US AI chips in China](https://www.brookings.edu/articles/ball-games-over-the-us-is-out-of-the-ai-chip-market-in-china/); [Built In: chip-ban reversal](https://builtin.com/articles/trump-lifts-ai-chip-ban-china-nvidia); [Tom's Hardware: B30 status](https://www.tomshardware.com/pc-components/gpus/nvidia-reportedly-shows-china-specific-b30-chips-with-80-percent-of-the-performance-of-the-standard-blackwell-gpu-to-the-u-s-government-nvidia-ceo-says-approval-is-still-up-in-the-air)
-- [Introl: custom silicon inflection 2026](https://introl.com/blog/custom-silicon-inflection-2026-hyperscaler-asics-nvidia-gpu); [Presenc AI: hyperscaler capex map 2026](https://presenc.ai/research/hyperscaler-ai-capex-map-2026)
+- [NVIDIA Q1 FY2027 보도자료 (NVIDIA Newsroom, 2026년 5월)](https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2027) — [SEC에 8-K 첨부로도 제출](https://www.sec.gov/Archives/edgar/data/1045810/000104581026000051/q1fy27pr.htm)
+- [NVIDIA Q4 및 FY2026 보도자료 (NVIDIA Newsroom, 2026년 2월)](https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026)
+- [StockTitan: Q1 FY27 배당/자사주 매입 상세](https://www.stocktitan.net/news/NVDA/nvidia-announces-financial-results-for-first-quarter-fiscal-fq78amc9h84m.html)
+- [GuruFocus: NVDA 포워드 P/E, 2026-07-31](https://www.gurufocus.com/term/forward-pe-ratio/NVDA); [Investing With Purpose: AI 칩 멀티플, 2026-07-17](https://www.investingwpurpose.com/p/is-the-ai-chip-trade-about-to-change); [public.com TSM P/E](https://public.com/stocks/tsm/pe-ratio)
+- [companiesmarketcap.com: NVDA 발행주식수](https://companiesmarketcap.com/nvidia/shares-outstanding/); [Capital.com: NVDA 2026년 7월 시가총액](https://capital.com/en-int/markets/shares/nvidia-corp-share-price/market-cap)
+- [Brookings: 중국 내 미국 AI 칩](https://www.brookings.edu/articles/ball-games-over-the-us-is-out-of-the-ai-chip-market-in-china/); [Built In: 칩 금수 조치 번복](https://builtin.com/articles/trump-lifts-ai-chip-ban-china-nvidia); [Tom's Hardware: B30 현황](https://www.tomshardware.com/pc-components/gpus/nvidia-reportedly-shows-china-specific-b30-chips-with-80-percent-of-the-performance-of-the-standard-blackwell-gpu-to-the-u-s-government-nvidia-ceo-says-approval-is-still-up-in-the-air)
+- [Introl: 2026년 커스텀 실리콘 변곡점](https://introl.com/blog/custom-silicon-inflection-2026-hyperscaler-asics-nvidia-gpu); [Presenc AI: 2026년 하이퍼스케일러 capex 지도](https://presenc.ai/research/hyperscaler-ai-capex-map-2026)
 
 ---
 
 ## Fundamental Rating: **Strong**
 
-NVIDIA enters August 2026 with re-accelerating revenue (+85% YoY to $81.6B in Q1 FY2027, guided to $91B for Q2), ~75% gross margins, a ~60% free-cash-flow margin, and a net-cash balance sheet (~$80B cash and securities vs ~$8.5B debt, D/E ~0.04x). Guidance that excludes China entirely means the growth story needs no regulatory good news, while H200 approval and pending B30 clearance are upside options. Valuation (~30x TTM GAAP, high-teens-to-low-20s forward P/E) is at or below slower-growing peers AMD and Broadcom. The offsetting risks are real but second-order today: hyperscaler custom ASICs eroding share on inference, extreme customer concentration, growing receivables/inventory balances, and GAAP earnings inflated by mark-to-market equity gains. Fundamentals are about as strong as they get for a mega-cap; the primary risk is cycle durability, not the company's financial position.
+NVIDIA는 재가속하는 매출(Q1 FY2027 +85% YoY $81.6B, Q2 가이던스 $91B), ~75% 총마진, ~60% 잉여현금흐름 마진, 순현금 재무상태표(현금 및 증권 ~$80B 대 차입금 ~$8.5B, D/E ~0.04x)를 안고 2026년 8월에 들어선다. 중국을 전면 제외한 가이던스는 성장 서사에 규제 호재가 전혀 필요 없다는 뜻이며, H200 승인과 계류 중인 B30 허가는 업사이드 옵션이다. 밸류에이션(~30x TTM GAAP, 10대 후반~20대 초반 포워드 P/E)은 더 느리게 성장하는 AMD, Broadcom과 같거나 그보다 낮다. 상쇄 리스크는 실재하지만 오늘 기준으로는 부차적이다: 추론 영역에서 점유율을 잠식하는 하이퍼스케일러 커스텀 ASIC, 극심한 고객 집중, 불어나는 매출채권/재고, 시가평가 지분 이익으로 부풀려진 GAAP 이익. 펀더멘털은 메가캡이 도달할 수 있는 최상급에 가깝다. 주된 리스크는 회사의 재무 상태가 아니라 사이클의 지속성이다.

@@ -1,118 +1,118 @@
-# NVDA — Risk Assessment & Trading Decision
+# NVDA — 리스크 평가 & 트레이딩 결정
 
-**Ticker:** NVDA (NVIDIA Corp.) | **Date:** 2026-08-01
-**Analyst:** ta-risk-trader (synthesis of reports 01–03; live-web research, not the repo Python pipeline)
+**티커:** NVDA (NVIDIA Corp.) | **날짜:** 2026-08-01
+**애널리스트:** ta-risk-trader (보고서 01–03 종합; 라이브 웹 리서치, 저장소의 Python 파이프라인이 아님)
 
-**Inputs:** `01-technical-analysis.md` (Technical Direction: **Neutral**), `02-fundamentals-analysis.md` (Fundamental Rating: **Strong**), `03-news-sentiment-analysis.md` (Sentiment Direction: **Mixed**)
-
----
-
-## 0. Price anchor — an unresolved three-way conflict, named up front
-
-The three inputs do not agree on Friday's (2026-07-31) close:
-
-| Source | Jul 31 close | Day change |
-|---|---|---|
-| Dispatch anchor | ~$197 | — |
-| Technical report (StockAnalysis, cross-checked: $195.04 × 1.0293 = $200.75) | **$200.75** | +2.93% |
-| News report (TradingKey) | **$198.97** | +3.46% |
-
-The technical report's figure is the only one that is internally arithmetically consistent (prior close × stated % change reproduces it); the news report's close and % change do not reconcile against the same Jul 30 close ($195.04 × 1.0346 = $201.79 ≠ $198.97), and the dispatch range (191.52–197.25) plausibly belongs to the Jul 30 session. **I weight the technical report's $200.75 as the working last close** but treat the true print as "somewhere in $197–201."
-
-**Why this doesn't sink the trade plan:** every level I use below ($190, $192–195, $204, $212, $235) comes from multi-week range structure, not from the last print. A $2–4 dispute on the anchor changes where price sits *inside* the range (midpoint vs. slightly below), not the range itself. It does lower confidence, and it means the mid-range risk/reward math below should be read with ±$2 slack.
+**입력:** `01-technical-analysis.md` (Technical Direction: **Neutral**), `02-fundamentals-analysis.md` (Fundamental Rating: **Strong**), `03-news-sentiment-analysis.md` (Sentiment Direction: **Mixed**)
 
 ---
 
-## 1. Bull Case — the strongest honest argument FOR
+## 0. 가격 기준점 — 미해결 3자 충돌, 먼저 명시한다
 
-**Fundamentals are close to unimprovable for a mega-cap.** Q1 FY2027 revenue $81.6B (+85% YoY, +20% QoQ), third consecutive quarter of *accelerating* revenue (~$57B → $68B → $82B), 74.9% GAAP gross margin, ~60% FCF margin ($48.6B FCF in one quarter), and a net-cash balance sheet (~$80B cash + securities vs ~$8.5B total debt, D/E ~0.04x). Q2 FY2027 guidance of $91B ±2% implies no deceleration as of May 2026.
+세 입력 보고서가 금요일(2026-07-31) 종가에 대해 합의하지 못한다:
 
-**The valuation does not require heroics.** ~30x TTM GAAP P/E (~34x on the cleaner non-GAAP $5.83 TTM EPS), with forward P/E in the high-teens to low-20s (disputed 16x vs 22.45x — flagged, not averaged). That is at or *below* Broadcom (~19x) and roughly half of AMD (~37x) despite faster growth and higher margins. BofA's Jul 29–30 reiteration called 18x forward a **7-year valuation low**. TD Cowen: lowest since 2019.
-
-**China is pure upside optionality, not a dependency.** Guidance explicitly excludes China Data Center compute. H200 exports were approved Dec 2025 (licenses being issued, reported 25% tariff), B30 approval pending. The growth story needs zero regulatory good news; any China revenue is incremental to the $91B guide.
-
-**The technical floor is proven.** $192–195 has repelled three attacks (Jun 26 at $192.30, Jul 6 at $195.05, Jul 30 at $195.04), and Jul 31 delivered a +2.93–3.46% bounce on 140M shares following hyperscaler capex reaffirmation (Amazon guiding ~$200B CY2026 capex, Microsoft ~$90–95B, Alphabet ~$75–80B — the demand engine reconfirmed the week of the print). A potential double bottom ($192.30 / ~$195) sits one confirmation (close > $212) from activating.
-
-**Sell-side is unanimous and leaning in.** Strong Buy consensus across 61 analysts, average target $302.83 (~+52% vs spot), range $180–500, KeyBanc raised to $330 *into* the July selloff, BofA at $350, and **zero downgrades or target cuts** surfaced in the period. July insider selling: effectively none.
-
-**Catalyst three weeks out.** FQ2 FY2027 earnings Aug 26; company-side claims in circulation (Blackwell sold out through mid-2026, "$1T confirmed demand through 2027" — unverified) plus the excluded-China kicker give the print asymmetric headline potential.
-
-## 2. Bear Case — the strongest honest argument AGAINST
-
-**The tape says distribution, not accumulation.** Lower highs from the May peak: $237.95 → ~$220 → $212.14, against a flat floor — a descending-triangle character whose textbook resolution is *down*. Price sits inside a converged 50/200-day MA cluster with mid-band RSI and flat-to-negative MACD (sign corroborated across all four technical sources). This is a market that has gone nowhere since November despite enormous earnings growth — the multiple has been compressing all year, and "cheap vs. history" is exactly what that looks like from the inside.
-
-**The circular-financing story is the real risk, and it isn't resolved.** The Jul 27 report of NVIDIA discussing a **$250B guarantee** backstopping an OpenAI/SoftBank data-center lease knocked the stock >5% in a day and helped erase >$1T of sector market cap in a week. Talks are unconfirmed, but the market's reaction demonstrates the sensitivity: NVIDIA's revenue acceleration is increasingly entangled with customers it finances, invests in, or guarantees. The fundamentals report's own quality flags rhyme with this: receivables at $40.7B (~45 days of revenue, concentrated in a handful of buyers), inventories $25.8B and growing, and GAAP net income *above* operating income because of $30.2B of mark-to-market equity stakes in the same AI ecosystem it sells into. None of this is fraud; all of it is pro-cyclical amplification if the capex cycle cracks.
-
-**Customers are becoming competitors, at scale.** Google TPU v7, Trainium 3, Maia 200, MTIA — custom ASICs growing ~45% CAGR, targeting inference, which is where two-thirds of compute is heading. Third-party estimates put NVIDIA's accelerator share falling from ~70% toward ~55–60% by 2026. AMD's MI400 landed a reported ~$7B Meta deal. Share of a growing pie is still fine — until the pie's growth rate is questioned, which is precisely what TSMC's capex signal (Jul 16) and Google's margin pressure (Jul 28) did.
-
-**Smart-money positioning leans out, not in.** Q1 2026 13Fs: 3,872 institutions trimmed, institutional ownership fell ~6 points quarter-over-quarter. Director Mark Stevens' trusts sold ~1.9M shares in June at $209–222 — above the current price. Michael Burry holds ~$1.1B notional of NVDA/PLTR puts (Dec 2026, low-$100s strikes). Apple retook the most-valuable-company crown on Jul 28. The highest-engagement retail threads are bubble-framed.
-
-**The Aug 26 print is binary and the bar is high.** A $91B guide means the market already expects ~+12% QoQ; with the stock whipsawing ±5% on headlines, an in-line quarter with cautious capex commentary from a single hyperscaler could break the $190 floor that three tests have so far defended.
-
-## 3. Where the reports conflict, and how I weighted them
-
-1. **Last close ($197 / $198.97 / $200.75)** — weighted the technical report's $200.75 (only internally consistent figure); treated the residual as ±$2–4 noise on the anchor. Lowers confidence, doesn't change levels.
-2. **Sell-side (strongly bullish) vs news flow (bearish) vs retail (whipsawing)** — the news report itself names this as "a contested narrative, not a consensus." I weight the *fundamentals report's primary documents* (SEC-filed results, company guidance) above both narrative streams, which is what pulls my read constructive rather than neutral-bearish. But contested sentiment into a binary catalyst is exactly when position size, not conviction, should do the risk work.
-3. **RSI (43 vs 59), MACD magnitude, 50/200-day relationship** — all disputed within the technical report; I use only the qualitative reads it certified as cross-source-safe (mid-band RSI, flat/negative MACD, converged MAs). No indicator value below relies on a disputed number.
-4. **Forward P/E (16x vs 22.45x)** — carried as a range ("high-teens to low-20s"), per the fundamentals report. Either end supports "at or below slower-growing peers."
-5. **StockTwits volume trend (+21% vs −42%)** — irreconcilable per the news report; ignored the trend, kept only "level is high."
-
-## 4. Risk Assessment
-
-| Risk | Rating | Basis (from the input reports) |
+| 출처 | 7/31 종가 | 일간 변동 |
 |---|---|---|
-| **Volatility** | **Elevated** | ATR $7.28 (~3.6% of price, Jul 20); multiple ±3–5% single-day moves in the last two weeks (−5% Jul 27, −4.99% Jul 28, +2.9–3.5% Jul 31); Bollinger width ~$24 on a ~$200 stock; >$1T sector swing in one week. **Beta: not reported by any analyst — not available**; rating rests on realized daily ranges instead. |
-| **Liquidity** | **Low** | 140M shares traded Jul 31 (~$28B notional); 53.8% institutional ownership across 5,598 filers; BlackRock alone ~1.93B shares. Exit at size is not a concern. (Average-volume baseline was not available, but absolute turnover is unambiguous.) |
-| **Sector / regulatory** | **Elevated** | Semis index −20%+ from June peak in ~3 weeks; circular-financing narrative live and unresolved ($250B OpenAI guarantee talks); China policy still headline-driven in both directions (H200 licenses granted with reported 25% tariff, B30 pending, China-side approvals uncertain, DeepSeek in-house chip); latent antitrust exposure at >90% merchant-accelerator share. Partially offset by guidance excluding China entirely. |
-| **Earnings / fundamental** | **Moderate** | The company's financial position is about as strong as mega-caps get (net cash, 75% GM, 60% FCF margin) — that caps this rating below Elevated. What keeps it at Moderate rather than Low: binary Aug 26 print against a high bar, customer concentration (exact Customer A/B/C % not retrieved — gap), swelling receivables/inventory, GAAP EPS inflated by mark-to-market gains, and ASIC share erosion on inference. |
+| 디스패치 기준점 | ~$197 | — |
+| 기술적 보고서 (StockAnalysis, 교차 검증: $195.04 × 1.0293 = $200.75) | **$200.75** | +2.93% |
+| 뉴스 보고서 (TradingKey) | **$198.97** | +3.46% |
 
-## 5. Trading Decision
+기술적 보고서의 수치만이 내부적으로 산술 일관성을 갖는다(직전 종가 × 명시된 변동률이 그 값을 재현한다). 뉴스 보고서의 종가와 변동률은 동일한 7/30 종가에 대해 맞아떨어지지 않으며($195.04 × 1.0346 = $201.79 ≠ $198.97), 디스패치의 범위(191.52–197.25)는 7/30 세션의 것일 가능성이 크다. **작업용 직전 종가로는 기술적 보고서의 $200.75에 가중치를 둔다**. 다만 실제 종가는 "$197–201 사이 어딘가"로 취급한다.
 
-**The signal is HOLD — with a specific, level-anchored plan for deploying on weakness or on confirmation, because the problem is entry location, not the asset.**
+**이것이 트레이드 플랜을 무너뜨리지 않는 이유:** 아래에서 사용하는 모든 레벨($190, $192–195, $204, $212, $235)은 마지막 종가가 아니라 수 주간의 박스 구조에서 나온다. 기준점의 $2–4 차이는 가격이 박스 *안* 어디에 있는지(중앙이냐 약간 아래냐)를 바꿀 뿐, 박스 자체를 바꾸지 않는다. 다만 신뢰도는 낮추며, 아래 박스 중간의 손익비 산식은 ±$2의 여유를 두고 읽어야 한다는 뜻이다.
 
-The reasoning is arithmetic, not narrative. From the working close (~$200.75, itself disputed ±$2–4), the technical range gives:
+---
 
-- Buying **here**: risk to the $189 invalidation ≈ $11.75; reward to the $212 range top ≈ $11.25. **R/R ≈ 0.96:1** — paying full price for a coin-flip inside a trendless range, three weeks ahead of a binary catalyst, on a disputed price anchor. That is not a trade the evidence supports, however strong the fundamentals.
-- Buying the **tested floor ($192–195, plan at ~$194)**: risk to a sub-$189 stop = $5; reward to $212 = $18 (**3.6:1**), to the $235 major resistance = $41 (**8.2:1**). Same asset, same thesis, radically different bet — and the floor has held three times.
-- Alternatively, buying **confirmation**: a daily close above **$214** (range top + upper band) confirms the double bottom and turns the technical read bullish, targeting $220 then $235 with a stop back under $205.
+## 1. 강세 논지 — 매수에 유리한 가장 강력하고 정직한 주장
 
-The Strong fundamental rating and unanimous sell-side make this a HOLD-leaning-accumulate rather than a neutral shrug: existing positions should be *kept* (the floor, the balance sheet, and the excluded-China guidance justify holding through the range), and new money should be staged at levels where the range pays you to be wrong.
+**펀더멘털은 메가캡 기준으로 더 나아지기 어려운 수준이다.** Q1 FY2027 매출 $81.6B(+85% YoY, +20% QoQ), 3개 분기 연속 *가속*하는 매출(~$57B → $68B → $82B), 74.9% GAAP 총마진, ~60% FCF 마진(한 분기에 FCF $48.6B), 그리고 순현금 재무상태표(현금 + 증권 ~$80B 대 총차입금 ~$8.5B, D/E ~0.04x). Q2 FY2027 가이던스 $91B ±2%는 2026년 5월 시점까지 둔화가 없음을 시사한다.
 
-**Earnings overlay:** whatever is entered before Aug 26 must be sized so that a gap *through* the stop (earnings gaps do not honor stops) is tolerable — assume a worst-case overnight move of ±10% given July's realized volatility.
+**밸류에이션에 영웅적 가정이 필요하지 않다.** ~30x TTM GAAP P/E(더 깨끗한 non-GAAP TTM EPS $5.83 기준 ~34x), 포워드 P/E는 10대 후반~20대 초반(16x 대 22.45x로 이견 — 평균 내지 않고 플래그). 이는 더 빠른 성장과 더 높은 마진에도 불구하고 Broadcom(~19x)과 같거나 *그 아래*, AMD(~37x)의 대략 절반이다. BofA는 7/29–30 재확인에서 18x 포워드를 **7년래 밸류에이션 저점**이라고 불렀다. TD Cowen은 2019년 이후 최저라고 했다.
+
+**중국은 의존 요인이 아니라 순수한 업사이드 옵션이다.** 가이던스는 중국 데이터센터 컴퓨트를 명시적으로 제외한다. H200 수출은 2025년 12월 승인됐고(라이선스 발급 중, 보도된 25% 관세), B30 승인은 계류 중이다. 성장 서사에 규제 호재는 전혀 필요 없으며, 중국 매출은 무엇이든 $91B 가이던스에 대한 증분이다.
+
+**기술적 바닥은 입증됐다.** $192–195는 세 번의 공격을 물리쳤고(6/26 $192.30, 7/6 $195.05, 7/30 $195.04), 7/31에는 하이퍼스케일러 capex 재확인에 따라 1.4억 주 거래량으로 +2.93–3.46% 반등이 나왔다(Amazon이 CY2026 capex ~$200B, Microsoft ~$90–95B, Alphabet ~$75–80B 제시 — 해당 주에 수요 엔진이 재확인됐다). 잠재적 더블바텀($192.30 / ~$195)은 확정($212 상회 종가) 하나만을 남겨두고 있다.
+
+**셀사이드는 만장일치로 기울어 있다.** 애널리스트 61명의 Strong Buy 컨센서스, 평균 목표가 $302.83(현재가 대비 ~+52%), 범위 $180–500, KeyBanc는 7월 매도세 *한복판에* $330으로 상향, BofA는 $350, 그리고 해당 기간에 **등급 하향이나 목표가 인하는 0건**이었다. 7월 내부자 매도는 사실상 없다.
+
+**3주 앞의 촉매.** FQ2 FY2027 실적이 8월 26일이다. 돌고 있는 회사 측 주장(Blackwell 2026년 중반까지 완판, "2027년까지 확정 수요 $1T" — 미검증)에 중국 제외라는 추가 요소까지 더해져, 이번 발표는 비대칭적인 헤드라인 잠재력을 갖는다.
+
+## 2. 약세 논지 — 매수에 반대하는 가장 강력하고 정직한 주장
+
+**차트는 축적이 아니라 분산을 말한다.** 5월 고점 이후 고점 저하: $237.95 → ~$220 → $212.14, 그리고 평탄한 바닥 — 교과서적 해소 방향이 *아래*인 하락 삼각형 성격이다. 가격은 수렴한 50/200일 이평 클러스터 안에 있고, RSI는 중립 밴드, MACD는 평탄~음(부호는 네 개 기술적 출처 모두에서 교차 확인). 이 시장은 막대한 실적 성장에도 11월 이후 제자리다 — 멀티플은 연중 내내 압축돼 왔고, "역사적으로 싸다"는 말은 그 안에서 보면 바로 이런 모습이다.
+
+**순환 금융 서사가 진짜 리스크이며, 해소되지 않았다.** NVIDIA가 OpenAI/SoftBank 데이터센터 임차를 뒷받침하는 **$250B 보증**을 논의 중이라는 7/27 보도는 하루 만에 주가를 5% 넘게 떨어뜨렸고, 한 주 만에 섹터 시총 $1T 이상을 날리는 데 일조했다. 협상은 미확인이지만 시장의 반응이 민감도를 보여준다: NVIDIA의 매출 가속은 자신이 자금을 대거나, 투자하거나, 보증하는 고객들과 점점 더 얽히고 있다. 펀더멘털 보고서 자체의 품질 플래그가 이와 공명한다: 매출채권 $40.7B(매출의 ~45일치, 소수 구매자에 집중), 재고 $25.8B로 증가 중, 그리고 자신이 판매하는 바로 그 AI 생태계에 대한 $30.2B 시가평가 지분 때문에 GAAP 순이익이 영업이익을 *상회*한다. 이 중 어느 것도 분식이 아니다. 다만 capex 사이클이 균열하면 전부 경기순응적으로 증폭된다.
+
+**고객이 대규모로 경쟁자가 되고 있다.** Google TPU v7, Trainium 3, Maia 200, MTIA — 커스텀 ASIC이 ~45% CAGR로 성장하며 추론을 겨냥하는데, 컴퓨트의 3분의 2가 향하는 곳이 바로 거기다. 제3자 추정은 NVIDIA의 가속기 점유율이 ~70%에서 2026년 ~55–60%로 떨어진다고 본다. AMD의 MI400은 Meta와 ~$7B 규모 계약을 따낸 것으로 보도됐다. 커지는 파이의 몫이 줄어드는 것 자체는 괜찮다 — 파이의 성장률이 의심받기 전까지는. 그리고 TSMC의 capex 신호(7/16)와 Google의 마진 압박(7/28)이 한 일이 정확히 그것이다.
+
+**스마트 머니의 포지셔닝은 진입이 아니라 이탈 쪽이다.** 2026년 1분기 13F: 3,872개 기관이 비중을 줄였고, 기관 보유 비중은 전분기 대비 ~6%포인트 하락했다. Mark Stevens 이사의 신탁은 6월에 ~190만 주를 $209–222에 매도했다 — 현재가보다 위다. Michael Burry는 NVDA/PLTR 풋을 ~$1.1B 명목으로 보유한다(2026년 12월물, $100 초반 행사가). Apple은 7/28에 시총 1위를 되찾았다. 참여도가 가장 높은 리테일 스레드들은 버블 프레임이다.
+
+**8월 26일 발표는 바이너리이고 기준선이 높다.** $91B 가이던스는 시장이 이미 ~+12% QoQ를 기대한다는 뜻이다. 주가가 헤드라인에 ±5%씩 요동치는 상황에서, 하이퍼스케일러 한 곳의 신중한 capex 코멘트를 동반한 컨센서스 수준의 분기 실적만으로도 세 번의 테스트를 방어해 온 $190 바닥이 깨질 수 있다.
+
+## 3. 보고서 간 충돌 지점과 가중치 부여 방식
+
+1. **직전 종가($197 / $198.97 / $200.75)** — 기술적 보고서의 $200.75에 가중치를 뒀다(유일하게 내부 일관성 있는 수치). 잔여 차이는 기준점의 ±$2–4 노이즈로 처리한다. 신뢰도는 낮추지만 레벨은 바꾸지 않는다.
+2. **셀사이드(강한 강세) vs 뉴스 흐름(약세) vs 리테일(요동)** — 뉴스 보고서 스스로 이를 "컨센서스가 아니라 다투어지는 서사"로 규정한다. 나는 두 서사 흐름보다 *펀더멘털 보고서의 1차 자료*(SEC 제출 실적, 회사 가이던스)에 더 큰 가중치를 두며, 그래서 판독이 중립-약세가 아니라 건설적으로 기운다. 다만 바이너리 촉매를 앞둔 다투어지는 센티먼트야말로 확신이 아니라 포지션 크기가 리스크를 관리해야 하는 국면이다.
+3. **RSI(43 vs 59), MACD 크기, 50/200일 관계** — 모두 기술적 보고서 내부에서 이견이 있다. 나는 그 보고서가 출처 교차로 안전하다고 인증한 정성적 판독만 사용한다(중립 밴드 RSI, 평탄/음의 MACD, 수렴한 이평). 아래 어떤 지표 값도 이견이 있는 수치에 의존하지 않는다.
+4. **포워드 P/E(16x vs 22.45x)** — 펀더멘털 보고서에 따라 범위("10대 후반~20대 초반")로 유지한다. 어느 쪽 끝이든 "더 느리게 성장하는 동종업체와 같거나 그 아래"를 지지한다.
+5. **StockTwits 볼륨 추세(+21% vs −42%)** — 뉴스 보고서 기준 조정 불가. 추세는 무시하고 "수준이 높다"만 취했다.
+
+## 4. 리스크 평가
+
+| 리스크 | 등급 | 근거 (입력 보고서 기준) |
+|---|---|---|
+| **변동성** | **Elevated** | ATR $7.28 (가격의 ~3.6%, 7/20); 최근 2주간 ±3–5% 일간 변동 다수 (7/27 −5%, 7/28 −4.99%, 7/31 +2.9–3.5%); ~$200 주가에 볼린저 폭 ~$24; 한 주 만에 섹터 $1T 이상 스윙. **베타: 어느 애널리스트도 보고하지 않음 — not available**; 등급은 대신 실현 일간 변동폭에 기반한다. |
+| **유동성** | **Low** | 7/31 1.4억 주 거래(~$28B 명목); 5,598개 제출 기관에 걸쳐 기관 보유 53.8%; BlackRock 단독 ~19.3억 주. 규모 있는 청산도 문제되지 않는다. (평균 거래량 기준선은 확보하지 못했으나, 절대 회전율은 명확하다.) |
+| **섹터 / 규제** | **Elevated** | 반도체 지수가 약 3주 만에 6월 고점 대비 −20% 이상; 순환 금융 서사가 살아 있고 미해결($250B OpenAI 보증 협상); 중국 정책은 여전히 양방향 헤드라인에 좌우됨(보도된 25% 관세와 함께 H200 라이선스 발급, B30 계류, 중국 측 승인 불확실, DeepSeek 자체 칩); 상용 가속기 점유율 90% 초과에 따른 잠재적 반독점 노출. 중국을 전면 제외한 가이던스가 일부 상쇄한다. |
+| **실적 / 펀더멘털** | **Moderate** | 회사의 재무 상태는 메가캡이 도달 가능한 최상급이며(순현금, 75% GM, 60% FCF 마진), 이 때문에 등급이 Elevated 아래로 묶인다. Low가 아니라 Moderate에 머무는 이유: 높은 기준선을 마주한 8/26 바이너리 발표, 고객 집중(정확한 Customer A/B/C 비율 미취득 — 갭), 불어나는 매출채권/재고, 시가평가 이익으로 부풀려진 GAAP EPS, 추론 영역의 ASIC 점유율 잠식. |
+
+## 5. 트레이딩 결정
+
+**신호는 HOLD다 — 다만 약세 구간 또는 확인 시점에 투입할 구체적이고 레벨에 고정된 플랜을 동반한다. 문제는 자산이 아니라 진입 위치이기 때문이다.**
+
+논리는 서사가 아니라 산술이다. 작업 종가(~$200.75, 그 자체가 ±$2–4 이견 대상) 기준으로 기술적 박스는 다음을 준다:
+
+- **현재 위치**에서 매수: $189 무효화까지의 리스크 ≈ $11.75; $212 박스 상단까지의 보상 ≈ $11.25. **R/R ≈ 0.96:1** — 추세 없는 박스 안에서, 바이너리 촉매를 3주 앞두고, 이견 있는 가격 기준점 위에서, 동전 던지기에 정가를 다 치르는 셈이다. 펀더멘털이 아무리 강해도 증거가 지지하는 트레이드가 아니다.
+- **검증된 바닥($192–195, 플랜 기준가 ~$194)** 매수: $189 하회 손절까지의 리스크 = $5; $212까지의 보상 = $18 (**3.6:1**), $235 주요 저항까지 = $41 (**8.2:1**). 같은 자산, 같은 논지, 완전히 다른 베팅이다 — 게다가 그 바닥은 세 번 버텼다.
+- 또는 **확인 매수**: **$214** 상회 일봉 종가(박스 상단 + 상단 밴드)는 더블바텀을 확정하고 기술적 판독을 강세로 돌린다. 목표는 $220 이후 $235, 손절은 $205 아래로 되돌린다.
+
+Strong 펀더멘털 등급과 만장일치 셀사이드 때문에 이것은 중립적 어깨짓이 아니라 축적 대기형 HOLD다: 기존 포지션은 *유지*하고(바닥, 재무상태표, 중국 제외 가이던스가 박스 내 보유를 정당화한다), 신규 자금은 박스가 틀렸을 때 대가를 지불해 주는 레벨에 단계적으로 배치한다.
+
+**실적 오버레이:** 8/26 이전에 진입하는 모든 물량은 스탑을 *관통하는* 갭(실적 갭은 스탑을 존중하지 않는다)을 감당할 수 있는 크기여야 한다 — 7월의 실현 변동성을 감안해 최악의 경우 오버나이트 ±10% 이동을 가정한다.
 
 ## FINAL SIGNAL: **HOLD**
 
-*(Hold existing positions; stage new buys at $192–195 or on a confirmed close above $214 — do not chase the mid-range.)*
+*(기존 포지션 유지. 신규 매수는 $192–195에서, 또는 $214 상회 종가가 확인된 후 단계적으로 — 박스 중간에서 추격하지 말 것.)*
 
-| Parameter | Value |
+| 항목 | 값 |
 |---|---|
-| Current price (working) | ~$200.75 (disputed: $197–201; see §0) |
-| Entry (accumulation) | **$192–195 limit zone (plan anchor $194)** — the 3x-tested range floor |
-| Entry (alternative, breakout) | Daily close > **$214** (range top $212.14 + upper band $213.60) |
-| Target 1 | **$212** (range top / Jul 22 high) |
-| Target 2 | **$235** (52-wk high $236.54 / May closing high $237.95 zone) |
-| Stop loss | Daily **close below $189** (below lower band $189.91 + EMA200 $190.59 + $190 structural floor failing together) |
-| Risk/Reward (from $194) | **3.6:1** to T1; **8.2:1** to T2 (from current ~$200.75: ~1.0:1 to T1 — the reason this is not a BUY here) |
-| Position sizing | **Moderate** at the $192–195 zone; **Conservative** for any mid-range or pre-earnings entry; assume ±10% earnings gap risk on Aug 26 |
-| Timeframe | 1–3 months (range trade into and through Aug 26 FQ2 earnings) |
-| Confidence | **55%** |
+| 현재가 (작업 기준) | ~$200.75 (이견: $197–201; §0 참조) |
+| 진입 (축적) | **$192–195 지정가 구간 (플랜 기준가 $194)** — 3회 검증된 박스 바닥 |
+| 진입 (대안, 돌파) | **$214** 상회 일봉 종가 (박스 상단 $212.14 + 상단 밴드 $213.60) |
+| 목표 1 | **$212** (박스 상단 / 7/22 고점) |
+| 목표 2 | **$235** (52주 고점 $236.54 / 5월 종가 고점 $237.95 구간) |
+| 손절 | **$189 하회** 일봉 종가 (하단 밴드 $189.91 + EMA200 $190.59 + $190 구조적 바닥이 동시에 붕괴) |
+| 손익비 ($194 기준) | T1까지 **3.6:1**; T2까지 **8.2:1** (현재 ~$200.75 기준: T1까지 ~1.0:1 — 여기서 BUY가 아닌 이유) |
+| 포지션 크기 | $192–195 구간에서는 **중간**; 박스 중간이나 실적 직전 진입은 **보수적**; 8/26 ±10% 실적 갭 리스크 가정 |
+| 기간 | 1–3개월 (8/26 FQ2 실적 진입 및 통과까지의 박스 트레이드) |
+| 신뢰도 | **55%** |
 
-**Why 55% and not higher:** the directional lean (constructive) is well-supported by primary-source fundamentals, but the trade rests on a disputed price anchor, disputed indicator values, an unresolved circular-financing story, contested sentiment, and a binary catalyst — and the technical report's own headline is Neutral. Thin agreement across inputs caps confidence regardless of how strong the fundamental leg is alone.
+**왜 55%이고 그 이상이 아닌가:** 방향성(건설적)은 1차 자료 펀더멘털이 잘 뒷받침한다. 그러나 이 트레이드는 이견 있는 가격 기준점, 이견 있는 지표 값, 미해결 순환 금융 서사, 다투어지는 센티먼트, 그리고 바이너리 촉매 위에 서 있다 — 게다가 기술적 보고서 자체의 헤드라인은 Neutral이다. 입력 간 합의가 얕으면 펀더멘털 한 축이 아무리 강해도 신뢰도에 상한이 생긴다.
 
-## Data Gaps (inherited and own)
+## Data Gaps (인계받은 것과 자체 발견)
 
-- **Jul 31 close disputed three ways** ($197 dispatch / $198.97 news / $200.75 technical); all mid-range R/R math carries ±$2–4 slack.
-- **Beta: not available** from any input report; volatility rating uses ATR and realized daily moves instead.
-- **Average daily volume: not available** — no volume-confirmation read on the floor tests or the Jul 31 bounce.
-- **RSI, MACD magnitude, and 50/200-day SMA relationship disputed** across the technical report's sources; only qualitative reads used.
-- **Customer concentration percentages** (Q1 FY2027 10-Q) not retrieved — a material input to the earnings-risk rating.
-- **Forward P/E disputed** (16x vs 22.45x); carried as a range.
-- **Q2 2026 13F data not yet published** — institutional positioning is a quarter stale.
-- **$250B OpenAI guarantee is reported talks only**, terms unverified — yet it drove the largest single-day drop since Feb 2026; the single biggest narrative unknown into Aug 26.
-- Retail sentiment ratios (StockTwits/Reddit) not quantifiable; directional only.
+- **7/31 종가가 3자로 갈린다** ($197 디스패치 / $198.97 뉴스 / $200.75 기술적). 박스 중간의 모든 손익비 산식은 ±$2–4 여유를 안고 있다.
+- **베타: not available** — 어떤 입력 보고서에도 없다. 변동성 등급은 대신 ATR과 실현 일간 변동을 사용한다.
+- **일평균 거래량: not available** — 바닥 테스트나 7/31 반등에 대한 거래량 확인 판독이 불가능하다.
+- **RSI, MACD 크기, 50/200일 SMA 관계**가 기술적 보고서의 출처들 사이에서 갈린다. 정성적 판독만 사용했다.
+- **고객 집중도 비율**(Q1 FY2027 10-Q) 미취득 — 실적 리스크 등급에 실질적인 입력이다.
+- **포워드 P/E에 이견**(16x vs 22.45x). 범위로 유지했다.
+- **2026년 2분기 13F 미공시** — 기관 포지셔닝은 한 분기 지연 상태다.
+- **$250B OpenAI 보증은 보도된 협상 단계일 뿐**이며 조건은 미검증이다 — 그럼에도 2026년 2월 이후 최대 일간 낙폭을 만들었다. 8/26을 향한 가장 큰 서사적 미지수다.
+- 리테일 센티먼트 비율(StockTwits/Reddit)은 수치화 불가. 방향성만 유효하다.
 
-Each gap independently pushed confidence down; collectively they are why a Strong fundamental picture still yields only a 55%-confidence HOLD rather than a high-conviction BUY.
+각 갭이 저마다 신뢰도를 끌어내렸고, 이들을 합치면 Strong 펀더멘털 그림에도 불구하고 고확신 BUY가 아니라 신뢰도 55%의 HOLD만 나오는 이유가 된다.
 
 ---
 
-*This is AI-generated research synthesized from public web sources as of 2026-08-01. It is **not investment advice**, carries no backtest or realized-return validation, and the underlying data contains the unresolved discrepancies listed above. Signals here use a BUY/SELL/HOLD vocabulary distinct from the repo pipeline's 5-tier rating scale and must not be fed into pipeline parsers. All decisions rest with the user.*
+*이것은 2026-08-01 기준 공개 웹 소스를 종합한 AI 생성 리서치다. **투자 자문이 아니며**, 백테스트나 실현수익 검증이 없고, 기반 데이터에는 위에 나열한 미해결 불일치가 포함돼 있다. 여기의 신호는 저장소 파이프라인의 5단계 레이팅 체계와 구별되는 BUY/SELL/HOLD 어휘를 사용하며, 파이프라인 파서에 입력해서는 안 된다. 모든 결정의 책임은 사용자에게 있다.*

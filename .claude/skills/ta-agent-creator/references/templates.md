@@ -1,10 +1,11 @@
-# Agent Code Templates
+# 에이전트 코드 템플릿
 
-Templates mirror the real code in this fork. Replace `{name}` / `{Stance}` etc.
+템플릿은 이 포크의 실제 코드를 그대로 반영한다. `{name}` / `{Stance}` 등은 알맞게
+치환한다.
 
 ---
 
-## Template 1: Tool-Using Analyst (prose output)
+## 템플릿 1: 도구 사용 애널리스트 (산문 출력)
 
 ```python
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
@@ -77,28 +78,28 @@ def create_{name}_analyst(llm):
     return {name}_analyst_node
 ```
 
-**Why `report` is conditional**: while the model is still calling tools, the node
-runs again via the tool loop. Writing `result.content` unconditionally would put a
-partial "let me check the data" turn into the report field.
+**`report`가 조건부인 이유**: 모델이 아직 도구를 호출하는 동안에는 도구 루프를 통해
+노드가 다시 실행된다. `result.content`를 조건 없이 기록하면 "데이터를 확인해
+보겠다" 같은 중간 턴이 리포트 필드에 들어간다.
 
-There is **no `{ticker}` template variable** — identity arrives through
-`{instrument_context}`.
+**`{ticker}` 템플릿 변수는 없다** — 식별 정보는 `{instrument_context}`를 통해
+전달된다.
 
-### Integration steps
+### 통합 단계
 
-1. Add `{name}_report` to `AgentState` in `agent_states.py`
-2. Add an `AnalystNodeSpec` to `ANALYST_NODE_SPECS` in `graph/analyst_execution.py`
-   (with `report_key="{name}_report"`)
-3. Add the factory lambda to `analyst_factories` in `graph/setup.py`
-4. Add `should_continue_{key}` to `conditional_logic.py`, returning the spec's exact
-   `tool_node` / `clear_node` strings
-5. Add the ToolNode to `_create_tool_nodes()` in `graph/trading_graph.py`
-6. Export from `agents/__init__.py`
-7. Add a report section to `reporting.py::write_report_tree()`
+1. `agent_states.py`의 `AgentState`에 `{name}_report` 추가
+2. `graph/analyst_execution.py`의 `ANALYST_NODE_SPECS`에 `AnalystNodeSpec` 추가
+   (`report_key="{name}_report"` 포함)
+3. `graph/setup.py`의 `analyst_factories`에 팩토리 람다 추가
+4. `conditional_logic.py`에 `should_continue_{key}` 추가. 스펙의 `tool_node` /
+   `clear_node` 문자열과 정확히 같은 값을 반환할 것
+5. `graph/trading_graph.py`의 `_create_tool_nodes()`에 ToolNode 추가
+6. `agents/__init__.py`에서 export
+7. `reporting.py::write_report_tree()`에 리포트 섹션 추가
 
 ---
 
-## Template 2: Pre-fetch Analyst (structured output, no tool loop)
+## 템플릿 2: 선인출(pre-fetch) 애널리스트 (구조화 출력, 도구 루프 없음)
 
 ```python
 from langchain_core.messages import AIMessage
@@ -197,14 +198,14 @@ sources already collected for you.
 {get_language_instruction()}"""
 ```
 
-Same integration steps as Template 1, plus the schema and renderer in
-`agents/schemas.py`. Note the `tools_{key}` entry in `ANALYST_NODE_SPECS` is still
-required (the setup loop registers it unconditionally) — give it a real ToolNode even
-if unreachable, as `tools_social` does.
+통합 단계는 템플릿 1과 같고, 여기에 `agents/schemas.py`의 스키마와 렌더러가
+추가된다. `ANALYST_NODE_SPECS`의 `tools_{key}` 항목은 여전히 필요하다는 점에
+유의한다(셋업 루프가 조건 없이 등록한다). 도달할 수 없더라도 `tools_social`처럼
+실제 ToolNode를 지정할 것.
 
 ---
 
-## Template 3: Pure Chat Researcher (investment debate)
+## 템플릿 3: 순수 대화형 리서처 (투자 토론)
 
 ```python
 from tradingagents.agents.utils.agent_utils import (
@@ -267,20 +268,20 @@ Last opposing argument: {current_response}
     return {name}_node
 ```
 
-**The `argument` prefix is load-bearing** — `should_continue_debate` dispatches on
-`current_response.startswith("Bull")`.
+**`argument`의 접두사는 동작에 관여한다** — `should_continue_debate`가
+`current_response.startswith("Bull")`로 분기한다.
 
-### Integration steps
+### 통합 단계
 
-1. Add `{name}_history` to `InvestDebateState` in `agent_states.py`
-2. Zero-init it in `Propagator.create_initial_state()`
-3. Register the node in `setup_graph()` and wire the debate edges
-4. Update `should_continue_debate()` **and** `DEBATE_PATH_MAP`
-5. Export from `agents/__init__.py`
+1. `agent_states.py`의 `InvestDebateState`에 `{name}_history` 추가
+2. `Propagator.create_initial_state()`에서 0으로 초기화
+3. `setup_graph()`에 노드를 등록하고 토론 엣지를 연결
+4. `should_continue_debate()`와 `DEBATE_PATH_MAP`을 **함께** 갱신
+5. `agents/__init__.py`에서 export
 
 ---
 
-## Template 4: Risk Debator
+## 템플릿 4: 리스크 토론자
 
 ```python
 def create_{stance}_debator(llm):
@@ -339,21 +340,22 @@ Output conversationally as if you are speaking without any special formatting.""
     return {stance}_node
 ```
 
-`latest_speaker` is what `should_continue_risk_analysis` matches with `startswith`.
+`should_continue_risk_analysis`가 `startswith`로 매칭하는 대상이 `latest_speaker`다.
 
-### Integration steps
+### 통합 단계
 
-1. Add `{stance}_history` and `current_{stance}_response` to `RiskDebateState`
-2. Zero-init both in `Propagator.create_initial_state()`
-3. Register the node in `setup_graph()` and add it to the conditional-edge loop
-4. Update `should_continue_risk_analysis()` rotation **and** `RISK_ANALYSIS_PATH_MAP`
-5. Adjust the exit threshold: it is currently `count >= 3 * max_risk_discuss_rounds`,
-   hardcoded to a 3-way rotation — a 4th debator needs `4 *`
-6. Export from `agents/__init__.py`
+1. `RiskDebateState`에 `{stance}_history`와 `current_{stance}_response` 추가
+2. `Propagator.create_initial_state()`에서 둘 다 0으로 초기화
+3. `setup_graph()`에 노드를 등록하고 조건부 엣지 루프에 추가
+4. `should_continue_risk_analysis()`의 순환 로직과 `RISK_ANALYSIS_PATH_MAP`을
+   **함께** 갱신
+5. 종료 임계값 조정: 현재는 `count >= 3 * max_risk_discuss_rounds`로 3자 순환에
+   하드코딩되어 있다 — 토론자가 4명이면 `4 *`가 필요하다
+6. `agents/__init__.py`에서 export
 
 ---
 
-## Template 5: Structured Decision Agent
+## 템플릿 5: 구조화 의사결정 에이전트
 
 ```python
 from tradingagents.agents.schemas import {Name}Decision, render_{name}_decision
@@ -426,10 +428,10 @@ Be decisive and ground every conclusion in specific evidence from the analysts.
     return {name}_manager_node
 ```
 
-Judges keep `count` unchanged — incrementing it would let the router bounce back
-into the debate.
+심판(judge)은 `count`를 그대로 둔다 — 값을 증가시키면 라우터가 다시 토론으로
+되돌아갈 수 있다.
 
-### The schema in `agents/schemas.py`
+### `agents/schemas.py`의 스키마
 
 ```python
 class {Name}Decision(BaseModel):
@@ -459,28 +461,28 @@ def render_{name}_decision(d: {Name}Decision) -> str:
     return "\n".join(parts)
 ```
 
-Three conventions that matter:
+중요한 컨벤션 세 가지:
 
-- **`Field(description=...)` is prompt text.** It becomes the model's output
-  instruction, which is why the prompt body only carries context and rating guidance.
-- **Optional numeric fields need `_coerce_optional_float`.** Models write `"None"`,
-  `"N/A"`, `"TBD"` into optional float fields; without the validator the structured
-  call raises and the agent silently degrades to free text (upstream #1058).
-- **The rendered markdown headers are a contract.** `reporting.py`, the CLI display,
-  and `rating.parse_rating()` all read them.
+- **`Field(description=...)`은 프롬프트 텍스트다.** 이것이 모델의 출력 지시가 되며,
+  그래서 프롬프트 본문에는 컨텍스트와 등급 판단 기준만 담는다.
+- **선택적 숫자 필드에는 `_coerce_optional_float`가 필요하다.** 모델은 선택적 float
+  필드에 `"None"`, `"N/A"`, `"TBD"`를 적어 넣는다. 검증기가 없으면 구조화 호출이
+  예외를 던지고 에이전트는 조용히 자유 텍스트로 성능이 떨어진다(업스트림 #1058).
+- **렌더링된 마크다운 헤더는 계약이다.** `reporting.py`, CLI 화면,
+  `rating.parse_rating()`이 모두 이를 읽는다.
 
 ---
 
-## Anti-patterns
+## 안티패턴
 
-| Don't | Do |
+| 하지 말 것 | 이렇게 할 것 |
 |---|---|
-| `create_x(llm, memory)` | `create_x(llm)`; read `state["past_context"]` |
-| `FinancialSituationMemory("x", config)` | one `TradingMemoryLog`; see `ta-memory-manager` |
-| `state["company_of_interest"]` in a prompt for identity | `get_instrument_context_from_state(state)` |
-| `{ticker}` prompt variable | `{instrument_context}` |
-| prompt without `get_language_instruction()` | always append it |
-| new router return without a path-map entry | update `DEBATE_PATH_MAP` / `RISK_ANALYSIS_PATH_MAP` |
-| hardcode the analyst node name in `setup.py` | add an `AnalystNodeSpec` |
-| `bind_tools` on a structured agent | pre-fetch data + `NO_EXTERNAL_TOOLS` |
-| `bind_structured` inside the node function | at factory creation, once |
+| `create_x(llm, memory)` | `create_x(llm)`; `state["past_context"]`를 읽는다 |
+| `FinancialSituationMemory("x", config)` | `TradingMemoryLog` 하나만; `ta-memory-manager` 참고 |
+| 식별 정보를 위해 프롬프트에 `state["company_of_interest"]` 사용 | `get_instrument_context_from_state(state)` |
+| `{ticker}` 프롬프트 변수 | `{instrument_context}` |
+| `get_language_instruction()` 없는 프롬프트 | 항상 덧붙인다 |
+| 경로 맵 항목 없는 새 라우터 반환값 | `DEBATE_PATH_MAP` / `RISK_ANALYSIS_PATH_MAP` 갱신 |
+| `setup.py`에 애널리스트 노드 이름 하드코딩 | `AnalystNodeSpec` 추가 |
+| 구조화 에이전트에 `bind_tools` 사용 | 데이터 선인출 + `NO_EXTERNAL_TOOLS` |
+| 노드 함수 안에서 `bind_structured` | 팩토리 생성 시점에 한 번만 |

@@ -1,149 +1,149 @@
-# NVDA — Technical Analysis
+# NVDA — 기술적 분석
 
-**Ticker:** NVDA (NVIDIA Corp., NASDAQ)
-**Analysis date:** 2026-08-01 (markets closed; last session 2026-07-31)
-**Analyst:** ta-market (live-web technical read; not the repo Python pipeline)
+**티커:** NVDA (NVIDIA Corp., NASDAQ)
+**분석일:** 2026-08-01 (장 휴장; 직전 거래일 2026-07-31)
+**애널리스트:** ta-market (라이브 웹 기반 기술적 판독; 저장소의 Python 파이프라인이 아님)
 
 ---
 
-## 0. Price anchor — and a discrepancy to flag up front
+## 0. 가격 기준점 — 그리고 먼저 짚어둘 불일치
 
-The dispatch anchor was **~$197 close on 2026-07-31, intraday range 191.52–197.25**. Two independent sources disagree with that:
+디스패치가 제시한 기준점은 **2026-07-31 종가 ~$197, 장중 범위 191.52–197.25**였다. 독립적인 두 출처가 이와 어긋난다:
 
-| Source | Jul 31 close | Day change | Day range | Volume |
+| 출처 | 7/31 종가 | 일간 변동 | 일중 범위 | 거래량 |
 |---|---|---|---|---|
 | [StockAnalysis.com](https://stockanalysis.com/stocks/nvda/) | **$200.75** | +2.93% | 194.95–202.00 | 140,011,033 sh |
-| [TradingKey (Jul 31 recap)](https://www.tradingkey.com/news/market-movers/262068195-market-movers-nvda-20260731) | not stated | +3.46% | not stated | not stated |
-| Dispatch prompt | ~$197 | — | 191.52–197.25 | — |
+| [TradingKey (7/31 리캡)](https://www.tradingkey.com/news/market-movers/262068195-market-movers-nvda-20260731) | 미기재 | +3.46% | 미기재 | 미기재 |
+| 디스패치 프롬프트 | ~$197 | — | 191.52–197.25 | — |
 
-Jul 30 close was **$195.04** (per search-aggregated history citing [Capital.com](https://capital.com/en-int/analysis/nvidia-nvda-stock-forecast) / Yahoo history). $195.04 x 1.0293 = $200.75, which internally confirms the StockAnalysis figure. The dispatch range (191.52–197.25) is plausibly the **Jul 30** session, not Jul 31. **I use $200.75 as the working last close** but flag this as an unresolved discrepancy — levels below assume ~$200-201; if the true close is ~$197 the near-term picture shifts one notch more bearish (price back below the MA cluster).
-
----
-
-## 1. Price trend — last ~3 months (May–Jul 2026)
-
-Sources: [Capital.com](https://capital.com/en-int/analysis/nvidia-nvda-stock-forecast), [Yahoo Finance history](https://finance.yahoo.com/quote/NVDA/history/), [Cryptonomist Jul 21 analysis](https://en.cryptonomist.ch/2026/07/21/nvidia-stock-trades-at-26-discount-so-why-is-price-going-nowhere/), [StockAnalysis.com](https://stockanalysis.com/stocks/nvda/).
-
-| Date | Level | Event |
-|---|---|---|
-| 2026-05-14 | **$237.95** (closing high) | 3-month peak; near 52-wk high $236.54 (intraday basis per StockAnalysis) |
-| early Jun | >$220 | held elevated, then broke down |
-| 2026-06-26 | **$192.30** | swing low, roughly −19% off the May closing high |
-| 2026-07-06 | $195.05 | retest of the low area held |
-| 2026-07-20 | $203.28 | mid-range (Cryptonomist) |
-| 2026-07-22 | $212.14 | July recovery high (single-source figure; see Data Gaps) |
-| 2026-07-30 | $195.04 | fade back to range floor |
-| 2026-07-31 | **$200.75** | +2.93% bounce on hyperscaler capex reaffirmation (MSFT/AMZN earnings) |
-
-**Read:** NVDA is roughly three months into a corrective consolidation. The May→June leg was a sharp ~19% drawdown; since late June price has oscillated in a **~$192–212 range**, making lower highs versus May ($237.95 → ~$220 → $212.14) while the ~$192–195 floor has now held on at least three tests (Jun 26, Jul 6, Jul 30). Momentum is flat, not trending. The Cryptonomist piece notes price has been broadly flat "since November" despite earnings growth — this is a time correction, not a collapse.
+7/30 종가는 **$195.04**였다([Capital.com](https://capital.com/en-int/analysis/nvidia-nvda-stock-forecast) / Yahoo 히스토리를 인용한 검색 집계 기준). $195.04 x 1.0293 = $200.75로, StockAnalysis 수치가 내부적으로 자기일관함이 확인된다. 디스패치의 범위(191.52–197.25)는 7/31이 아니라 **7/30** 세션일 가능성이 크다. **직전 종가는 $200.75를 작업 기준으로 사용**하되 미해결 불일치로 플래그한다 — 아래 레벨들은 ~$200-201을 전제하며, 실제 종가가 ~$197이라면 단기 그림은 한 단계 더 약세로 이동한다(가격이 이평 클러스터 아래로 재이탈).
 
 ---
 
-## 2. Indicators
+## 1. 가격 추세 — 최근 ~3개월 (2026년 5–7월)
 
-Sources disagree materially on exact values for the same date. Per evidence discipline, all readings are listed with their as-of dates; **I do not average them.**
+출처: [Capital.com](https://capital.com/en-int/analysis/nvidia-nvda-stock-forecast), [Yahoo Finance 히스토리](https://finance.yahoo.com/quote/NVDA/history/), [Cryptonomist 7/21 분석](https://en.cryptonomist.ch/2026/07/21/nvidia-stock-trades-at-26-discount-so-why-is-price-going-nowhere/), [StockAnalysis.com](https://stockanalysis.com/stocks/nvda/).
 
-### RSI(14), daily
-
-| Value | As of | Source |
+| 날짜 | 레벨 | 이벤트 |
 |---|---|---|
-| 58.98 | Jul 31 | [Investing.com](https://www.investing.com/equities/nvidia-corp-technical) |
-| 43.08 | Jul 31 | [TradingKey](https://www.tradingkey.com/news/market-movers/262068195-market-movers-nvda-20260731) |
-| 48 | date not verifiable | [AltIndex](https://altindex.com/ticker/nvda/technical-analysis) |
-| 48.62 | Jul 20 | [Cryptonomist](https://en.cryptonomist.ch/2026/07/21/nvidia-stock-trades-at-26-discount-so-why-is-price-going-nowhere/) |
+| 2026-05-14 | **$237.95** (종가 고점) | 3개월 최고점; 52주 고점 $236.54에 근접 (StockAnalysis 기준 장중가) |
+| 6월 초 | >$220 | 고수준 유지 후 하방 이탈 |
+| 2026-06-26 | **$192.30** | 스윙 저점, 5월 종가 고점 대비 약 −19% |
+| 2026-07-06 | $195.05 | 저점 구간 재테스트 성공 |
+| 2026-07-20 | $203.28 | 박스 중단 (Cryptonomist) |
+| 2026-07-22 | $212.14 | 7월 반등 고점 (단일 출처 수치; Data Gaps 참조) |
+| 2026-07-30 | $195.04 | 박스 바닥으로 되밀림 |
+| 2026-07-31 | **$200.75** | 하이퍼스케일러 capex 재확인(MSFT/AMZN 실적)에 +2.93% 반등 |
 
-**Discrepancy unresolved** (43 vs 59 on the same date is not a rounding difference; likely differing data feeds or calculation windows). The defensible qualitative statement: **RSI is mid-band — neither overbought nor oversold** — which every source supports.
+**판독:** NVDA는 조정성 통합 국면에 들어선 지 약 3개월째다. 5→6월 구간은 ~19%의 가파른 낙폭이었고, 6월 말 이후 가격은 **~$192–212 박스권**에서 진동하며 5월 대비 고점을 낮춰왔다($237.95 → ~$220 → $212.14). 동시에 ~$192–195 바닥은 최소 세 번의 테스트를 방어했다(6/26, 7/6, 7/30). 모멘텀은 추세가 아니라 평탄하다. Cryptonomist 기사는 실적 성장에도 불구하고 가격이 "11월 이후" 사실상 횡보해 왔다고 지적한다 — 이는 붕괴가 아니라 시간 조정이다.
 
-### MACD (12,26,9), daily
+---
 
-| Value | As of | Source |
+## 2. 지표
+
+같은 날짜에 대해서도 출처 간 수치가 실질적으로 어긋난다. 증거 원칙에 따라 모든 판독값은 기준일과 함께 나열하며, **평균을 내지 않는다.**
+
+### RSI(14), 일봉
+
+| 값 | 기준일 | 출처 |
 |---|---|---|
-| −0.160 | Jul 31 | Investing.com |
-| −2.730 | Jul 31 | TradingKey |
-| −1.7 | date not verifiable | AltIndex |
-| line −0.02, hist +0.83 | Jul 20 | Cryptonomist |
+| 58.98 | 7/31 | [Investing.com](https://www.investing.com/equities/nvidia-corp-technical) |
+| 43.08 | 7/31 | [TradingKey](https://www.tradingkey.com/news/market-movers/262068195-market-movers-nvda-20260731) |
+| 48 | 날짜 검증 불가 | [AltIndex](https://altindex.com/ticker/nvda/technical-analysis) |
+| 48.62 | 7/20 | [Cryptonomist](https://en.cryptonomist.ch/2026/07/21/nvidia-stock-trades-at-26-discount-so-why-is-price-going-nowhere/) |
 
-Magnitudes disagree; **sign agrees**: MACD is flat-to-slightly-negative across all four sources. Momentum is stalled with a mild bearish lean, not in an established downtrend impulse.
+**불일치 미해결** (같은 날짜의 43 대 59는 반올림 차이가 아니다; 데이터 피드나 계산 윈도우가 다를 가능성이 크다). 방어 가능한 정성적 진술은 이것뿐이다: **RSI는 중립 밴드 — 과매수도 과매도도 아니다** — 그리고 이 판단은 모든 출처가 지지한다.
 
-### 50-day and 200-day SMA
+### MACD (12,26,9), 일봉
 
-| Source (as of) | 50-day | 200-day | Implication |
+| 값 | 기준일 | 출처 |
+|---|---|---|
+| −0.160 | 7/31 | Investing.com |
+| −2.730 | 7/31 | TradingKey |
+| −1.7 | 날짜 검증 불가 | AltIndex |
+| line −0.02, hist +0.83 | 7/20 | Cryptonomist |
+
+크기는 어긋나지만 **부호는 일치한다**: 네 출처 모두 MACD가 평탄~약간 음(−)이다. 모멘텀은 확립된 하락 추세 임펄스가 아니라, 약한 약세 성향을 띤 정체 상태다.
+
+### 50일 및 200일 SMA
+
+| 출처 (기준일) | 50일 | 200일 | 함의 |
 |---|---|---|---|
-| Investing.com (Jul 31) | 199.84 | 201.36 | price ~at 50d, just below 200d; 50<200 |
-| AltIndex (date not verifiable) | 202.9 | 195.8 | 50>200 ("golden cross" per source) |
-| Search-aggregated (undated) | 207.06 | 192.80 | 50>200 |
-| Cryptonomist (Jul 20, EMAs) | EMA50 204.48 | EMA200 190.59 | price below 50d EMA, above 200d EMA |
+| Investing.com (7/31) | 199.84 | 201.36 | 가격은 50일선 부근, 200일선 바로 아래; 50<200 |
+| AltIndex (날짜 검증 불가) | 202.9 | 195.8 | 50>200 (출처 표현으로는 "골든크로스") |
+| 검색 집계 (날짜 미상) | 207.06 | 192.80 | 50>200 |
+| Cryptonomist (7/20, EMA) | EMA50 204.48 | EMA200 190.59 | 가격은 EMA50 아래, EMA200 위 |
 
-**Discrepancy unresolved** — sources do not even agree whether the 50-day sits above or below the 200-day. What they *do* agree on: **both averages have converged into the ~$191–207 zone and price ($200.75) is sitting inside that cluster.** That convergence itself is the signal: a trendless, coiling market. No death cross or golden cross can be asserted with confidence.
+**불일치 미해결** — 출처들은 50일선이 200일선 위인지 아래인지조차 합의하지 못한다. 다만 *공통으로* 인정하는 것은 이것이다: **두 이평이 모두 ~$191–207 구간으로 수렴했고 가격($200.75)이 그 클러스터 안에 놓여 있다.** 그 수렴 자체가 신호다 — 추세 없이 응축되는 시장. 데드크로스든 골든크로스든 확신을 갖고 단정할 수 없다.
 
-### Bollinger Bands (20,2), daily
+### 볼린저 밴드 (20,2), 일봉
 
-Most recent retrievable values are **as of Jul 20–21, not Jul 31** ([Cryptonomist](https://en.cryptonomist.ch/2026/07/21/nvidia-stock-trades-at-26-discount-so-why-is-price-going-nowhere/)):
+가장 최근에 취득 가능한 값은 7/31이 아니라 **7/20–21 기준**이다 ([Cryptonomist](https://en.cryptonomist.ch/2026/07/21/nvidia-stock-trades-at-26-discount-so-why-is-price-going-nowhere/)):
 
-- Upper: **$213.60** | Mid: **$201.75** | Lower: **$189.91**
+- 상단: **$213.60** | 중심선: **$201.75** | 하단: **$189.91**
 
-Jul-31 band values: **not available** (Barchart data did not render; no other source published them). Using the stale Jul 20 bands as approximate geography only: the Jul 30 low (~192–195) probed toward the lower band, and the Jul 31 close ($200.75) sits almost exactly at the midline. Band width (~$24 on a ~$200 stock) reflects the moderately elevated volatility Cryptonomist also flagged via ATR $7.28 (Jul 20).
+7/31 밴드 값: **취득 불가** (Barchart 데이터가 렌더링되지 않았고, 다른 출처도 공개하지 않았다). 낡은 7/20 밴드를 대략적인 지형도로만 사용하면: 7/30 저점(~192–195)은 하단 밴드 쪽을 탐색했고, 7/31 종가($200.75)는 거의 정확히 중심선에 놓인다. 밴드 폭(~$200 주가에 ~$24)은 Cryptonomist가 ATR $7.28(7/20)로도 지적한 중간 이상의 변동성을 반영한다.
 
 ---
 
-## 3. Support and resistance
+## 3. 지지와 저항
 
-| Level | Type | Why it matters |
+| 레벨 | 유형 | 중요한 이유 |
 |---|---|---|
-| **$192–195** | Support (primary) | Jun 26 close low $192.30; retested Jul 6 ($195.05) and Jul 30 ($195.04) and held all three times. Range floor. |
-| **$190–191** | Support (structural) | Lower Bollinger band $189.91 converging with EMA200 $190.59 (both Jul 20, Cryptonomist — called the "key floor"). A daily close below ~$190 would break the 3-month range and the long-term trend average together. |
-| **$164–165** | Support (deep) | 52-week low $164.07 (StockAnalysis); 6-month support $164.98 (AltIndex). Only in play if the range breaks down. |
-| **$204–205** | Resistance (near) | EMA20/EMA50 cluster + daily pivot at $204.43–204.49 (Jul 20, Cryptonomist); price was rejected from this zone into the Jul 30 fade. First hurdle above Friday's close. |
-| **$212–214** | Resistance (range top) | July recovery high $212.14 (Jul 22) plus upper Bollinger band $213.60. A close above this confirms a range breakout. |
-| **$220** | Resistance | Early-June breakdown shelf. |
-| **$235–238** | Resistance (major) | 52-week high $236.54; May 14 closing high $237.95; AltIndex 6-month resistance $235.47. |
+| **$192–195** | 지지 (1차) | 6/26 종가 저점 $192.30; 7/6($195.05)과 7/30($195.04) 재테스트에서 세 번 모두 방어. 박스 바닥. |
+| **$190–191** | 지지 (구조적) | 볼린저 하단 $189.91과 EMA200 $190.59의 수렴 (둘 다 7/20, Cryptonomist — "핵심 바닥"으로 지칭). ~$190 하회 일봉 종가는 3개월 박스와 장기 추세 이평을 동시에 깨뜨린다. |
+| **$164–165** | 지지 (심층) | 52주 저점 $164.07 (StockAnalysis); 6개월 지지 $164.98 (AltIndex). 박스가 하방 이탈해야만 유효해진다. |
+| **$204–205** | 저항 (근접) | EMA20/EMA50 클러스터 + 일간 피봇 $204.43–204.49 (7/20, Cryptonomist); 가격은 이 구간에서 거절당하며 7/30 되밀림으로 이어졌다. 금요일 종가 위 첫 관문. |
+| **$212–214** | 저항 (박스 상단) | 7월 반등 고점 $212.14 (7/22)와 볼린저 상단 $213.60. 이 위 종가는 박스 돌파를 확정한다. |
+| **$220** | 저항 | 6월 초 붕괴 지점 선반. |
+| **$235–238** | 저항 (주요) | 52주 고점 $236.54; 5/14 종가 고점 $237.95; AltIndex 6개월 저항 $235.47. |
 
 ---
 
-## 4. Chart patterns
+## 4. 차트 패턴
 
-- **Rectangle / consolidation range, ~$192–212, in force since late June.** This is the highest-confidence structure: three tested floors, two rejections from the $204–212 area.
-- **Descending-triangle character vs. the May high**: lower highs (237.95 → ~220 → 212.14) against a flat ~$192 floor. Textbook bias for this pattern is bearish, but it is only valid if the floor breaks — it hasn't, on three attempts.
-- **Potential double bottom** at $192.30 (Jun 26) / ~$195 (Jul 30): would confirm only on a close above the $212 interim high. Not confirmed; noted as a scenario, not a signal.
-- No head-and-shoulders or other completed reversal pattern is identifiable from the retrieved price points. I did not retrieve daily OHLC granularity sufficient to claim finer patterns, and no source asserted a "historically validated" bounce — I make no such claim.
-
----
-
-## 5. Volume
-
-- Jul 31: **140,011,033 shares** on a +2.93% up day (StockAnalysis, Jul 31). The page framed this relative to average volume but the **average-volume figure itself was not retrievable — not available.**
-- Volume trend over the 3-month window, and volume on the Jun 26 low / Jul 22 high: **not available** from retrieved sources. I would need a daily OHLCV series (e.g., Yahoo Finance historical download) to assess confirmation or divergence properly.
-- Qualitative only: a ~3% rally on ~140M shares the day after major hyperscaler earnings is consistent with genuine institutional participation (TradingKey also cited month-end rebalancing flows), but without the average baseline I cannot call it "above average."
+- **직사각형 / 통합 박스, ~$192–212, 6월 말부터 유효.** 가장 신뢰도 높은 구조다: 세 번 테스트된 바닥, $204–212 구간에서의 두 번의 거절.
+- **5월 고점 대비 하락 삼각형 성격**: 평탄한 ~$192 바닥에 대비되는 고점 저하(237.95 → ~220 → 212.14). 이 패턴의 교과서적 편향은 약세지만, 바닥이 깨져야만 유효하다 — 세 번의 시도에도 깨지지 않았다.
+- **잠재적 더블바텀** $192.30(6/26) / ~$195(7/30): $212 중간 고점 상회 종가에서만 확정된다. 미확정이며, 신호가 아니라 시나리오로 기록한다.
+- 취득한 가격 포인트로는 헤드앤숄더 등 완성된 반전 패턴을 식별할 수 없다. 더 세밀한 패턴을 주장할 만큼의 일봉 OHLC 해상도를 확보하지 못했고, 어떤 출처도 "역사적으로 검증된" 반등을 주장하지 않았다 — 나 역시 그런 주장을 하지 않는다.
 
 ---
 
-## 6. Synthesis
+## 5. 거래량
 
-Everything cross-source-consistent points the same way: **NVDA is trendless in the intermediate term.** Price closed the week at ~$200.75, near the exact midpoint of a three-month $192–212 range, inside a converged 50/200-day MA cluster, with mid-band RSI and a flat, slightly negative MACD. The bear case rests on the lower-highs sequence from the May $237.95 peak; the bull case rests on a floor that has now repelled three attacks and a strong catalyst-driven bounce into month-end (hyperscaler capex reaffirmation, per TradingKey and StockAnalysis). Neither side has confirmation. Triggers: a daily close **above ~$212–214** turns the read bullish (double-bottom confirmation, upper-band break); a daily close **below ~$190** turns it bearish (range + 200-day EMA + lower band all fail together).
+- 7/31: +2.93% 상승일에 **140,011,033주** (StockAnalysis, 7/31). 해당 페이지는 이를 평균 거래량 대비로 서술했지만 **평균 거래량 수치 자체는 취득 불가 — not available.**
+- 3개월 구간의 거래량 추세, 그리고 6/26 저점 / 7/22 고점의 거래량: 취득한 출처들에서 **확보 불가**. 확인 또는 다이버전스를 제대로 평가하려면 일봉 OHLCV 시계열(예: Yahoo Finance 히스토리 다운로드)이 필요하다.
+- 정성적 판단만: 주요 하이퍼스케일러 실적 다음 날 ~1.4억 주에 ~3% 랠리는 실질적인 기관 참여와 부합한다(TradingKey는 월말 리밸런싱 수급도 언급했다). 다만 평균 기준선 없이는 "평균 이상"이라고 단정할 수 없다.
+
+---
+
+## 6. 종합
+
+출처 간 일관되게 확인되는 모든 것이 같은 방향을 가리킨다: **NVDA는 중기적으로 추세가 없다.** 가격은 3개월 $192–212 박스의 거의 정중앙인 ~$200.75에서 주간을 마감했고, 수렴한 50/200일 이평 클러스터 안에 있으며, RSI는 중립 밴드, MACD는 평탄하고 약간 음(−)이다. 약세 논지는 5월 $237.95 고점 이후의 고점 저하 시퀀스에 기대고, 강세 논지는 세 번의 공격을 물리친 바닥과 월말로 향한 촉매 기반의 강한 반등(하이퍼스케일러 capex 재확인, TradingKey·StockAnalysis 기준)에 기댄다. 어느 쪽도 확인되지 않았다. 트리거: **~$212–214 상회** 일봉 종가는 판독을 강세로 돌린다(더블바텀 확정, 상단 밴드 돌파); **~$190 하회** 일봉 종가는 약세로 돌린다(박스 + 200일 EMA + 하단 밴드가 동시에 무너진다).
 
 ## Technical Direction: **Neutral**
 
-NVDA is consolidating, not trending: mid-range price, converged moving averages, mid-band RSI, flat MACD. Confidence in the *neutral* call is moderate-to-high because it survives every inter-source disagreement; confidence in any exact indicator value is low (see gaps). Watch $190 and $212 — the technical picture only becomes directional outside those bounds.
+NVDA는 추세가 아니라 통합 중이다: 박스 중간 가격, 수렴한 이동평균, 중립 밴드 RSI, 평탄한 MACD. *중립* 판정에 대한 신뢰도는 중상(中上)이다 — 출처 간 모든 불일치를 견디고도 살아남는 결론이기 때문이다. 반면 개별 지표의 정확한 수치에 대한 신뢰도는 낮다(갭 항목 참조). $190과 $212를 주시하라 — 기술적 그림은 그 경계 밖에서만 방향성을 갖는다.
 
 ## Data Gaps
 
-1. **Jul 31 close is disputed**: $200.75 (StockAnalysis, internally consistent with Jul 30 close × +2.93%) vs. dispatch anchor ~$197 with a range that matches Jul 30 better. Unresolved; needs an authoritative EOD print.
-2. **RSI(14) for Jul 31 is disputed** (43.08 vs 58.98 from two sources for the same date). Only the qualitative "mid-band" read is safe.
-3. **MACD magnitude is disputed** (−0.16 to −2.73); only the sign (negative/flat) is corroborated.
-4. **50-day vs 200-day SMA relationship is disputed** — sources disagree on which is on top. Only the convergence-near-$191–207 observation is safe.
-5. **Bollinger Bands as of Jul 31: not available.** Latest retrievable values are Jul 20 (upper 213.60 / mid 201.75 / lower 189.91).
-6. **Average daily volume: not available**; full 3-month volume series not retrieved, so no volume-confirmation/divergence analysis was possible.
-7. The **Jul 22 high of $212.14** is a single-source figure from an aggregated search summary; it was not independently confirmed.
-8. AltIndex snapshot's as-of date could not be verified.
+1. **7/31 종가에 이견이 있다**: $200.75 (StockAnalysis, 7/30 종가 × +2.93%와 내부적으로 일관) vs 디스패치 기준점 ~$197 — 후자의 범위는 오히려 7/30에 더 부합한다. 미해결이며, 권위 있는 EOD 종가 확인이 필요하다.
+2. **7/31 RSI(14)에 이견이 있다** (같은 날짜에 두 출처가 43.08과 58.98). "중립 밴드"라는 정성적 판독만 안전하다.
+3. **MACD 크기에 이견이 있다** (−0.16 ~ −2.73); 부호(음/평탄)만 교차 확인된다.
+4. **50일 대 200일 SMA 관계에 이견이 있다** — 어느 쪽이 위인지조차 출처가 갈린다. ~$191–207 부근 수렴이라는 관찰만 안전하다.
+5. **7/31 기준 볼린저 밴드: 취득 불가.** 최신 취득 가능 값은 7/20 (상단 213.60 / 중심 201.75 / 하단 189.91).
+6. **일평균 거래량: 취득 불가**; 3개월 전체 거래량 시계열도 확보하지 못해 거래량 확인/다이버전스 분석이 불가능했다.
+7. **7/22 고점 $212.14**는 검색 요약 집계에서 나온 단일 출처 수치이며, 독립적으로 확인되지 않았다.
+8. AltIndex 스냅샷의 기준일을 검증할 수 없었다.
 
-To close gaps 1–7 a deterministic daily OHLCV feed (Yahoo/Stooq download) plus locally computed indicators would suffice — that is what the repo's Python pipeline does, and this report is not a substitute for it.
+1–7번 갭을 메우려면 결정론적 일봉 OHLCV 피드(Yahoo/Stooq 다운로드)와 로컬에서 계산한 지표면 충분하다 — 그것이 바로 저장소의 Python 파이프라인이 하는 일이며, 이 보고서는 그 대체물이 아니다.
 
 ### Sources
 
-- [StockAnalysis.com — NVDA quote](https://stockanalysis.com/stocks/nvda/) (Jul 31 close, range, volume, 52-wk levels)
-- [TradingKey — NVDA Jul 31 market recap](https://www.tradingkey.com/news/market-movers/262068195-market-movers-nvda-20260731) (Jul 31 RSI/MACD, move drivers)
-- [Investing.com — NVDA technical](https://www.investing.com/equities/nvidia-corp-technical) (Jul 31 RSI/MACD/MA table, pivots)
-- [Cryptonomist — Jul 21 NVDA analysis](https://en.cryptonomist.ch/2026/07/21/nvidia-stock-trades-at-26-discount-so-why-is-price-going-nowhere/) (Jul 20 Bollinger, EMAs, ATR, S/R)
-- [AltIndex — NVDA technical analysis](https://altindex.com/ticker/nvda/technical-analysis) (MA set, 6-month S/R; date unverified)
-- [Capital.com — NVIDIA stock forecast](https://capital.com/en-int/analysis/nvidia-nvda-stock-forecast) and [Yahoo Finance — NVDA history](https://finance.yahoo.com/quote/NVDA/history/) (May–Jul price waypoints)
-- [Cryptonomist — Jul 1 NVDA analysis](https://en.cryptonomist.ch/2026/07/01/nvidia-stock-faces-critical-204-207-test-after-8-june-slide/) (early-July Bollinger context)
+- [StockAnalysis.com — NVDA 시세](https://stockanalysis.com/stocks/nvda/) (7/31 종가, 범위, 거래량, 52주 레벨)
+- [TradingKey — NVDA 7/31 마켓 리캡](https://www.tradingkey.com/news/market-movers/262068195-market-movers-nvda-20260731) (7/31 RSI/MACD, 변동 요인)
+- [Investing.com — NVDA 기술적 지표](https://www.investing.com/equities/nvidia-corp-technical) (7/31 RSI/MACD/이평 테이블, 피봇)
+- [Cryptonomist — 7/21 NVDA 분석](https://en.cryptonomist.ch/2026/07/21/nvidia-stock-trades-at-26-discount-so-why-is-price-going-nowhere/) (7/20 볼린저, EMA, ATR, 지지/저항)
+- [AltIndex — NVDA 기술적 분석](https://altindex.com/ticker/nvda/technical-analysis) (이평 세트, 6개월 지지/저항; 날짜 미검증)
+- [Capital.com — NVIDIA 주가 전망](https://capital.com/en-int/analysis/nvidia-nvda-stock-forecast) 및 [Yahoo Finance — NVDA 히스토리](https://finance.yahoo.com/quote/NVDA/history/) (5–7월 가격 경유점)
+- [Cryptonomist — 7/1 NVDA 분석](https://en.cryptonomist.ch/2026/07/01/nvidia-stock-faces-critical-204-207-test-after-8-june-slide/) (7월 초 볼린저 맥락)
