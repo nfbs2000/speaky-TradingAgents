@@ -27,5 +27,5 @@
 # 제5부: 정직하게 사용하기
 
 - [11장: 무엇을 증명하고 무엇을 증명하지 못하는가](./part5/ch11-boundaries.md)
+- [12장: Claude Code 팀과 스킬](./part5/ch12-claude-team-skills.md)
 - [소스 지도와 출처](./source-map.md)
-
