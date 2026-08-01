@@ -53,8 +53,8 @@ Ownership sequencing rules (violating these is itself a bug):
 
 const ENV_CONTRACT = `
 Environment contract (all verification depends on these):
-- Use python3 — there is no python shim on this machine.
-- If "import tradingagents.graph.*" fails on yfinance, run: pip install -e ".[dev]" first (a venv is fine).
+- A project venv exists at ./.venv — run checks with .venv/bin/python -m pytest and .venv/bin/python -m ruff check .
+- If ./.venv is missing: use python3 (there is no python shim), and if "import tradingagents.graph.*" fails on yfinance, run pip install -e ".[dev]" in a fresh venv first.
 - Test baseline: 576 passed, 2 skipped (test_bedrock_provider.py, test_deepseek_reasoning.py). ruff check . passes clean.
 - NEVER run the paid LLM pipeline or a backtest sweep — verify by tests only.
 - Do NOT edit .claude/skills/** — if a skill misdescribes the code, report the drift instead.
