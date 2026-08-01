@@ -146,6 +146,9 @@ Skill(ta-team-analysis)
 보고서를 빠르게 만든다. 둘 다 책의 주제인 Python LangGraph 파이프라인을 이해하는 데
 도움이 되지만, 제품 파이프라인의 실행 결과를 대체하지는 않는다.
 
+다음 장은 이 팀을 사람이 매번 손으로 조율하지 않고, `Triage → Fix → Verify → Review`
+절차로 실행하는 `.claude/workflows/ta-problem-solver.js`를 읽는다.
+
 ## 원본 자료
 
 - [`.claude/TEAM.md`](https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/TEAM.md)
