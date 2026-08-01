@@ -56,6 +56,9 @@ Agent(subagent_type: "ta-llm-engineer", prompt: "Add the Cerebras OpenAI-compati
 
 # stock research
 Skill(ta-team-analysis)     # then follow its orchestration
+
+# problem solving (bug / failing test / regression) — deterministic triage→fix→verify loop
+Workflow(name: "ta-problem-solver", args: {problem: "<what is broken>", repro: "<optional command>"})
 ```
 
 When dispatching a specialist yourself, give it: the task scope, the files it may
