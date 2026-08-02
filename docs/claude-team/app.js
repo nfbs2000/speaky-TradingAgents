@@ -91,6 +91,23 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;");
 }
 
+function ensureViewerVisible() {
+  const viewer = document.querySelector(".viewer");
+  if (!viewer) return;
+
+  const rect = viewer.getBoundingClientRect();
+  const narrow = window.matchMedia("(max-width: 980px)").matches;
+  const outsideFocusBand = rect.top < 72 || rect.top > window.innerHeight * 0.65;
+  if (narrow || outsideFocusBand) {
+    const topbar = document.querySelector(".topbar");
+    const offset = (topbar?.getBoundingClientRect().height || 64) + 16;
+    window.scrollTo({
+      top: Math.max(0, window.pageYOffset + rect.top - offset),
+      behavior: "smooth",
+    });
+  }
+}
+
 async function loadTree() {
   try {
     const response = await fetch(TREE_API, { headers: { Accept: "application/vnd.github+json" } });
@@ -189,7 +206,8 @@ function renderRuns(paths) {
   });
 }
 
-async function selectFile(path) {
+async function selectFile(path, options = {}) {
+  const { focusViewer = true } = options;
   state.activePath = path;
   document.querySelectorAll(".file-button").forEach((button) => {
     button.classList.toggle("active", button.dataset.path === path);
@@ -201,13 +219,17 @@ async function selectFile(path) {
   title.textContent = displayName(path);
   link.href = `${GITHUB_BLOB}${path}`;
   content.textContent = "파일을 불러오는 중입니다.";
+  content.scrollTop = 0;
+  if (focusViewer) ensureViewerVisible();
 
   try {
     const response = await fetch(`${RAW_BASE}${path}`);
     if (!response.ok) throw new Error(`raw fetch HTTP ${response.status}`);
     content.textContent = await response.text();
+    content.scrollTop = 0;
   } catch (error) {
     content.textContent = `파일을 불러오지 못했습니다.\n${error.message}\n\nGitHub에서 직접 열어 확인하세요:\n${link.href}`;
+    content.scrollTop = 0;
   }
 }
 
@@ -222,7 +244,7 @@ async function main() {
     paths.find((path) => path.endsWith("team-runs/2026-08-01-NVDA/05-final-report.md"))
     || paths.find((path) => path === ".claude/TEAM.md")
     || paths[0];
-  if (preferred) await selectFile(preferred);
+  if (preferred) await selectFile(preferred, { focusViewer: false });
 }
 
 main().catch((error) => {

@@ -234,10 +234,17 @@ h3 {
 
 .browser,
 .viewer {
-  min-height: 660px;
+  position: sticky;
+  top: 80px;
+  min-height: 0;
+  height: calc(100vh - 96px);
+  max-height: 760px;
 }
 
 .browser {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   padding: 1rem;
 }
 
@@ -249,7 +256,10 @@ h3 {
 }
 
 .file-groups {
+  min-height: 0;
   margin-top: 1rem;
+  padding-right: 0.25rem;
+  overflow: auto;
 }
 
 .group {
@@ -288,6 +298,8 @@ h3 {
 }
 
 .viewer {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
@@ -301,8 +313,9 @@ h3 {
 }
 
 .file-content {
-  min-height: 580px;
-  max-height: 74vh;
+  flex: 1;
+  min-height: 0;
+  max-height: none;
   margin: 0;
   padding: 1rem;
   overflow: auto;
@@ -385,6 +398,19 @@ footer {
 
   .browser,
   .viewer {
+    position: static;
     min-height: auto;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .file-groups {
+    overflow: visible;
+  }
+
+  .file-content {
+    min-height: 420px;
+    max-height: 70vh;
   }
 }
