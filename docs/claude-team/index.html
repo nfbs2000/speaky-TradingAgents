@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TradingAgents Claude Team | Skills, Agents, Runs</title>
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="./styles.css?v=20260802-layout-fix">
+    <link rel="stylesheet" href="./styles.css?v=20260802-run-boundary">
   </head>
   <body>
     <header class="topbar">
@@ -15,6 +15,7 @@
       </a>
       <nav aria-label="주요 링크">
         <a href="../">소스 가이드</a>
+        <a href="#execution-boundary">실행 경계</a>
         <a href="../part5/ch12-claude-team-skills.html">12장 팀/스킬</a>
         <a href="https://github.com/nfbs2000/speaky-TradingAgents/tree/main/.claude">GitHub .claude</a>
         <a href="#runs">팀 런</a>
@@ -34,6 +35,60 @@
           </p>
         </div>
         <img class="intro-image" src="../assets/schema.png" alt="TradingAgents 그래프 구조">
+      </section>
+
+      <section class="execution-boundary" id="execution-boundary" aria-label="이번 팀런의 핵심 실행 경계">
+        <div class="boundary-source">
+          <p class="eyebrow">EXECUTION-FLOW.md LINE 11</p>
+          <h2>이번 실행은 Python 파이프라인이 아니라 런타임 리서치 팀이다</h2>
+          <blockquote>
+            TradingAgents 레포에는 이름이 "분석"인 것이 두 가지 있고, 이번 실행은 그중
+            <strong>런타임 리서치 팀</strong>이다.
+          </blockquote>
+          <a class="button" href="https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/team-runs/2026-08-01-NVDA/EXECUTION-FLOW.md#L11">원문 line 11 보기</a>
+        </div>
+
+        <div class="run-lanes" aria-label="미적용 경로와 실제 적용 경로 비교">
+          <article class="lane lane-muted">
+            <p class="lane-kicker">CONFIGURED, NOT OBSERVED IN THIS RUN</p>
+            <h3>Python 제품 파이프라인</h3>
+            <p>
+              스킬 목록에 존재하지만 이번 NVDA 팀런에서 실행된 증거는 없다.
+              코드 수정, 백테스트, memory, provider, graph 작업용 지식이다.
+            </p>
+            <ul>
+              <li><code>tradingagents analyze</code> 실행 없음</li>
+              <li>yfinance / Alpha Vantage / FRED 도구 실행 없음</li>
+              <li>memory log, backtest, 5단계 rating 산출물 없음</li>
+            </ul>
+          </article>
+
+          <div class="lane-divider" aria-hidden="true">
+            <span>이번 런의 실제 경로</span>
+          </div>
+
+          <article class="lane lane-live">
+            <p class="lane-kicker">OBSERVED TEAM RUN</p>
+            <h3>Claude 런타임 리서치 팀</h3>
+            <p>
+              이번에 실제 산출물을 남긴 경로다. <code>ta-team-analysis</code>가 순서를 정하고,
+              네 리서치 에이전트가 웹 증거를 모아 마크다운 리포트를 만들었다.
+            </p>
+            <ul>
+              <li><code>ta-market-analyst</code>, <code>ta-fundamentals-analyst</code>, <code>ta-news-sentiment-analyst</code> 병렬 실행</li>
+              <li><code>ta-risk-trader</code>가 세 리포트를 읽고 HOLD 55% 결정</li>
+              <li><code>.claude/team-runs/2026-08-01-NVDA</code>에 실행 문서 저장</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="skill-boundary-note">
+          <strong>스킬은 고치면 된다.</strong>
+          <span>
+            하지만 이 페이지에서 팀런 적용 여부는 스킬 목록이 아니라 실행 문서와 산출물로 판정한다.
+            Python-heavy 스킬은 configured inventory이고, 이번 observed run의 직접 적용 대상은 아니다.
+          </span>
+        </div>
       </section>
 
       <section class="commentary-grid" aria-label="Codex 확인 코멘트">
@@ -140,6 +195,6 @@
       <span>공개 학습용 팀/스킬/런 문서이며, 웹 리서치와 제품 파이프라인 결과를 구분한다.</span>
     </footer>
 
-    <script src="./app.js?v=20260802-layout-fix" defer></script>
+    <script src="./app.js?v=20260802-run-boundary" defer></script>
   </body>
 </html>
