@@ -3,158 +3,234 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TradingAgents Claude Team | Skills, Agents, Runs</title>
+    <meta name="description" content="TradingAgents 소스 도구와 Claude 팀을 결합한 실제 트레이딩 팀 런, 증거 경계, 학생용 프로젝트 경로">
+    <title>TradingAgents | 코드와 AI 팀이 함께 분석하는 법</title>
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="./styles.css?v=20260802-trading-only">
+    <link rel="stylesheet" href="./styles.css?v=20260802-evidence-course">
   </head>
   <body>
     <header class="topbar">
       <a class="brand" href="../">
         <img src="../favicon.svg" alt="">
-        <span>TradingAgents Claude Team</span>
+        <span>TradingAgents AI Team Lab</span>
       </a>
       <nav aria-label="주요 링크">
-        <a href="../">소스 가이드</a>
-        <a href="#execution-boundary">실행 경계</a>
-        <a href="../part5/ch12-claude-team-skills.html">12장 팀/스킬</a>
-        <a href="../part5/ch13-claude-workflow.html">13장 워크플로</a>
+        <a href="#challenge">도전 경로</a>
+        <a href="#execution">실행 구조</a>
+        <a href="#evidence">실제 런</a>
+        <a href="#boundary">증거 경계</a>
         <a href="https://github.com/nfbs2000/speaky-TradingAgents/tree/main/.claude">GitHub .claude</a>
-        <a href="#runs">팀 런</a>
       </nav>
     </header>
 
     <main>
-      <section class="intro">
+      <section class="intro intro-immersive">
+        <img class="intro-image" src="../assets/schema.png" alt="TradingAgents 멀티에이전트 분석 구조">
         <div class="intro-copy">
-          <p class="eyebrow">CLAUDE NATIVE TEAM ARTIFACT</p>
-          <h1>TradingAgents 포크의 Claude 트레이딩 팀 실행 기록</h1>
+          <p class="eyebrow">CODE CALCULATES · AGENTS INTERPRET · EVIDENCE DECIDES</p>
+          <h1>숫자는 코드가 계산하고, AI 팀은 서로 다른 관점으로 논증한다</h1>
           <p class="lead">
-            이 페이지는 저장소의 <code>.claude</code> 폴더를 그대로 읽어 팀 정의, 에이전트,
-            스킬, 워크플로, 실제 팀 런 산출물을 보여준다. 현재 <code>.claude</code>는
-            트레이딩 분석 실행 전용이다.
-            가격·지표·거래량은 저장소의 공식 <code>@tool</code> 출력으로 먼저 확정하고,
-            Claude Code 서브에이전트는 그 숫자를 해석해 리포트를 만든다.
+            이 실험은 LLM에게 주가와 이동평균을 암산시키지 않는다. TradingAgents 저장소의
+            공식 데이터 도구가 먼저 수치를 고정하고, 기술·펀더멘털·뉴스·리스크 역할이 같은
+            증거를 읽어 결론을 경쟁시킨다. 최종 리포트보다 중요한 것은 그 결론을 다시 검사할 수 있는 구조다.
           </p>
-        </div>
-        <img class="intro-image" src="../assets/schema.png" alt="TradingAgents 그래프 구조">
-      </section>
-
-      <section class="execution-boundary" id="execution-boundary" aria-label="이번 팀런의 핵심 실행 경계">
-        <div class="boundary-source">
-          <p class="eyebrow">CURRENT TEAM CONTRACT</p>
-          <h2>현재 .claude는 트레이딩 실행 전용이다</h2>
-          <blockquote>
-            계산은 저장소 툴이 맡고, 해석은 Claude 팀이 맡는다.
-            이번 최신 런은 <code>2026-08-02-NVDA</code>이며 기준 가격은
-            <strong>2026-07-31 verified close $200.75</strong>, 최종 판단은
-            <strong>HOLD / 신뢰도 62%</strong>다.
-          </blockquote>
-          <a class="button" href="https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/TEAM.md">TEAM.md 보기</a>
-        </div>
-
-        <div class="run-lanes" aria-label="현재 팀 구성과 최신 실행 경로">
-          <article class="lane lane-current">
-            <p class="lane-kicker">CURRENT TEAM</p>
-            <h3>4명 리서치 팀과 하나의 실행 스킬</h3>
-            <p>
-              공개 페이지가 보여줄 대상은 현재 저장소에 존재하는 트레이딩 팀이다.
-              팀 정의, 에이전트 정의, 스킬, 워크플로, 팀런 산출물을 같은 화면에서
-              추적할 수 있게 묶었다.
-            </p>
-            <ul>
-              <li>에이전트: <code>ta-market-analyst</code>, <code>ta-fundamentals-analyst</code>, <code>ta-news-sentiment-analyst</code>, <code>ta-risk-trader</code></li>
-              <li>스킬: <code>ta-team-analysis</code>와 <code>repo_market_data.py</code></li>
-              <li>워크플로: <code>ta-team-run</code>, <code>ta-watchlist-run</code></li>
-            </ul>
-          </article>
-
-          <div class="lane-divider" aria-hidden="true">
-            <span>현재 실제 경로</span>
-          </div>
-
-          <article class="lane lane-live">
-            <p class="lane-kicker">OBSERVED 2026-08-02 RUN</p>
-            <h3>Claude 런타임 리서치 팀</h3>
-            <p>
-              최신 산출물을 남긴 실제 경로다. P0가 저장소 <code>@tool</code>로 시장 데이터를
-              확정하고, 세 애널리스트가 병렬로 해석 리포트를 만든 뒤,
-              <code>ta-risk-trader</code>가 최종 트레이딩 결정을 낸다.
-            </p>
-            <ul>
-              <li>P0: <code>get_verified_market_snapshot</code>, <code>get_stock_data</code>, <code>get_indicators</code> → <code>00-market-data.md</code></li>
-              <li><code>ta-market-analyst</code>, <code>ta-fundamentals-analyst</code>, <code>ta-news-sentiment-analyst</code> 병렬 실행</li>
-              <li><code>ta-risk-trader</code>가 스냅샷과 세 리포트를 읽고 최종 시그널 결정</li>
-              <li><code>.claude/team-runs/2026-08-02-NVDA</code>에 <code>00</code>~<code>05</code> 실행 문서 저장</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="skill-boundary-note">
-          <strong>판정 기준</strong>
-          <span>
-            이 페이지는 GitHub에 커밋된 <code>.claude</code> 파일을 기준으로 파일 목록과 런 목록을 만든다.
-            팀 정의와 실제 산출물을 같은 기준에서 읽게 하며, 현재 대표 런은
-            <code>2026-08-02-NVDA</code>다.
-          </span>
         </div>
       </section>
 
-      <section class="commentary-grid" aria-label="Codex 확인 코멘트">
-        <article>
-          <p class="eyebrow">CODEX COMMENT</p>
-          <h2>이 팀이 하는 일</h2>
-          <p>
-            이 <code>.claude</code>는 트레이딩 분석 전용이다. 저장소 툴이 가격·지표를
-            확정하고, market, fundamentals, news/sentiment, risk/trade 네 리서치 에이전트가
-            그 결과를 해석한다. 실행 진입점은 <code>ta-team-analysis</code> 스킬,
-            <code>ta-team-run</code> 단일 종목 워크플로, <code>ta-watchlist-run</code> 워치리스트 워크플로다.
-          </p>
-        </article>
-        <article>
-          <p class="eyebrow">LATEST RUN</p>
-          <h2>이번 런에서 해결된 것</h2>
-          <p>
-            <strong>2026-08-02-NVDA</strong> 런은 P0 <code>00-market-data.md</code>로
-            가격 앵커를 먼저 잠근다. verified close <strong>$200.75</strong>,
-            RSI <strong>48.31</strong>을 기준으로 모든 리포트를 작성하고,
-            웹 값이 다른 경우는 채택하지 않고 mismatch로 기록한다.
-          </p>
-        </article>
-        <article>
-          <p class="eyebrow">QUALITY READ</p>
-          <h2>최종 리포트 수준</h2>
-          <p>
-            최종 산출물은 <strong>HOLD</strong>, 신뢰도 <strong>62%</strong>로 정리됐다.
-            기술적 분석은 Neutral, 펀더멘털은 Strong, 뉴스/센티먼트는 Mixed다.
-            핵심 논지는 “강세론이 약해서가 아니라 <code>$200.75</code>가 박스 중앙이라
-            신규 진입 손익비가 약하다”는 것이다.
-          </p>
-        </article>
-        <article>
-          <p class="eyebrow">BOUNDARY</p>
-          <h2>남은 문제와 경계</h2>
-          <p>
-            이 팀 런은 공개 웹과 저장소 툴 기반 AI 리서치이지 투자 자문도 백테스트도 아니다.
-            <code>BUY/SELL/HOLD</code>는 Python 제품 파이프라인의
-            <code>Buy/Overweight/Hold/Underweight/Sell</code> 파서 입력과 호환되지 않는다.
-          </p>
-        </article>
-      </section>
-
-      <section class="boundary-band" aria-label="두 분석 경계">
+      <section class="manifesto-band" id="challenge">
         <div>
-          <p class="eyebrow">DO NOT MIX</p>
-          <h2>제품 파이프라인과 Claude 트레이딩 팀은 다른 실행물이다</h2>
+          <p class="eyebrow">FOR STUDENTS</p>
+          <h2>AI 팀을 쓴다는 것은 어려운 문제를 “계산·해석·반론·결정·검증”으로 나누는 일이다</h2>
         </div>
-        <div class="compare">
-          <div>
+        <p>
+          주식 종목은 예시일 뿐이다. 센서 분석, 정책 검토, 과학 조사, 제품 의사결정에도 같은
+          원리를 적용할 수 있다. 결정적인 수치는 코드와 데이터 도구에 맡기고, LLM은 근거를
+          해석하고 반대 논거를 세우며 누락을 드러내게 한다. 마지막에는 실제 결과와 비교해 팀의 판단을 교정한다.
+        </p>
+      </section>
+
+      <section class="challenge-path" aria-label="저장소를 AI 팀으로 바꾸는 6단계">
+        <article>
+          <span class="step-number">01</span>
+          <h3>원본 프로젝트를 읽는다</h3>
+          <p>TradingAgents의 분석가, 토론자, 트레이더, 리스크 팀과 LangGraph 상태 흐름을 문제 분해의 근거로 삼는다.</p>
+        </article>
+        <article>
+          <span class="step-number">02</span>
+          <h3>정확성 경계를 코드에 둔다</h3>
+          <p>가격, OHLCV, RSI, MACD, ATR은 저장소 <code>@tool</code>이 계산한다. LLM이 수치를 만들지 않는다.</p>
+        </article>
+        <article>
+          <span class="step-number">03</span>
+          <h3>관점을 역할로 분리한다</h3>
+          <p>기술, 펀더멘털, 뉴스/센티먼트는 병렬로 독립 분석하고 서로의 결론에 미리 끌려가지 않는다.</p>
+        </article>
+        <article>
+          <span class="step-number">04</span>
+          <h3>리스크를 결정 게이트로 둔다</h3>
+          <p>리스크 트레이더가 세 리포트와 수치 원장을 읽고 강세·약세 양쪽을 논증한 뒤 시그널과 조건을 낸다.</p>
+        </article>
+        <article>
+          <span class="step-number">05</span>
+          <h3>공백이 행동을 바꾸게 한다</h3>
+          <p>모르는 값을 채우지 않는다. 데이터 공백이 신뢰도, 포지션 크기, HOLD, 숏 배제 같은 실제 결정에 연결돼야 한다.</p>
+        </article>
+        <article>
+          <span class="step-number">06</span>
+          <h3>시간이 지난 뒤 채점한다</h3>
+          <p>다음 가격과 실현 수익을 기록하고, 백테스트나 paper portfolio로 판단을 검증한다. 이번 Claude 런에는 아직 없는 단계다.</p>
+        </article>
+      </section>
+
+      <section class="architecture-section" aria-labelledby="layers-title">
+        <div class="section-heading">
+          <p class="eyebrow">TWO EXECUTION LAYERS</p>
+          <h2 id="layers-title">원본 TradingAgents와 이 저장소의 Claude 팀은 같은 것이 아니다</h2>
+          <p>아이디어와 일부 데이터 도구를 공유하지만 실행 엔진, 상태, 시그널 어휘, 검증 범위가 다르다.</p>
+        </div>
+        <div class="layer-compare">
+          <article>
+            <p class="eyebrow">UPSTREAM PRODUCT</p>
             <h3>Python LangGraph 파이프라인</h3>
-            <p><code>tradingagents analyze</code>, yfinance/Alpha Vantage/FRED, 12개 제품 에이전트, 5단계 <code>Buy/Overweight/Hold/Underweight/Sell</code> 레이팅, memory log와 백테스트 대상.</p>
-          </div>
-          <div>
-            <h3>Claude 런타임 리서치 팀</h3>
-            <p><code>.claude/agents/ta-*.md</code>, 저장소 <code>@tool</code> 시장 스냅샷, WebSearch/WebFetch 해석, <code>00</code>~<code>05</code> 마크다운 리포트, <code>BUY/SELL/HOLD</code> 서술 신호.</p>
-          </div>
+            <ul>
+              <li>분석가·강세/약세 토론·트레이더·리스크 토론·포트폴리오 관리자</li>
+              <li>구조화 state, checkpoint resume, decision memory</li>
+              <li><code>Buy / Overweight / Hold / Underweight / Sell</code></li>
+              <li>paper execution 및 다음 런의 실현 결과 회고 대상</li>
+            </ul>
+          </article>
+          <article>
+            <p class="eyebrow">THIS .CLAUDE LAYER</p>
+            <h3>Claude Code 트레이딩 팀</h3>
+            <ul>
+              <li>저장소 도구 3개 + Claude 리서치 에이전트 4개</li>
+              <li>마크다운 파일을 단계 간 증거와 실행 기록으로 사용</li>
+              <li><code>BUY / SELL / HOLD</code> 서술 시그널</li>
+              <li>제품 파이프라인 출력이 아니며 실제 주문·백테스트가 없음</li>
+            </ul>
+          </article>
+        </div>
+        <figure class="architecture-figure">
+          <img src="../assets/schema.png" alt="TradingAgents 원본 제품의 시장·소셜·뉴스·펀더멘털 입력, 연구 토론, 트레이더, 리스크 관리, 매니저 실행 구조">
+          <figcaption>원본 프로젝트의 전체 구조. 현재 Claude 팀은 이 전체 그래프를 실행하지 않고, 소스 도구와 역할 분리 원칙을 별도 팀 런에 사용한다.</figcaption>
+        </figure>
+      </section>
+
+      <section class="execution-section" id="execution">
+        <div class="section-heading">
+          <p class="eyebrow">CURRENT TEAM CONTRACT</p>
+          <h2>한 종목이 6개 증거 파일로 바뀌는 흐름</h2>
+          <p><code>ta-team-analysis</code> 스킬과 <code>ta-team-run</code> 워크플로가 고정한 실행 계약이다.</p>
+        </div>
+        <div class="execution-flow" aria-label="트레이딩 팀 실행 순서">
+          <article>
+            <span>P0</span>
+            <h3>Repo tools</h3>
+            <p><code>get_verified_market_snapshot</code>, <code>get_stock_data</code>, <code>get_indicators</code></p>
+            <strong>00-market-data.md</strong>
+          </article>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <article>
+            <span>P1</span>
+            <h3>3 analysts</h3>
+            <p>기술 · 펀더멘털 · 뉴스/센티먼트 병렬 분석</p>
+            <strong>01 / 02 / 03</strong>
+          </article>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <article>
+            <span>P2</span>
+            <h3>Risk gate</h3>
+            <p>상반된 논거, 손익비, 공백, 사이징을 종합</p>
+            <strong>04-risk-trade-decision.md</strong>
+          </article>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <article>
+            <span>P3</span>
+            <h3>Synthesis</h3>
+            <p>파일·판정·산술·경계 문구를 검증하고 종합</p>
+            <strong>05-final-report.md</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="evidence-section" id="evidence">
+        <div class="section-heading">
+          <p class="eyebrow">TWO REAL RUN DIRECTORIES</p>
+          <h2>두 NVDA 런이 보여주는 개선과 증거 차이</h2>
+          <p>최신 파일만 보여주면 왜 구조가 바뀌었는지 알 수 없다. 이전 런의 실패가 다음 런의 P0 설계로 이어졌다.</p>
+        </div>
+        <div class="run-evidence-grid">
+          <article class="run-evidence old-run">
+            <p class="eyebrow">2026-08-01-NVDA</p>
+            <h3>웹 중심 팀 런</h3>
+            <p>5개 분석 리포트와 239줄의 <code>EXECUTION-FLOW.md</code>가 있어 스폰·태스크·메시지 흐름이 문서화됐다.</p>
+            <ul>
+              <li>가격 앵커 약 <code>$197</code>를 웹에서 확보</li>
+              <li>소스별 종가·RSI 충돌이 해결되지 않음</li>
+              <li>일자별 거래량과 지표 원장이 부족</li>
+              <li>최종 리포트가 있어도 수치 기준이 약하다는 교훈</li>
+            </ul>
+            <button class="evidence-open" type="button" data-open-path=".claude/team-runs/2026-08-01-NVDA/EXECUTION-FLOW.md">실행 흐름 원문 열기</button>
+          </article>
+          <article class="run-evidence new-run">
+            <p class="eyebrow">2026-08-02-NVDA</p>
+            <h3>저장소 도구로 보강한 팀 런</h3>
+            <p>공식 <code>@tool</code> 출력을 <code>00</code>으로 먼저 고정하고 5개 하위 리포트를 같은 숫자에 앵커링했다.</p>
+            <ul>
+              <li>verified close <strong>$200.75</strong> · RSI <strong>48.31</strong></li>
+              <li>Technical <strong>Neutral</strong> · Fundamental <strong>Strong</strong> · Sentiment <strong>Mixed</strong></li>
+              <li>FINAL SIGNAL <strong>HOLD</strong> · 신뢰도 <strong>62%</strong></li>
+              <li>현재가 신규 진입 R/R <strong>1.08:1</strong>이라 대기</li>
+            </ul>
+            <button class="evidence-open" type="button" data-open-path=".claude/team-runs/2026-08-02-NVDA/05-final-report.md">최종 리포트 원문 열기</button>
+          </article>
+          <article class="run-evidence evidence-audit">
+            <p class="eyebrow">EVIDENCE AUDIT</p>
+            <h3>최신 런에서 확인할 수 있는 것과 없는 것</h3>
+            <p><strong>확인됨</strong>: <code>00</code>~<code>05</code> 파일, 저장 시각의 단계 순서, P0의 저장소 도구 원문, 각 판정과 Data Gaps.</p>
+            <p><strong>확인되지 않음</strong>: 최신 디렉터리에는 별도 <code>EXECUTION-FLOW.md</code>, 에이전트 런타임 ID, task/message transcript가 없다.</p>
+            <p class="audit-conclusion">따라서 “6개 산출물이 생성됐다”는 관찰 사실과 “워크플로 계약대로 각 에이전트가 실행됐다”는 해석을 구분해야 한다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="result-band" aria-labelledby="result-title">
+        <div>
+          <p class="eyebrow">WHY HOLD MATTERS</p>
+          <h2 id="result-title">팀의 성과는 강한 매수 신호가 아니라, 억지 결론을 거부한 데 있다</h2>
+        </div>
+        <div class="result-logic">
+          <p><strong>좋은 회사</strong>: 영업이익률 64%, FCF 마진 59.5%, 순현금 $41.9B라는 강한 펀더멘털.</p>
+          <p><strong>나쁜 위치</strong>: $200.75는 $189.80~$214.39 박스 중앙이라 현재 진입의 손익비가 1.08:1.</p>
+          <p><strong>남은 위험</strong>: $155B 약정, 고객 3사 매출 54% 집중, 옵션·포지셔닝·긴 OHLCV 공백.</p>
+          <p><strong>결정</strong>: 강세론을 버린 것이 아니라 더 나은 가격이나 돌파 확인을 기다리는 HOLD.</p>
+        </div>
+      </section>
+
+      <section class="boundary-band" id="boundary">
+        <div>
+          <p class="eyebrow">DO NOT OVERCLAIM</p>
+          <h2>이 팀 런이 아직 증명하지 못한 것</h2>
+        </div>
+        <div class="boundary-list">
+          <p><strong>제품 전체를 실행하지 않았다.</strong> Python LangGraph의 토론, portfolio manager, checkpoint, memory 전체 경로가 아니다.</p>
+          <p><strong>실제 주문이 없다.</strong> entry·target·stop은 분석 계획이며 거래소나 paper broker에 주문을 보내지 않았다.</p>
+          <p><strong>수익성이 검증되지 않았다.</strong> 백테스트, 다음 가격, 실현 수익, SPY 대비 알파가 아직 없다.</p>
+          <p><strong>62%는 적중 확률이 아니다.</strong> 리스크 트레이더가 HOLD 판단의 증거 품질을 표현한 내부 신뢰도다.</p>
+          <p><strong>투자 자문이 아니다.</strong> 뉴스와 웹 자료는 시간이 지나며 바뀌고, 분석 기준일은 토요일이라 실제 최신 행은 2026-07-31이다.</p>
+        </div>
+      </section>
+
+      <section class="next-lab-band" aria-labelledby="next-lab-title">
+        <div class="section-heading">
+          <p class="eyebrow">NEXT HONEST EXPERIMENTS</p>
+          <h2 id="next-lab-title">학생이 다음에 해야 할 검증</h2>
+        </div>
+        <div class="next-lab-grid">
+          <article><strong>재현</strong><span>다른 티커와 날짜로 P0 → 05를 실행하고 동일 수치 앵커가 유지되는지 확인한다.</span></article>
+          <article><strong>비교</strong><span>같은 입력으로 Python 제품 파이프라인을 별도 실행해 역할, 상태, 5단계 rating의 차이를 기록한다.</span></article>
+          <article><strong>채점</strong><span>다음 거래일과 목표 기간 뒤 실제 가격을 붙여 HOLD와 조건부 진입 계획을 사후 평가한다.</span></article>
+          <article><strong>보강</strong><span>최신 런에도 runtime ID, task/message 순서, 실패·재시도 기록을 담은 EXECUTION-FLOW를 자동 생성한다.</span></article>
         </div>
       </section>
 
@@ -165,11 +241,12 @@
         <div><span class="stat-value">-</span><span class="stat-label">runs</span></div>
       </section>
 
-      <section class="layout">
+      <section class="layout" id="sources">
         <aside class="browser" aria-label=".claude 파일 목록">
           <div class="browser-header">
+            <p class="eyebrow">SOURCE EVIDENCE</p>
             <h2>.claude 원문</h2>
-            <p>커밋된 <code>main</code> 기준 파일을 GitHub raw에서 불러온다.</p>
+            <p>커밋된 <code>main</code>의 팀, 스킬, 코드, 워크플로, 런 문서를 GitHub raw에서 불러온다.</p>
           </div>
           <div id="file-groups" class="file-groups">
             <p class="loading">파일 목록을 불러오는 중입니다.</p>
@@ -184,28 +261,25 @@
             </div>
             <a id="github-link" class="button" href="https://github.com/nfbs2000/speaky-TradingAgents/tree/main/.claude">GitHub에서 보기</a>
           </div>
-          <pre id="file-content" class="file-content">왼쪽 목록에서 팀 정의, 스킬, 에이전트, 워크플로 또는 팀 런 파일을 선택하면 원문이 그대로 표시됩니다.</pre>
+          <pre id="file-content" class="file-content">왼쪽 목록에서 원문을 선택하면 내용이 그대로 표시됩니다.</pre>
         </section>
       </section>
 
       <section class="runs-band" id="runs">
         <div class="section-heading">
           <p class="eyebrow">TEAM RUNS</p>
-          <h2>매번 갱신되는 팀 런 산출물</h2>
-          <p>
-            <code>.claude/team-runs</code> 아래의 커밋된 파일을 자동으로 묶어 보여준다.
-            새 런을 이 경로에 추가하고 <code>main</code>에 푸시하면 이 목록도 같이 갱신된다.
-          </p>
+          <h2>커밋된 팀 런 산출물</h2>
+          <p>각 런의 시장 데이터, 최종 리포트, 실행 흐름 문서 존재 여부를 원문으로 확인한다.</p>
         </div>
         <div id="run-map" class="run-map"></div>
       </section>
     </main>
 
     <footer>
-      <strong>TradingAgents Claude Team</strong>
-      <span>공개 학습용 팀/스킬/런 문서이며, 웹 리서치와 제품 파이프라인 결과를 구분한다.</span>
+      <strong>TradingAgents AI Team Lab</strong>
+      <span>정확한 수치는 코드에, 논증은 팀에, 최종 판단은 검증 가능한 증거에 맡긴다.</span>
     </footer>
 
-    <script src="./app.js?v=20260802-trading-only" defer></script>
+    <script src="./app.js?v=20260802-evidence-course" defer></script>
   </body>
 </html>

@@ -219,12 +219,23 @@ async function selectFile(path, options = {}) {
   }
 }
 
+function bindEvidenceLinks() {
+  document.querySelectorAll("[data-open-path]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const path = button.dataset.openPath;
+      if (!state.paths.includes(path)) return;
+      await selectFile(path, { focusViewer: true });
+    });
+  });
+}
+
 async function main() {
   const paths = await loadTree();
   state.paths = paths;
   setStats(paths);
   renderGroups(paths);
   renderRuns(paths);
+  bindEvidenceLinks();
 
   const preferred =
     paths.find((path) => path.endsWith("team-runs/2026-08-02-NVDA/05-final-report.md"))
