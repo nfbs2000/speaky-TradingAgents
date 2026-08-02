@@ -30,8 +30,8 @@
 | 장기 decision memory | [`memory.py`](https://github.com/nfbs2000/speaky-TradingAgents/blob/a33fd4c0f134485a43553a2c23a63cb14adbd88f/tradingagents/agents/utils/memory.py) | `reflection.py` |
 | 중단 재개 | [`checkpointer.py`](https://github.com/nfbs2000/speaky-TradingAgents/blob/a33fd4c0f134485a43553a2c23a63cb14adbd88f/tradingagents/graph/checkpointer.py) | `trading_graph.py` |
 | 사람이 읽는 결과 | [`reporting.py`](https://github.com/nfbs2000/speaky-TradingAgents/blob/a33fd4c0f134485a43553a2c23a63cb14adbd88f/tradingagents/reporting.py) | CLI `stats_handler.py` |
-| Claude Code 팀과 스킬 | [12장: Claude Code 팀과 스킬](part5/ch12-claude-team-skills.md) | [`.claude/TEAM.md`](https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/TEAM.md), [`.claude/agents/`](https://github.com/nfbs2000/speaky-TradingAgents/tree/main/.claude/agents), [`.claude/skills/`](https://github.com/nfbs2000/speaky-TradingAgents/tree/main/.claude/skills) |
-| Claude Code 워크플로우 | [13장: Claude Code 워크플로우](part5/ch13-claude-workflow.md) | [`.claude/workflows/ta-problem-solver.js`](https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/workflows/ta-problem-solver.js) |
+| Claude Code 트레이딩 팀과 스킬 | [12장: Claude Code 트레이딩 팀과 스킬](part5/ch12-claude-team-skills.md) | [`.claude/TEAM.md`](https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/TEAM.md), [`.claude/agents/`](https://github.com/nfbs2000/speaky-TradingAgents/tree/main/.claude/agents), [`.claude/skills/ta-team-analysis/`](https://github.com/nfbs2000/speaky-TradingAgents/tree/main/.claude/skills/ta-team-analysis), [Claude 팀 공개 페이지](https://nfbs2000.github.io/speaky-TradingAgents/claude-team/) |
+| Claude Code 트레이딩 워크플로우 | [13장: Claude Code 트레이딩 워크플로우](part5/ch13-claude-workflow.md) | [`.claude/workflows/ta-team-run.js`](https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/workflows/ta-team-run.js), [`.claude/workflows/ta-watchlist-run.js`](https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/workflows/ta-watchlist-run.js), [최신 NVDA 팀런](https://github.com/nfbs2000/speaky-TradingAgents/tree/main/.claude/team-runs/2026-08-02-NVDA) |
 
 ## 장별 핵심 문장
 
@@ -48,8 +48,8 @@
 | 9 | decision memory는 장기 문맥이고 checkpoint는 중단 복구다. |
 | 10 | CLI와 API는 같은 graph를 쓰며 역할별 Markdown 보고서를 남긴다. |
 | 11 | 이 프레임워크는 구조화된 연구 도구이지 수익이나 실제 주문을 보장하지 않는다. |
-| 12 | `.claude` 팀과 스킬은 제품 파이프라인이 아니라 포크를 읽고 고치고 검증하는 운영층이다. |
-| 13 | 워크플로우는 Claude Code 팀을 `Triage → Fix → Verify → Review` 실행 절차로 묶는 control plane이다. |
+| 12 | 현재 `.claude`는 트레이딩 실행 전용 팀이며, 저장소 `@tool` 계산과 Claude 해석을 분리한다. |
+| 13 | 워크플로우는 P0 시장 데이터 고정 → 병렬 애널리스트 → 리스크 종합 → 최종 리포트를 실행 순서로 묶는다. |
 
 ## 라이선스와 번역 범위
 

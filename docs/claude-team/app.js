@@ -7,43 +7,27 @@ const GITHUB_BLOB = `https://github.com/${OWNER}/${REPO}/blob/${BRANCH}/`;
 
 const FALLBACK_PATHS = [
   ".claude/TEAM.md",
-  ".claude/agents/ta-agent-smith.md",
-  ".claude/agents/ta-data-engineer.md",
-  ".claude/agents/ta-evaluator.md",
   ".claude/agents/ta-fundamentals-analyst.md",
-  ".claude/agents/ta-graph-engineer.md",
-  ".claude/agents/ta-lead.md",
-  ".claude/agents/ta-llm-engineer.md",
-  ".claude/agents/ta-maintainer.md",
   ".claude/agents/ta-market-analyst.md",
-  ".claude/agents/ta-memory-engineer.md",
   ".claude/agents/ta-news-sentiment-analyst.md",
   ".claude/agents/ta-risk-trader.md",
-  ".claude/skills/ta-agent-creator/SKILL.md",
-  ".claude/skills/ta-agent-creator/references/templates.md",
-  ".claude/skills/ta-data-tools/SKILL.md",
-  ".claude/skills/ta-data-tools/references/dataflows.md",
-  ".claude/skills/ta-eval-backtest/SKILL.md",
-  ".claude/skills/ta-eval-backtest/references/evaluation_guide.md",
-  ".claude/skills/ta-eval-backtest/scripts/run_single_eval.py",
-  ".claude/skills/ta-llm-config/SKILL.md",
-  ".claude/skills/ta-llm-config/references/providers.md",
-  ".claude/skills/ta-memory-manager/SKILL.md",
-  ".claude/skills/ta-memory-manager/references/memory_internals.md",
-  ".claude/skills/ta-prompt-engineer/SKILL.md",
-  ".claude/skills/ta-prompt-engineer/references/agent_map.md",
   ".claude/skills/ta-team-analysis/SKILL.md",
-  ".claude/skills/ta-workflow-editor/SKILL.md",
-  ".claude/skills/ta-workflow-editor/references/graph_structure.md",
-  ".claude/skills/upstream-sync/SKILL.md",
-  ".claude/skills/upstream-sync/scripts/upstream-sync.sh",
+  ".claude/skills/ta-team-analysis/scripts/repo_market_data.py",
   ".claude/team-runs/2026-08-01-NVDA/01-technical-analysis.md",
   ".claude/team-runs/2026-08-01-NVDA/02-fundamentals-analysis.md",
   ".claude/team-runs/2026-08-01-NVDA/03-news-sentiment-analysis.md",
   ".claude/team-runs/2026-08-01-NVDA/04-risk-trade-decision.md",
   ".claude/team-runs/2026-08-01-NVDA/05-final-report.md",
   ".claude/team-runs/2026-08-01-NVDA/EXECUTION-FLOW.md",
-  ".claude/workflows/ta-problem-solver.js",
+  ".claude/team-runs/2026-08-02-NVDA/00-market-data.md",
+  ".claude/team-runs/2026-08-02-NVDA/01-technical-analysis.md",
+  ".claude/team-runs/2026-08-02-NVDA/02-fundamentals-analysis.md",
+  ".claude/team-runs/2026-08-02-NVDA/03-news-sentiment-analysis.md",
+  ".claude/team-runs/2026-08-02-NVDA/04-risk-trade-decision.md",
+  ".claude/team-runs/2026-08-02-NVDA/05-final-report.md",
+  ".claude/workflows/README.md",
+  ".claude/workflows/ta-team-run.js",
+  ".claude/workflows/ta-watchlist-run.js",
 ];
 
 const groupOrder = [
@@ -185,15 +169,17 @@ function renderRuns(paths) {
   }
 
   runRoot.innerHTML = Array.from(runs.entries()).sort().reverse().map(([runName, files]) => {
+    const market = files.find((path) => path.endsWith("00-market-data.md"));
     const final = files.find((path) => path.endsWith("05-final-report.md"));
     const flow = files.find((path) => path.endsWith("EXECUTION-FLOW.md"));
-    const reports = files.filter((path) => /0[1-4]-.*\.md$/.test(path)).length;
+    const reports = files.filter((path) => /0[1-5]-.*\.md$/.test(path)).length;
     return `
       <article class="run-card">
         <p class="eyebrow">RUN</p>
         <h3>${escapeHtml(runName)}</h3>
         <ul>
           <li>산출물 ${files.length}개, 분석 리포트 ${reports}개</li>
+          <li>${market ? `<button class="file-button inline" type="button" data-path="${escapeHtml(market)}">시장 데이터 열기</button>` : "시장 데이터 없음"}</li>
           <li>${final ? `<button class="file-button inline" type="button" data-path="${escapeHtml(final)}">최종 리포트 열기</button>` : "최종 리포트 없음"}</li>
           <li>${flow ? `<button class="file-button inline" type="button" data-path="${escapeHtml(flow)}">실행 흐름 열기</button>` : "실행 흐름 없음"}</li>
         </ul>
@@ -241,7 +227,7 @@ async function main() {
   renderRuns(paths);
 
   const preferred =
-    paths.find((path) => path.endsWith("team-runs/2026-08-01-NVDA/05-final-report.md"))
+    paths.find((path) => path.endsWith("team-runs/2026-08-02-NVDA/05-final-report.md"))
     || paths.find((path) => path === ".claude/TEAM.md")
     || paths[0];
   if (preferred) await selectFile(preferred, { focusViewer: false });

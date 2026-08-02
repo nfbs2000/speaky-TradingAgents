@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TradingAgents Claude Team | Skills, Agents, Runs</title>
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="./styles.css?v=20260802-run-boundary">
+    <link rel="stylesheet" href="./styles.css?v=20260802-trading-only">
   </head>
   <body>
     <header class="topbar">
@@ -17,6 +17,7 @@
         <a href="../">소스 가이드</a>
         <a href="#execution-boundary">실행 경계</a>
         <a href="../part5/ch12-claude-team-skills.html">12장 팀/스킬</a>
+        <a href="../part5/ch13-claude-workflow.html">13장 워크플로</a>
         <a href="https://github.com/nfbs2000/speaky-TradingAgents/tree/main/.claude">GitHub .claude</a>
         <a href="#runs">팀 런</a>
       </nav>
@@ -26,12 +27,13 @@
       <section class="intro">
         <div class="intro-copy">
           <p class="eyebrow">CLAUDE NATIVE TEAM ARTIFACT</p>
-          <h1>TradingAgents 포크를 Claude 스킬과 팀으로 운영하는 공개판</h1>
+          <h1>TradingAgents 포크의 Claude 트레이딩 팀 실행 기록</h1>
           <p class="lead">
             이 페이지는 저장소의 <code>.claude</code> 폴더를 그대로 읽어 팀 정의, 에이전트,
-            스킬, 워크플로, 실제 팀 런 산출물을 보여준다. 핵심은 두 분석을 섞지 않는 것이다:
-            제품 코드는 <code>tradingagents/</code>의 Python LangGraph 파이프라인이고,
-            여기의 런타임 리서치 팀은 Claude Code 서브에이전트와 웹 검색으로 별도 리포트를 만든다.
+            스킬, 워크플로, 실제 팀 런 산출물을 보여준다. 현재 <code>.claude</code>는
+            개발·유지보수 스킬을 제거한 상태이며, 트레이딩 분석 실행 전용이다.
+            가격·지표·거래량은 저장소의 공식 <code>@tool</code> 출력으로 먼저 확정하고,
+            Claude Code 서브에이전트는 그 숫자를 해석해 리포트를 만든다.
           </p>
         </div>
         <img class="intro-image" src="../assets/schema.png" alt="TradingAgents 그래프 구조">
@@ -39,45 +41,50 @@
 
       <section class="execution-boundary" id="execution-boundary" aria-label="이번 팀런의 핵심 실행 경계">
         <div class="boundary-source">
-          <p class="eyebrow">EXECUTION-FLOW.md LINE 11</p>
-          <h2>이번 실행은 Python 파이프라인이 아니라 런타임 리서치 팀이다</h2>
+          <p class="eyebrow">CURRENT TEAM CONTRACT</p>
+          <h2>정리 후 .claude는 트레이딩 실행 전용이다</h2>
           <blockquote>
-            TradingAgents 레포에는 이름이 "분석"인 것이 두 가지 있고, 이번 실행은 그중
-            <strong>런타임 리서치 팀</strong>이다.
+            계산은 저장소 툴이 맡고, 해석은 Claude 팀이 맡는다.
+            이번 최신 런은 <code>2026-08-02-NVDA</code>이며 기준 가격은
+            <strong>2026-07-31 verified close $200.75</strong>, 최종 판단은
+            <strong>HOLD / 신뢰도 62%</strong>다.
           </blockquote>
-          <a class="button" href="https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/team-runs/2026-08-01-NVDA/EXECUTION-FLOW.md#L11">원문 line 11 보기</a>
+          <a class="button" href="https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/TEAM.md">TEAM.md 보기</a>
         </div>
 
-        <div class="run-lanes" aria-label="미적용 경로와 실제 적용 경로 비교">
+        <div class="run-lanes" aria-label="삭제된 경로와 현재 실제 경로 비교">
           <article class="lane lane-muted">
-            <p class="lane-kicker">CONFIGURED, NOT OBSERVED IN THIS RUN</p>
-            <h3>Python 제품 파이프라인</h3>
+            <p class="lane-kicker">REMOVED FROM CURRENT .CLAUDE</p>
+            <h3>개발·유지보수 팀 설명은 현재 상태가 아니다</h3>
             <p>
-              스킬 목록에 존재하지만 이번 NVDA 팀런에서 실행된 증거는 없다.
-              코드 수정, 백테스트, memory, provider, graph 작업용 지식이다.
+              이전 페이지가 말하던 agent creator, data tools, backtest, provider,
+              memory, upstream sync 류의 스킬은 현재 <code>.claude</code>에서 삭제됐다.
+              따라서 공개 페이지에서 그들을 “보유 스킬”처럼 설명하면 틀린 문서가 된다.
             </p>
             <ul>
-              <li><code>tradingagents analyze</code> 실행 없음</li>
-              <li>yfinance / Alpha Vantage / FRED 도구 실행 없음</li>
-              <li>memory log, backtest, 5단계 rating 산출물 없음</li>
+              <li>현재 에이전트는 <code>ta-market</code>, <code>ta-fundamentals</code>, <code>ta-news-sentiment</code>, <code>ta-risk-trader</code> 4개뿐이다.</li>
+              <li>현재 스킬은 <code>ta-team-analysis</code> 하나와 그 보조 스크립트다.</li>
+              <li>옛 <code>output/</code> 산출물과 문제 해결 워크플로는 현재 팀런 계약에서 빠졌다.</li>
             </ul>
           </article>
 
           <div class="lane-divider" aria-hidden="true">
-            <span>이번 런의 실제 경로</span>
+            <span>현재 실제 경로</span>
           </div>
 
           <article class="lane lane-live">
-            <p class="lane-kicker">OBSERVED TEAM RUN</p>
+            <p class="lane-kicker">OBSERVED 2026-08-02 RUN</p>
             <h3>Claude 런타임 리서치 팀</h3>
             <p>
-              이번에 실제 산출물을 남긴 경로다. <code>ta-team-analysis</code>가 순서를 정하고,
-              네 리서치 에이전트가 웹 증거를 모아 마크다운 리포트를 만들었다.
+              최신 산출물을 남긴 실제 경로다. P0가 저장소 <code>@tool</code>로 시장 데이터를
+              확정하고, 세 애널리스트가 병렬로 해석 리포트를 만든 뒤,
+              <code>ta-risk-trader</code>가 최종 트레이딩 결정을 낸다.
             </p>
             <ul>
+              <li>P0: <code>get_verified_market_snapshot</code>, <code>get_stock_data</code>, <code>get_indicators</code> → <code>00-market-data.md</code></li>
               <li><code>ta-market-analyst</code>, <code>ta-fundamentals-analyst</code>, <code>ta-news-sentiment-analyst</code> 병렬 실행</li>
-              <li><code>ta-risk-trader</code>가 세 리포트를 읽고 HOLD 55% 결정</li>
-              <li><code>.claude/team-runs/2026-08-01-NVDA</code>에 실행 문서 저장</li>
+              <li><code>ta-risk-trader</code>가 스냅샷과 세 리포트를 읽고 최종 시그널 결정</li>
+              <li><code>.claude/team-runs/2026-08-02-NVDA</code>에 <code>00</code>~<code>05</code> 실행 문서 저장</li>
             </ul>
           </article>
         </div>
@@ -85,8 +92,9 @@
         <div class="skill-boundary-note">
           <strong>판정 기준</strong>
           <span>
-            하지만 이 페이지에서 팀런 적용 여부는 스킬 목록이 아니라 실행 문서와 산출물로 판정한다.
-            Python-heavy 스킬은 configured inventory이고, 이번 observed run의 직접 적용 대상은 아니다.
+            이 페이지는 GitHub에 커밋된 <code>.claude</code> 파일을 기준으로 파일 목록과 런 목록을 만든다.
+            존재하지 않는 스킬이나 삭제된 워크플로를 설명하지 않는다. 과거 런은 기록으로 남아도,
+            현재 대표 런은 <code>2026-08-02-NVDA</code>다.
           </span>
         </div>
       </section>
@@ -96,36 +104,39 @@
           <p class="eyebrow">CODEX COMMENT</p>
           <h2>이 팀이 하는 일</h2>
           <p>
-            팀은 두 갈래다. 개발/유지보수 전문가는 agent, graph, data, LLM, memory, eval,
-            upstream drift를 담당하고, 런타임 리서치 팀은 market, fundamentals, news/sentiment,
-            risk/trade 네 역할로 종목 리포트를 만든다. 스킬은 코드베이스 사실과 절차의 단일 출처다.
+            이 <code>.claude</code>는 트레이딩 분석 전용이다. 저장소 툴이 가격·지표를
+            확정하고, market, fundamentals, news/sentiment, risk/trade 네 리서치 에이전트가
+            그 결과를 해석한다. 실행 진입점은 <code>ta-team-analysis</code> 스킬,
+            <code>ta-team-run</code> 단일 종목 워크플로, <code>ta-watchlist-run</code> 워치리스트 워크플로다.
           </p>
         </article>
         <article>
           <p class="eyebrow">LATEST RUN</p>
           <h2>이번 런에서 해결된 것</h2>
           <p>
-            <strong>2026-08-01-NVDA</strong> 런은 NVDA를 네 명의 Claude 리서치 에이전트로 분석했다.
-            3명은 병렬 리서치, <code>ta-risk-trader</code>는 세 보고서 검증 후 순차 실행됐다.
-            특히 가격 앵커 불일치, 기술지표 출처 충돌, 뉴스와 셀사이드 의견의 괴리를 숨기지 않았다.
+            <strong>2026-08-02-NVDA</strong> 런은 P0 <code>00-market-data.md</code>를 추가해
+            가격 앵커를 먼저 잠갔다. 이전에 흔들리던 종가 혼선과 RSI 기준일 충돌을
+            verified close <strong>$200.75</strong>, RSI <strong>48.31</strong>로 정리했고,
+            웹 값이 다른 경우는 채택하지 않고 mismatch로 기록했다.
           </p>
         </article>
         <article>
           <p class="eyebrow">QUALITY READ</p>
           <h2>최종 리포트 수준</h2>
           <p>
-            최종 산출물은 <strong>HOLD</strong>, 신뢰도 <strong>55%</strong>로 정리됐다.
+            최종 산출물은 <strong>HOLD</strong>, 신뢰도 <strong>62%</strong>로 정리됐다.
             기술적 분석은 Neutral, 펀더멘털은 Strong, 뉴스/센티먼트는 Mixed다.
-            Data Gaps와 면책을 유지해 “강한 회사지만 지금 가격에서는 신규 BUY가 아니다”는 판단 근거를 보존했다.
+            핵심 논지는 “강세론이 약해서가 아니라 <code>$200.75</code>가 박스 중앙이라
+            신규 진입 손익비가 약하다”는 것이다.
           </p>
         </article>
         <article>
           <p class="eyebrow">BOUNDARY</p>
           <h2>남은 문제와 경계</h2>
           <p>
-            이 팀 런은 공개 웹 기반 AI 리서치이지 투자 자문도 백테스트도 아니다.
-            <code>BUY/SELL/HOLD</code>는 Python 파이프라인의 5단계 레이팅과 호환되지 않는다.
-            문서 안의 API 키 이름은 설정 설명이며 실제 비밀값은 공개하지 않는다.
+            이 팀 런은 공개 웹과 저장소 툴 기반 AI 리서치이지 투자 자문도 백테스트도 아니다.
+            <code>BUY/SELL/HOLD</code>는 Python 제품 파이프라인의
+            <code>Buy/Overweight/Hold/Underweight/Sell</code> 파서 입력과 호환되지 않는다.
           </p>
         </article>
       </section>
@@ -133,7 +144,7 @@
       <section class="boundary-band" aria-label="두 분석 경계">
         <div>
           <p class="eyebrow">DO NOT MIX</p>
-          <h2>Python 파이프라인과 Claude 리서치 팀은 다른 실행물이다</h2>
+          <h2>제품 파이프라인과 Claude 트레이딩 팀은 다른 실행물이다</h2>
         </div>
         <div class="compare">
           <div>
@@ -142,7 +153,7 @@
           </div>
           <div>
             <h3>Claude 런타임 리서치 팀</h3>
-            <p><code>.claude/agents/ta-*-analyst.md</code>, WebSearch/WebFetch, 네 개 마크다운 리포트와 최종 종합, <code>BUY/SELL/HOLD</code> 서술 신호, 교육용 실행 기록.</p>
+            <p><code>.claude/agents/ta-*.md</code>, 저장소 <code>@tool</code> 시장 스냅샷, WebSearch/WebFetch 해석, <code>00</code>~<code>05</code> 마크다운 리포트, <code>BUY/SELL/HOLD</code> 서술 신호.</p>
           </div>
         </div>
       </section>
@@ -195,6 +206,6 @@
       <span>공개 학습용 팀/스킬/런 문서이며, 웹 리서치와 제품 파이프라인 결과를 구분한다.</span>
     </footer>
 
-    <script src="./app.js?v=20260802-run-boundary" defer></script>
+    <script src="./app.js?v=20260802-trading-only" defer></script>
   </body>
 </html>

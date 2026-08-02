@@ -281,7 +281,7 @@ h3 {
 
 .skill-boundary-note strong {
   flex: 0 0 auto;
-  color: #92400e;
+  color: var(--warn);
 }
 
 .commentary-grid {
@@ -433,6 +433,15 @@ h3 {
 .file-button.active {
   border-color: var(--line);
   background: #e9fbf8;
+}
+
+.file-button.inline {
+  width: auto;
+  min-height: 30px;
+  padding: 0.25rem 0.45rem;
+  border-color: var(--line);
+  background: #ffffff;
+  font-size: 0.9rem;
 }
 
 .viewer {

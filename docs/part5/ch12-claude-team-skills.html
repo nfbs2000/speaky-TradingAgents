@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>12장: Claude Code 팀과 스킬 - TradingAgents 소스 읽기</title>
+        <title>12장: Claude Code 트레이딩 팀과 스킬 - TradingAgents 소스 읽기</title>
 
 
         <!-- Custom HTML head -->
@@ -180,129 +180,118 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="12장-claude-code-팀과-스킬"><a class="header" href="#12장-claude-code-팀과-스킬">12장: Claude Code 팀과 스킬</a></h1>
-<p>이 장은 <code>tradingagents/</code> 안의 Python 멀티에이전트 파이프라인이 아니라, 이 포크의
-<code>.claude/</code> 디렉터리에 들어 있는 <strong>Claude Code 작업팀과 스킬 운영층</strong>을 설명한다.</p>
-<p>둘은 이름이 비슷하지만 다른 층이다. Python 파이프라인은 LangGraph node가 금융 분석을
-실행하는 제품 코드이고, <code>.claude</code> 팀은 그 제품 코드를 고치고, 검증하고, 공개 해설을
-운영하기 위한 Claude Code 협업 규약이다.</p>
-<h2 id="한눈에-보는-구조"><a class="header" href="#한눈에-보는-구조">한눈에 보는 구조</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>위치</th><th>역할</th></tr></thead><tbody>
-<tr><td><code>.claude/TEAM.md</code></td><td>전체 팀 편성, 실행 경계, 비용 규칙, ownership rule</td></tr>
-<tr><td><code>.claude/agents/*.md</code></td><td>Claude Code subagent의 역할, 담당 파일, 금지 영역, 검증 명령</td></tr>
-<tr><td><code>.claude/skills/*/SKILL.md</code></td><td>코드베이스 사실, 반복 절차, 변경 체크리스트</td></tr>
-<tr><td><code>.claude/skills/*/references/</code></td><td>스킬이 필요할 때만 읽는 세부 지도</td></tr>
-<tr><td><code>.claude/skills/*/scripts/</code></td><td>평가나 upstream sync처럼 반복 가능한 작업 스크립트</td></tr>
+                        <h1 id="12장-claude-code-트레이딩-팀과-스킬"><a class="header" href="#12장-claude-code-트레이딩-팀과-스킬">12장: Claude Code 트레이딩 팀과 스킬</a></h1>
+<p>이 장은 현재 <code>.claude/</code> 디렉터리에 남아 있는 <strong>트레이딩 분석 실행 팀</strong>을 설명한다.
+이전 상태에 있던 개발·유지보수 스킬과 에이전트는 정리됐고, 지금 공개되는 계약은
+종목 분석 팀런에만 집중한다.</p>
+<p>중요한 경계부터 잡는다. 이 팀은 <code>tradingagents/</code>의 Python LangGraph 전체 파이프라인을
+실행하지 않는다. 대신 제품의 market analyst가 쓰는 저장소 <code>@tool</code> 세 개로 가격·지표·거래량을
+먼저 확정하고, Claude Code 서브에이전트가 그 계산 결과를 해석해 마크다운 리포트를 만든다.</p>
+<h2 id="현재-구조"><a class="header" href="#현재-구조">현재 구조</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>위치</th><th>현재 역할</th></tr></thead><tbody>
+<tr><td><code>.claude/TEAM.md</code></td><td>트레이딩 팀의 실행 계약, 데이터 흐름, 제품 파이프라인과의 경계</td></tr>
+<tr><td><code>.claude/agents/*.md</code></td><td>네 명의 리서치 에이전트 정의</td></tr>
+<tr><td><code>.claude/skills/ta-team-analysis/SKILL.md</code></td><td>대화형 팀런 절차와 검증 체크리스트</td></tr>
+<tr><td><code>.claude/skills/ta-team-analysis/scripts/repo_market_data.py</code></td><td>저장소 <code>@tool</code> 호출 러너</td></tr>
+<tr><td><code>.claude/workflows/*.js</code></td><td>단일 종목/워치리스트 원샷 실행 절차</td></tr>
+<tr><td><code>.claude/team-runs/{DATE}-{TICKER}/</code></td><td>실제 팀런 산출물 저장소</td></tr>
 </tbody></table>
 </div>
-<p>핵심 규칙은 <code>TEAM.md</code>에 적혀 있다. <strong>스킬은 검증된 사실을 들고 있고, 에이전트는
-역할·범위·프로토콜을 들고 있다.</strong> 그래서 specialist agent는 작업을 시작할 때 자기
-영역의 skill을 먼저 읽는다.</p>
-<h2 id="두-가지-팀을-구분한다"><a class="header" href="#두-가지-팀을-구분한다">두 가지 팀을 구분한다</a></h2>
-<p><code>.claude/TEAM.md</code>는 팀을 크게 두 갈래로 나눈다.</p>
-<div class="table-wrapper"><table><thead><tr><th>팀</th><th>목적</th><th>산출물</th><th>실제 TradingAgents 파이프라인인가</th></tr></thead><tbody>
-<tr><td>개발·유지보수 팀</td><td>repo의 agent, graph, dataflow, provider, memory, 평가, upstream sync를 고친다</td><td>코드 변경, 테스트 결과, drift report</td><td>아니다. 파이프라인을 고치는 작업팀이다.</td></tr>
-<tr><td>runtime stock research 팀</td><td>Claude Code subagent와 web search로 한 종목을 빠르게 조사한다</td><td><code>output/{TICKER}/{DATE}/*.md</code></td><td>아니다. Python LangGraph 실행을 모사한 web research harness다.</td></tr>
-<tr><td>Python pipeline</td><td><code>TradingAgentsGraph.propagate()</code>와 CLI가 실행하는 제품 코드</td><td>report tree, memory log, 5-tier signal</td><td>맞다. 책 1~11장이 읽는 핵심 대상이다.</td></tr>
-</tbody></table>
-</div>
-<p>이 구분이 중요하다. runtime stock research 팀의 <code>BUY/SELL/HOLD</code> 보고서를 Python
-파이프라인의 <code>Buy/Overweight/Hold/Underweight/Sell</code> signal과 같은 값처럼 비교하면 안 된다.</p>
-<h2 id="개발유지보수-팀"><a class="header" href="#개발유지보수-팀">개발·유지보수 팀</a></h2>
-<p>개발팀은 <code>ta-lead</code>가 작업을 쪼개고 specialist에게 넘기는 구조다. 사용자가 어느
-subsystem이 문제인지 모를 때는 <code>ta-lead</code>가 먼저 들어가는 진입점이다.</p>
-<div class="table-wrapper"><table><thead><tr><th>Agent</th><th>담당</th><th>할 수 있는 일</th></tr></thead><tbody>
-<tr><td><code>ta-lead</code></td><td>팀 lead</td><td>요청 분해, specialist dispatch, 검증 취합, 최종 합성</td></tr>
-<tr><td><code>ta-agent-smith</code></td><td>agent layer</td><td>analyst/researcher/manager/trader prompt, schema, 새 agent 생성</td></tr>
-<tr><td><code>ta-graph-engineer</code></td><td>LangGraph workflow</td><td>node/edge/routing/path map, analyst 순서, checkpoint/resume</td></tr>
-<tr><td><code>ta-data-engineer</code></td><td>data tools와 vendors</td><td><code>@tool</code>, yfinance/Alpha Vantage/FRED/Polymarket, dataflow fallback</td></tr>
-<tr><td><code>ta-llm-engineer</code></td><td>provider와 model</td><td>Claude, OpenAI-compatible, Bedrock, Ollama, vLLM, retry와 model config</td></tr>
-<tr><td><code>ta-memory-engineer</code></td><td>decision memory</td><td><code>trading_memory.md</code>, reflection, realized-return/benchmark math</td></tr>
-<tr><td><code>ta-evaluator</code></td><td>실행과 측정</td><td>단일 run, backtest, A/B, cost estimate, report/log 분석</td></tr>
-<tr><td><code>ta-maintainer</code></td><td>fork maintenance</td><td>upstream sync, conflict review, baseline test, skill drift check</td></tr>
-</tbody></table>
-</div>
-<p>개발팀은 파일 ownership을 강하게 나눈다. 예를 들어 새 analyst를 만들 때는 data tool이
-먼저 존재해야 하고, 그 다음 prompt가 tool을 말하며, 마지막으로 graph node와 ToolNode에
-연결된다. 순서가 틀리면 모델은 "data unavailable"을 말하거나 routing 단계에서 실패한다.</p>
-<h2 id="runtime-stock-research-팀"><a class="header" href="#runtime-stock-research-팀">runtime stock research 팀</a></h2>
-<p>runtime stock research 팀은 Python package를 실행하지 않는다. Claude Code subagent와
-web search로 한 종목에 대한 네 개의 보고서를 만들고, 마지막에 종합한다.</p>
-<div class="table-wrapper"><table><thead><tr><th>Agent</th><th>담당 보고서</th><th>읽는 것</th></tr></thead><tbody>
-<tr><td><code>ta-market-analyst</code></td><td><code>01-technical-analysis.md</code></td><td>가격 추세, 지표, 지지·저항, 거래량</td></tr>
-<tr><td><code>ta-fundamentals-analyst</code></td><td><code>02-fundamentals-analysis.md</code></td><td>실적, 재무상태, cash flow, valuation, 경쟁 구도</td></tr>
-<tr><td><code>ta-news-sentiment-analyst</code></td><td><code>03-news-sentiment-analysis.md</code></td><td>최근 뉴스, analyst rating, social sentiment, insider/institutional activity</td></tr>
-<tr><td><code>ta-risk-trader</code></td><td><code>04-risk-trade-decision.md</code></td><td>앞의 세 보고서, bull/bear case, risk/reward, 최종 signal</td></tr>
-</tbody></table>
-</div>
-<p>이 팀은 <code>ta-team-analysis</code> skill이 orchestrate한다. 기본 산출물은 다음 구조다.</p>
-<pre><code class="language-text">output/{TICKER}/{DATE}/
-├── 01-technical-analysis.md
-├── 02-fundamentals-analysis.md
-├── 03-news-sentiment-analysis.md
-├── 04-risk-trade-decision.md
-└── 05-final-report.md
+<p>삭제된 유지보수 스킬을 보유 스킬처럼 설명하면 안 된다. 현재의 <code>.claude</code>는 repo 수정팀이
+아니라 <strong>트레이딩 분석팀</strong>이다.</p>
+<h2 id="데이터-흐름"><a class="header" href="#데이터-흐름">데이터 흐름</a></h2>
+<pre><code class="language-text">P0 저장소 @tool 호출
+ └→ 00-market-data.md
+     ├→ ta-market-analyst            → 01-technical-analysis.md
+     ├→ ta-fundamentals-analyst      → 02-fundamentals-analysis.md
+     ├→ ta-news-sentiment-analyst    → 03-news-sentiment-analysis.md
+     └→ ta-risk-trader               → 04-risk-trade-decision.md
+         └→ 오케스트레이터            → 05-final-report.md
 </code></pre>
-<p>이 보고서는 빠른 조사에는 유용하지만, TradingAgents 제품 파이프라인의 structured schema,
-5-tier rating parser, memory log, checkpoint와 직접 호환되지 않는다.</p>
-<h2 id="스킬-목록"><a class="header" href="#스킬-목록">스킬 목록</a></h2>
-<p>스킬은 agent가 막연한 일반 지식으로 작업하지 않도록 붙인 검증된 runbook이다.</p>
-<div class="table-wrapper"><table><thead><tr><th>Skill</th><th>언제 쓰는가</th><th>핵심 소유 영역</th></tr></thead><tbody>
-<tr><td><code>ta-agent-creator</code></td><td>새 analyst, researcher, debator, structured agent를 추가할 때</td><td>agent category, state field, node registration checklist</td></tr>
-<tr><td><code>ta-prompt-engineer</code></td><td>기존 prompt, system message, schema guidance를 바꿀 때</td><td>report format, rating vocabulary, structured schema prompt</td></tr>
-<tr><td><code>ta-workflow-editor</code></td><td>agent 순서, graph routing, debate round, checkpoint를 바꿀 때</td><td>LangGraph node registry와 router path map</td></tr>
-<tr><td><code>ta-data-tools</code></td><td>data source, vendor, tool, indicator, macro/prediction market source를 바꿀 때</td><td>routed tool table, vendor fallback, error sentinel</td></tr>
-<tr><td><code>ta-llm-config</code></td><td>provider/model/API key/retry/reasoning knob을 바꿀 때</td><td>provider registry와 model capability</td></tr>
-<tr><td><code>ta-memory-manager</code></td><td>decision memory를 읽거나 백업·회전·정리할 때</td><td>append-only memory log, reflection lifecycle</td></tr>
-<tr><td><code>ta-eval-backtest</code></td><td>single run, backtest, A/B, 결과 분석을 할 때</td><td><code>TradingAgentsGraph</code> 실행, signal, cost, artifact path</td></tr>
-<tr><td><code>ta-team-analysis</code></td><td>Claude Code subagent로 종목 web research 팀을 돌릴 때</td><td>네 research agent dispatch와 report 저장</td></tr>
-<tr><td><code>upstream-sync</code></td><td>TauricResearch upstream과 포크를 동기화할 때</td><td>protected local customization, conflict, drift check</td></tr>
+<p>P0는 에이전트가 아니다. <code>.claude/skills/ta-team-analysis/scripts/repo_market_data.py</code>가
+저장소의 공식 <code>@tool</code>을 호출해 <code>00-market-data.md</code>를 만든다.</p>
+<div class="table-wrapper"><table><thead><tr><th>Tool</th><th>쓰임</th></tr></thead><tbody>
+<tr><td><code>get_verified_market_snapshot</code></td><td>기준일 이전의 최신 verified OHLCV와 핵심 지표를 고정</td></tr>
+<tr><td><code>get_stock_data</code></td><td>최근 OHLCV 행을 날짜별로 제공</td></tr>
+<tr><td><code>get_indicators</code></td><td>저장소 상수 <code>DEFAULT_SNAPSHOT_INDICATORS</code> 기준 지표 히스토리 제공</td></tr>
 </tbody></table>
 </div>
-<h2 id="팀이-실제로-할-수-있는-일"><a class="header" href="#팀이-실제로-할-수-있는-일">팀이 실제로 할 수 있는 일</a></h2>
-<p><code>.claude</code> 팀은 다음 작업을 처리하도록 설계돼 있다.</p>
-<ol>
-<li>새 analyst나 data tool을 추가할 때 필요한 파일 순서를 안내한다.</li>
-<li>LangGraph node 이름, router return, path map의 drift를 확인한다.</li>
-<li>yfinance, Alpha Vantage, FRED, Polymarket 같은 vendor route를 안전하게 바꾼다.</li>
-<li>Claude, Bedrock, OpenAI-compatible, local model provider 설정을 점검한다.</li>
-<li>memory log를 백업하고 pending reflection과 realized return 경계를 구분한다.</li>
-<li>단일 평가 run이나 backtest sweep의 비용과 실패를 보고한다.</li>
-<li>upstream merge 뒤 skill이 낡았는지 검사한다.</li>
-<li>Python 파이프라인을 돌리지 않고도 web research 기반 임시 팀 보고서를 만든다.</li>
-</ol>
-<p>반대로 다음은 하지 않는다.</p>
-<ul>
-<li>투자 조언이나 수익 보장</li>
-<li>broker 주문 실행</li>
-<li><code>.claude</code> web research report를 Python pipeline signal로 둔갑시키기</li>
-<li>API key 없이 paid pipeline을 실행한 것처럼 말하기</li>
-<li>skill 내용을 조용히 고쳐서 팀 전체의 사실 원장을 drift시키기</li>
-</ul>
+<p>러너에 자체 RSI, MACD, 이동평균 계산을 넣지 않는다. 계산 로직은 저장소가 갖고, 러너는
+그 출력을 파일로 고정한다. Claude 팀은 그 파일을 source of truth로 읽는다.</p>
+<h2 id="팀-구성"><a class="header" href="#팀-구성">팀 구성</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Agent</th><th>역할</th><th>산출물</th></tr></thead><tbody>
+<tr><td><code>ta-market-analyst</code></td><td>기술적 분석. 가격 추세, 지지·저항, 거래량, 지표 해석</td><td><code>01-technical-analysis.md</code></td></tr>
+<tr><td><code>ta-fundamentals-analyst</code></td><td>펀더멘털 분석. 실적, 현금흐름, 밸류에이션, 경쟁 구도</td><td><code>02-fundamentals-analysis.md</code></td></tr>
+<tr><td><code>ta-news-sentiment-analyst</code></td><td>뉴스와 센티먼트. 최근 사건, 셀사이드, 소셜, 내부자·기관 활동</td><td><code>03-news-sentiment-analysis.md</code></td></tr>
+<tr><td><code>ta-risk-trader</code></td><td>리스크와 최종 판단. 앞의 세 리포트와 <code>00</code>을 읽고 entry/target/stop 결정</td><td><code>04-risk-trade-decision.md</code></td></tr>
+</tbody></table>
+</div>
+<p>네 에이전트는 모두 <code>model: inherit</code>이다. 별도 provider API 키를 요구하는 팀이 아니다.
+웹 검색은 Claude Code가 수행하고, 수치 계산은 저장소 툴이 수행한다.</p>
+<h2 id="스킬"><a class="header" href="#스킬">스킬</a></h2>
+<p>현재 팀런의 핵심 스킬은 <code>ta-team-analysis</code> 하나다. 이 스킬은 다음 계약을 고정한다.</p>
+<div class="table-wrapper"><table><thead><tr><th>계약</th><th>의미</th></tr></thead><tbody>
+<tr><td>저장 위치</td><td>모든 산출물은 <code>.claude/team-runs/{DATE}-{TICKER}/</code>에 저장한다. <code>output/</code>이 아니다.</td></tr>
+<tr><td>가격 앵커</td><td><code>{PRICE}</code>는 P0가 만든 verified close와 기준일이다. 웹 검색으로 바꾸지 않는다.</td></tr>
+<tr><td>병렬 구간</td><td>세 애널리스트는 서로의 산출물을 읽지 않으므로 병렬 실행 가능하다.</td></tr>
+<tr><td>순차 구간</td><td><code>ta-risk-trader</code>는 <code>00</code>~<code>03</code>을 모두 읽은 뒤 실행한다.</td></tr>
+<tr><td>검증</td><td><code>00</code>에 세 tool section이 있는지, <code>04</code>에 final signal과 산술이 있는지 확인한다.</td></tr>
+<tr><td>경계</td><td>최종 <code>BUY/SELL/HOLD</code>는 Python 제품 파이프라인의 5단계 rating parser와 호환되지 않는다.</td></tr>
+</tbody></table>
+</div>
+<h2 id="최신-팀런-증거"><a class="header" href="#최신-팀런-증거">최신 팀런 증거</a></h2>
+<p>최신 대표 런은 <code>.claude/team-runs/2026-08-02-NVDA/</code>다. 분석 기준일은
+2026-08-01이고, 실제 최신 거래 행은 2026-07-31이다.</p>
+<div class="table-wrapper"><table><thead><tr><th>항목</th><th>값</th></tr></thead><tbody>
+<tr><td>Ticker</td><td>NVDA</td></tr>
+<tr><td>Verified close</td><td><code>$200.75</code></td></tr>
+<tr><td>RSI(14)</td><td><code>48.31</code></td></tr>
+<tr><td>50일 SMA</td><td><code>206.12</code></td></tr>
+<tr><td>200일 SMA</td><td><code>192.93</code></td></tr>
+<tr><td>MACD / Signal / Hist</td><td><code>-1.94 / -0.98 / -0.97</code></td></tr>
+<tr><td>ATR(14)</td><td><code>7.47</code></td></tr>
+<tr><td>최종 시그널</td><td><code>HOLD</code></td></tr>
+<tr><td>신뢰도</td><td><code>62%</code></td></tr>
+</tbody></table>
+</div>
+<p>이번 런의 방법론적 성과는 가격 앵커가 흔들리지 않았다는 점이다. 웹 출처의 기준가,
+RSI, OHLC가 verified 값과 다를 때 평균을 내거나 최신값처럼 채택하지 않고, mismatch로
+기록했다. 그래서 세 애널리스트의 수치 상충이 사라지고, 남은 불확실성은 실제로 확보하지
+못한 데이터 목록으로 분리됐다.</p>
+<h2 id="제품-파이프라인과의-경계"><a class="header" href="#제품-파이프라인과의-경계">제품 파이프라인과의 경계</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>구분</th><th>Python LangGraph 파이프라인</th><th>Claude 트레이딩 팀</th></tr></thead><tbody>
+<tr><td>실행 엔진</td><td><code>tradingagents analyze</code>, <code>TradingAgentsGraph</code></td><td>Claude Code 스킬/서브에이전트/워크플로</td></tr>
+<tr><td>계산</td><td>제품 코드 안의 tool loop</td><td>저장소 <code>@tool</code> P0 preflight</td></tr>
+<tr><td>해석</td><td>제품 에이전트와 structured state</td><td>Claude 서브에이전트 마크다운 리포트</td></tr>
+<tr><td>신호 어휘</td><td><code>Buy / Overweight / Hold / Underweight / Sell</code></td><td><code>BUY / SELL / HOLD</code></td></tr>
+<tr><td>산출 위치</td><td>제품 report tree, memory log</td><td><code>.claude/team-runs/{DATE}-{TICKER}/</code></td></tr>
+<tr><td>목적</td><td>제품 실행과 평가</td><td>교육용 팀 실행 기록과 리서치 리포트</td></tr>
+</tbody></table>
+</div>
+<p>따라서 <code>05-final-report.md</code>의 <code>HOLD</code>를 제품 파이프라인의 parser 입력처럼 쓰면 안 된다.
+반대로 제품 파이프라인을 실행하지 않았는데 실행한 것처럼 말해도 안 된다.</p>
 <h2 id="사용-예"><a class="header" href="#사용-예">사용 예</a></h2>
-<p>다단계 코드 변경은 lead에게 맡긴다.</p>
-<pre><code class="language-text">Agent(subagent_type: "ta-lead",
-      prompt: "Add an options analyst end to end and verify the graph builds")
-</code></pre>
-<p>소유 영역이 분명하면 specialist를 직접 부른다.</p>
-<pre><code class="language-text">Agent(subagent_type: "ta-llm-engineer",
-      prompt: "Add a Cerebras OpenAI-compatible provider. REPORT_TO: main")
-</code></pre>
-<p>종목 web research 팀은 skill을 먼저 읽고 실행한다.</p>
+<p>대화형으로 실행할 때는 스킬을 먼저 읽는다.</p>
 <pre><code class="language-text">Skill(ta-team-analysis)
 </code></pre>
+<p>원샷으로 단일 종목을 실행할 때는 워크플로를 호출한다.</p>
+<pre><code class="language-text">Workflow(name: "ta-team-run", args: {ticker: "NVDA", date: "2026-08-01"})
+</code></pre>
+<p>복수 종목을 비교할 때는 워치리스트 워크플로를 쓴다.</p>
+<pre><code class="language-text">Workflow(name: "ta-watchlist-run",
+         args: {tickers: ["NVDA", "AMD", "AVGO"], date: "2026-08-01"})
+</code></pre>
 <h2 id="핵심-정리"><a class="header" href="#핵심-정리">핵심 정리</a></h2>
-<p><code>.claude</code>는 TradingAgents의 제품 코드가 아니라, 이 포크를 안전하게 읽고 수정하기 위한
-운영 계층이다. 개발팀은 코드 ownership과 검증을 나누고, runtime research 팀은 web 기반
-보고서를 빠르게 만든다. 둘 다 책의 주제인 Python LangGraph 파이프라인을 이해하는 데
-도움이 되지만, 제품 파이프라인의 실행 결과를 대체하지는 않는다.</p>
-<p>다음 장은 이 팀을 사람이 매번 손으로 조율하지 않고, <code>Triage → Fix → Verify → Review</code>
-절차로 실행하는 <code>.claude/workflows/ta-problem-solver.js</code>를 읽는다.</p>
+<p>현재 <code>.claude</code>는 “세상의 모든 유지보수 작업을 처리하는 팀”이 아니다. TradingAgents 포크에서
+트레이딩 분석을 교육용으로 재현하기 위한 작은 실행팀이다. 계산은 저장소 툴로 검증하고,
+해석은 Claude 팀으로 분업한다. 이 경계를 지켜야 결과가 제품 파이프라인처럼 과장되지 않고,
+동시에 단순 웹 검색 리포트처럼 숫자가 흔들리지 않는다.</p>
 <h2 id="원본-자료"><a class="header" href="#원본-자료">원본 자료</a></h2>
 <ul>
 <li><a href="https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/TEAM.md"><code>.claude/TEAM.md</code></a></li>
 <li><a href="https://github.com/nfbs2000/speaky-TradingAgents/tree/main/.claude/agents"><code>.claude/agents/</code></a></li>
-<li><a href="https://github.com/nfbs2000/speaky-TradingAgents/tree/main/.claude/skills"><code>.claude/skills/</code></a></li>
+<li><a href="https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/skills/ta-team-analysis/SKILL.md"><code>.claude/skills/ta-team-analysis/SKILL.md</code></a></li>
+<li><a href="https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/team-runs/2026-08-02-NVDA/05-final-report.md"><code>.claude/team-runs/2026-08-02-NVDA/05-final-report.md</code></a></li>
 </ul>
 
                     </main>
