@@ -228,6 +228,15 @@ h3 {
   color: #b91c1c;
 }
 
+.lane-current {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+.lane-current .lane-kicker {
+  color: #1d4ed8;
+}
+
 .lane-live {
   border-color: #99f6e4;
   background: #ecfdf5;

@@ -31,7 +31,7 @@
           <p class="lead">
             이 페이지는 저장소의 <code>.claude</code> 폴더를 그대로 읽어 팀 정의, 에이전트,
             스킬, 워크플로, 실제 팀 런 산출물을 보여준다. 현재 <code>.claude</code>는
-            개발·유지보수 스킬을 제거한 상태이며, 트레이딩 분석 실행 전용이다.
+            트레이딩 분석 실행 전용이다.
             가격·지표·거래량은 저장소의 공식 <code>@tool</code> 출력으로 먼저 확정하고,
             Claude Code 서브에이전트는 그 숫자를 해석해 리포트를 만든다.
           </p>
@@ -42,7 +42,7 @@
       <section class="execution-boundary" id="execution-boundary" aria-label="이번 팀런의 핵심 실행 경계">
         <div class="boundary-source">
           <p class="eyebrow">CURRENT TEAM CONTRACT</p>
-          <h2>정리 후 .claude는 트레이딩 실행 전용이다</h2>
+          <h2>현재 .claude는 트레이딩 실행 전용이다</h2>
           <blockquote>
             계산은 저장소 툴이 맡고, 해석은 Claude 팀이 맡는다.
             이번 최신 런은 <code>2026-08-02-NVDA</code>이며 기준 가격은
@@ -52,19 +52,19 @@
           <a class="button" href="https://github.com/nfbs2000/speaky-TradingAgents/blob/main/.claude/TEAM.md">TEAM.md 보기</a>
         </div>
 
-        <div class="run-lanes" aria-label="삭제된 경로와 현재 실제 경로 비교">
-          <article class="lane lane-muted">
-            <p class="lane-kicker">REMOVED FROM CURRENT .CLAUDE</p>
-            <h3>개발·유지보수 팀 설명은 현재 상태가 아니다</h3>
+        <div class="run-lanes" aria-label="현재 팀 구성과 최신 실행 경로">
+          <article class="lane lane-current">
+            <p class="lane-kicker">CURRENT TEAM</p>
+            <h3>4명 리서치 팀과 하나의 실행 스킬</h3>
             <p>
-              이전 페이지가 말하던 agent creator, data tools, backtest, provider,
-              memory, upstream sync 류의 스킬은 현재 <code>.claude</code>에서 삭제됐다.
-              따라서 공개 페이지에서 그들을 “보유 스킬”처럼 설명하면 틀린 문서가 된다.
+              공개 페이지가 보여줄 대상은 현재 저장소에 존재하는 트레이딩 팀이다.
+              팀 정의, 에이전트 정의, 스킬, 워크플로, 팀런 산출물을 같은 화면에서
+              추적할 수 있게 묶었다.
             </p>
             <ul>
-              <li>현재 에이전트는 <code>ta-market</code>, <code>ta-fundamentals</code>, <code>ta-news-sentiment</code>, <code>ta-risk-trader</code> 4개뿐이다.</li>
-              <li>현재 스킬은 <code>ta-team-analysis</code> 하나와 그 보조 스크립트다.</li>
-              <li>옛 <code>output/</code> 산출물과 문제 해결 워크플로는 현재 팀런 계약에서 빠졌다.</li>
+              <li>에이전트: <code>ta-market-analyst</code>, <code>ta-fundamentals-analyst</code>, <code>ta-news-sentiment-analyst</code>, <code>ta-risk-trader</code></li>
+              <li>스킬: <code>ta-team-analysis</code>와 <code>repo_market_data.py</code></li>
+              <li>워크플로: <code>ta-team-run</code>, <code>ta-watchlist-run</code></li>
             </ul>
           </article>
 
@@ -93,8 +93,8 @@
           <strong>판정 기준</strong>
           <span>
             이 페이지는 GitHub에 커밋된 <code>.claude</code> 파일을 기준으로 파일 목록과 런 목록을 만든다.
-            존재하지 않는 스킬이나 삭제된 워크플로를 설명하지 않는다. 과거 런은 기록으로 남아도,
-            현재 대표 런은 <code>2026-08-02-NVDA</code>다.
+            팀 정의와 실제 산출물을 같은 기준에서 읽게 하며, 현재 대표 런은
+            <code>2026-08-02-NVDA</code>다.
           </span>
         </div>
       </section>
@@ -114,10 +114,10 @@
           <p class="eyebrow">LATEST RUN</p>
           <h2>이번 런에서 해결된 것</h2>
           <p>
-            <strong>2026-08-02-NVDA</strong> 런은 P0 <code>00-market-data.md</code>를 추가해
-            가격 앵커를 먼저 잠갔다. 이전에 흔들리던 종가 혼선과 RSI 기준일 충돌을
-            verified close <strong>$200.75</strong>, RSI <strong>48.31</strong>로 정리했고,
-            웹 값이 다른 경우는 채택하지 않고 mismatch로 기록했다.
+            <strong>2026-08-02-NVDA</strong> 런은 P0 <code>00-market-data.md</code>로
+            가격 앵커를 먼저 잠근다. verified close <strong>$200.75</strong>,
+            RSI <strong>48.31</strong>을 기준으로 모든 리포트를 작성하고,
+            웹 값이 다른 경우는 채택하지 않고 mismatch로 기록한다.
           </p>
         </article>
         <article>

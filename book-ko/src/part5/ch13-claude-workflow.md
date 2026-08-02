@@ -88,8 +88,7 @@ Workflow(name: "ta-watchlist-run",
 └── 05-final-report.md
 ```
 
-이전 방식의 `output/{TICKER}/{DATE}/`는 현재 팀 계약의 저장 위치가 아니다.
-공개 페이지와 교육 자료도 `.claude/team-runs/`를 기준으로 읽어야 한다.
+공개 페이지와 교육 자료는 `.claude/team-runs/`를 기준으로 팀런을 읽는다.
 
 ## 검증 포인트
 
