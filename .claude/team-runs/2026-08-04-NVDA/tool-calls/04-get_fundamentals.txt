@@ -1,0 +1,31 @@
+# Company Fundamentals for NVDA
+# Data retrieved on: 2026-08-04 08:23:24
+
+Name: NVIDIA Corporation
+Sector: Technology
+Industry: Semiconductors
+Market Cap: 5005027311616
+PE Ratio (TTM): 31.69325
+Forward PE: 16.030497
+PEG Ratio: 0.55
+Price to Book: 25.60595
+EPS (TTM): 6.52
+Forward EPS: 12.89043
+Dividend Yield: 0.5
+Beta: 2.215
+52 Week High: 236.54
+52 Week Low: 164.07
+50 Day Average: 206.1744
+200 Day Average: 193.1124
+Revenue (TTM): 253491003392
+Gross Profit: 187952005120
+EBITDA: 165514002432
+Net Income: 159612993536
+Profit Margin: 0.62966
+Operating Margin: 0.65596
+Return on Equity: 1.14288
+Return on Assets: 0.52727
+Debt to Equity: 6.555
+Current Ratio: 3.441
+Book Value: 8.07
+Free Cash Flow: 46335873024

@@ -1,0 +1,154 @@
+# Insider Transactions data for NVDA
+# Data retrieved on: 2026-08-04 08:23:25
+
+,Shares,Value,URL,Text,Insider,Position,Transaction,Start Date,Ownership
+0,500000,0,,Stock Gift at price 0.00 per share.,COXE TENCH C,Director,,2026-07-01,I
+1,1211,0,,Stock Award(Grant) at price 0.00 per share.,HUDSON BEACH DAWN E,Director,,2026-06-25,D
+2,1211,0,,Stock Award(Grant) at price 0.00 per share.,STEVENS MARK A,Director,,2026-06-25,D
+3,1211,0,,Stock Award(Grant) at price 0.00 per share.,JONES HARVEY C JR.,Director,,2026-06-25,D
+4,1211,0,,Stock Award(Grant) at price 0.00 per share.,SEAWELL A BROOKE,Director,,2026-06-25,D
+5,1211,0,,Stock Award(Grant) at price 0.00 per share.,COXE TENCH C,Director,,2026-06-25,D
+6,1211,0,,Stock Award(Grant) at price 0.00 per share.,LORA MELISSA,Director,,2026-06-25,D
+7,1211,0,,Stock Award(Grant) at price 0.00 per share.,SHAH AARTI S,Director,,2026-06-25,D
+8,1211,0,,Stock Award(Grant) at price 0.00 per share.,NEAL STEPHEN C.,Director,,2026-06-25,D
+9,1211,0,,Stock Award(Grant) at price 0.00 per share.,DABIRI JOHN O,Director,,2026-06-25,D
+10,885000,185999938,,Sale at price 209.70 - 210.44 per share.,STEVENS MARK A,Director,,2026-06-18,I
+11,400000,0,,Stock Gift at price 0.00 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2026-06-16,I
+12,59509,0,,Stock Award(Grant) at price 0.00 per share.,GAWEL SCOTT,Officer,,2026-06-08,D
+13,307500,0,,Stock Gift at price 0.00 per share.,STEVENS MARK A,Director,,2026-06-04,I
+14,1000000,221102600,,Sale at price 217.66 - 222.38 per share.,STEVENS MARK A,Director,,2026-06-04,I
+15,15500,3343863,,Sale at price 215.73 per share.,NEAL STEPHEN C.,Director,,2026-06-03,I
+16,625,133750,,Sale at price 214.00 per share.,DABIRI JOHN O,Director,,2026-05-27,D
+17,221682,38502524,,Sale at price 172.61 - 174.57 per share.,STEVENS MARK A,Director,,2026-03-20,I
+18,62650,10956706,,Sale at price 171.97 - 177.51 per share.,KRESS COLETTE M.,Chief Financial Officer,,2026-03-20,D/I
+19,5396,942944,,Sale at price 172.58 - 177.31 per share.,ROBERTSON DONALD F JR,Officer,,2026-03-20,D
+20,19000,3357549,,Sale at price 176.27 - 177.73 per share.,SHAH AARTI S,Director,,2026-03-19,D
+21,58962602,0,,Stock Gift at price 0.00 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2026-03-18,I
+22,300000,54676140,,Sale at price 181.31 - 182.94 per share.,PURI AJAY K,Officer,,2026-03-18,I
+23,530,0,,Stock Gift at price 0.00 per share.,SEAWELL A BROOKE,Director,,2026-03-17,D
+24,3004,555440,,Sale at price 184.90 per share.,DABIRI JOHN O,Director,,2026-03-13,D
+25,300000,54756044,,Sale at price 182.47 - 183.11 per share.,PURI AJAY K,Officer,,2026-03-10,I
+26,47048,0,,Stock Award(Grant) at price 0.00 per share.,SHOQUIST DEBORA C,Officer,,2026-03-09,D
+27,47048,0,,Stock Award(Grant) at price 0.00 per share.,PURI AJAY K,Officer,,2026-03-09,D
+28,47048,0,,Stock Award(Grant) at price 0.00 per share.,KRESS COLETTE M.,Chief Financial Officer,,2026-03-09,D
+29,47048,0,,Stock Award(Grant) at price 0.00 per share.,TETER TIMOTHY S,General Counsel,,2026-03-09,D
+30,936771,0,,Stock Award(Grant) at price 0.00 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2026-03-02,D
+31,98328,0,,Stock Award(Grant) at price 0.00 per share.,SHOQUIST DEBORA C,Officer,,2026-03-02,D
+32,103278,0,,Stock Award(Grant) at price 0.00 per share.,PURI AJAY K,Officer,,2026-03-02,D
+33,106660,0,,Stock Award(Grant) at price 0.00 per share.,KRESS COLETTE M.,Chief Financial Officer,,2026-03-02,D
+34,98328,0,,Stock Award(Grant) at price 0.00 per share.,TETER TIMOTHY S,General Counsel,,2026-03-02,D
+35,47640,8371233,,Sale at price 172.40 - 179.16 per share.,KRESS COLETTE M.,Chief Financial Officer,,2026-02-04,D/I
+36,200000,36007160,,Sale at price 180.04 per share.,PURI AJAY K,Officer,,2026-01-21,I
+37,47640,8809582,,Sale at price 184.15 - 187.73 per share.,KRESS COLETTE M.,Chief Financial Officer,,2026-01-13,D/I
+38,200000,37563619,,Sale at price 187.25 - 188.58 per share.,PURI AJAY K,Officer,,2026-01-07,I
+39,80000,15187742,,Sale at price 188.85 - 192.49 per share.,ROBERTSON DONALD F JR,Officer,,2026-01-02,D
+40,222500,40087380,,Sale at price 180.17 per share.,STEVENS MARK A,Director,,2025-12-19,I
+41,24590,4425727,,Sale at price 176.91 - 180.88 per share.,ROBERTSON DONALD F JR,Officer,,2025-12-19,D
+42,258650,0,,Stock Gift at price 0.00 per share.,STEVENS MARK A,Director,,2025-12-18,I
+43,141488,0,,Stock Gift at price 0.00 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-12-17,I
+44,113182,0,,Stock Gift at price 0.00 per share.,KRESS COLETTE M.,Chief Financial Officer,,2025-12-17,D
+45,250000,44333450,,Sale at price 177.33 per share.,JONES HARVEY C JR.,Director,,2025-12-15,I
+46,50500,8994793,,Sale at price 175.26 - 182.06 per share.,KRESS COLETTE M.,Chief Financial Officer,,2025-12-12,D/I
+47,229840,41414515,,Sale at price 175.14 - 185.16 per share.,SHOQUIST DEBORA C,Officer,,2025-12-12,I
+48,80000,14771657,,Sale at price 184.25 - 185.55 per share.,SHOQUIST DEBORA C,Officer,,2025-12-09,I
+49,350000,63604065,,Sale at price 181.73 per share.,STEVENS MARK A,Director,,2025-12-05,I
+50,12728,2341117,,Sale at price 183.93 per share.,SEAWELL A BROOKE,Director,,2025-12-02,I
+51,520000,0,,Stock Gift at price 0.00 per share.,SEAWELL A BROOKE,Director,,2025-11-24,I
+52,626,112317,,Sale at price 179.42 per share.,DABIRI JOHN O,Director,,2025-11-24,D
+53,47640,9924869,,Sale at price 207.03 - 210.86 per share.,KRESS COLETTE M.,Chief Financial Officer,,2025-11-03,D/I
+54,25000,5197790,,Sale at price 205.65 - 211.76 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-10-29,D
+55,125000,23558262,,Sale at price 184.24 - 202.64 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-10-28,D
+56,225000,40734400,,Sale at price 177.57 - 183.27 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-10-23,D
+57,47640,8642640,,Sale at price 180.41 - 182.17 per share.,KRESS COLETTE M.,Chief Financial Officer,,2025-10-21,D/I
+58,225000,41058402,,Sale at price 180.54 - 184.92 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-10-20,D
+59,225000,41338563,,Sale at price 178.13 - 189.46 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-10-15,D
+60,225000,42885101,,Sale at price 183.39 - 195.32 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-10-10,D
+61,225000,42050639,,Sale at price 184.23 - 189.80 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-10-07,D
+62,225000,42093301,,Sale at price 182.19 - 190.52 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-10-02,D
+63,225000,40233721,,Sale at price 173.85 - 183.55 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-09-29,D
+64,225000,40206353,,Sale at price 175.48 - 184.33 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-09-24,D
+65,350000,61737305,,Sale at price 176.39 per share.,STEVENS MARK A,Director,,2025-09-19,I
+66,50500,8908172,,Sale at price 175.99 - 177.56 per share.,KRESS COLETTE M.,Chief Financial Officer,,2025-09-19,D/I
+67,40000,7106120,,Sale at price 177.65 per share.,DRELL PERSIS S,Director,,2025-09-19,I
+68,225000,39181549,,Sale at price 169.09 - 177.54 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-09-19,D
+69,3500,617298,,Sale at price 176.11 - 177.14 per share.,ROBERTSON DONALD F JR,Officer,,2025-09-19,D
+70,250000,44053700,,Sale at price 176.21 per share.,JONES HARVEY C JR.,Director,,2025-09-18,I
+71,225000,39748232,,Sale at price 174.98 - 178.53 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-09-16,D
+72,1125000,0,,Stock Gift at price 0.00 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-09-15,I
+73,497797,88558438,,Sale at price 177.47 - 178.19 per share.,STEVENS MARK A,Director,,2025-09-12,I
+74,28000,4972344,,Sale at price 177.58 per share.,NEAL STEPHEN C.,Director,,2025-09-12,I
+75,225000,39283743,,Sale at price 167.48 - 179.77 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-09-11,D
+76,1000000,0,,Stock Gift at price 0.00 per share.,COXE TENCH C,Director,,2025-09-08,I
+77,225000,38014347,,Sale at price 164.80 - 171.65 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-09-08,D
+78,225000,38609667,,Sale at price 167.86 - 177.67 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-09-03,D
+79,90000,15381065,,Sale at price 170.63 - 172.00 per share.,HUDSON BEACH DAWN E,Director,,2025-09-03,D
+80,55172,0,,Stock Gift at price 0.00 per share.,SHOQUIST DEBORA C,Officer,,2025-08-29,I
+81,1700,0,,Stock Gift at price 0.00 per share.,NEAL STEPHEN C.,Director,,2025-08-29,I
+82,1200000,0,,Stock Gift at price 0.00 per share.,SEAWELL A BROOKE,Director,,2025-08-29,I
+83,150000,27118544,,Sale at price 178.92 - 182.71 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-08-15,D
+84,225000,40959534,,Sale at price 180.03 - 183.64 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-08-13,D
+85,225000,40657554,,Sale at price 176.88 - 183.14 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-08-08,D
+86,225000,39779894,,Sale at price 171.59 - 180.10 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-08-05,D
+87,47640,8482566,,Sale at price 175.09 - 179.84 per share.,KRESS COLETTE M.,Chief Financial Officer,,2025-08-04,D/I
+88,225000,40180274,,Sale at price 175.91 - 182.70 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-07-31,D
+89,225000,39155010,,Sale at price 172.08 - 176.38 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-07-28,D
+90,225000,38220744,,Sale at price 165.36 - 173.19 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-07-23,D
+91,225000,38711762,,Sale at price 169.74 - 174.03 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-07-18,D
+92,47650,8142671,,Sale at price 170.03 - 171.68 per share.,KRESS COLETTE M.,Chief Financial Officer,,2025-07-15,D/I
+93,225000,37594046,,Sale at price 162.71 - 171.49 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-07-15,D
+94,96904,15999906,,Sale at price 162.67 - 167.79 per share.,SEAWELL A BROOKE,Director,,2025-07-14,I
+95,225000,36430013,,Sale at price 159.07 - 164.29 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-07-10,D
+96,148402,23999797,,Sale at price 159.04 - 164.30 per share.,SEAWELL A BROOKE,Director,,2025-07-10,I
+97,225000,35553992,,Sale at price 153.67 - 160.84 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-07-07,D
+98,101925,15999789,,Sale at price 153.88 - 158.69 per share.,SEAWELL A BROOKE,Director,,2025-07-07,I
+99,225000,35161723,,Sale at price 152.23 - 158.46 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-07-01,D
+100,102652,15999848,,Sale at price 152.16 - 158.11 per share.,SEAWELL A BROOKE,Director,,2025-07-01,I
+101,155209,23999683,,Sale at price 149.97 - 158.43 per share.,SEAWELL A BROOKE,Director,,2025-06-27,I
+102,200000,30465420,,Sale at price 146.14 - 156.29 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-06-26,D
+103,1799,0,,Stock Award(Grant) at price 0.00 per share.,HUDSON BEACH DAWN E,Director,,2025-06-26,D
+104,1799,0,,Stock Award(Grant) at price 0.00 per share.,BURGESS ROBERT KENNETH,Director,,2025-06-26,D
+105,1799,0,,Stock Award(Grant) at price 0.00 per share.,STEVENS MARK A,Director,,2025-06-26,D
+106,1799,0,,Stock Award(Grant) at price 0.00 per share.,JONES HARVEY C JR.,Director,,2025-06-26,D
+107,1799,0,,Stock Award(Grant) at price 0.00 per share.,SEAWELL A BROOKE,Director,,2025-06-26,D
+108,1799,0,,Stock Award(Grant) at price 0.00 per share.,COXE TENCH C,Director,,2025-06-26,D
+109,1799,0,,Stock Award(Grant) at price 0.00 per share.,LORA MELISSA,Director,,2025-06-26,D
+110,1799,0,,Stock Award(Grant) at price 0.00 per share.,DRELL PERSIS S,Director,,2025-06-26,D
+111,1799,0,,Stock Award(Grant) at price 0.00 per share.,OCHOA ELLEN,Director,,2025-06-26,D
+112,1799,0,,Stock Award(Grant) at price 0.00 per share.,SHAH AARTI S,Director,,2025-06-26,D
+113,1799,0,,Stock Award(Grant) at price 0.00 per share.,NEAL STEPHEN C.,Director,,2025-06-26,D
+114,1799,0,,Stock Award(Grant) at price 0.00 per share.,DABIRI JOHN O,Director,,2025-06-26,D
+115,168195,25673040,,Sale at price 150.51 - 154.32 per share.,PURI AJAY K,Officer,,2025-06-25,I
+116,165430,23999735,,Sale at price 142.95 - 147.77 per share.,SEAWELL A BROOKE,Director,,2025-06-24,I
+117,100000,14403585,,Sale at price 142.80 - 145.86 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-06-23,D
+118,50500,7282459,,Sale at price 143.54 - 145.91 per share.,KRESS COLETTE M.,Chief Financial Officer,,2025-06-20,D/I
+119,4500,646469,,Sale at price 143.66 per share.,ROBERTSON DONALD F JR,Officer,,2025-06-20,D
+120,608248,88356112,,Sale at price 145.26 per share.,STEVENS MARK A,Director,,2025-06-18,I
+121,358849,51028855,,Sale at price 141.86 - 142.51 per share.,STEVENS MARK A,Director,,2025-06-09,I
+122,1000000,142804600,,Sale at price 142.80 per share.,COXE TENCH C,Director,,2025-06-09,I
+123,1060836,149094297,,Sale at price 137.79 - 140.92 per share.,STEVENS MARK A,Director,,2025-06-03,I
+124,660000,0,,Stock Gift at price 0.00 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-06-02,I
+125,660,91608,,Sale at price 138.80 per share.,DABIRI JOHN O,Director,,2025-05-30,D
+126,50000,6740820,,Sale at price 134.82 per share.,BURGESS ROBERT KENNETH,Director,,2025-05-30,D
+127,42000,0,,Stock Gift at price 0.00 per share.,SHOQUIST DEBORA C,Officer,,2025-03-21,I
+128,66660,7787993,,Sale at price 116.25 - 117.70 per share.,KRESS COLETTE M.,Chief Financial Officer,,2025-03-21,D
+129,4500,525585,,Sale at price 116.31 - 117.77 per share.,ROBERTSON DONALD F JR,Officer,,2025-03-21,D
+130,20000,2368377,,Sale at price 116.99 - 118.87 per share.,SHAH AARTI S,Director,,2025-03-20,D
+131,53324,6158405,,Sale at price 115.49 per share.,BURGESS ROBERT KENNETH,Director,,2025-03-13,D
+132,2663,292930,,Sale at price 110.00 per share.,DABIRI JOHN O,Director,,2025-03-10,D
+133,57489,0,,Stock Award(Grant) at price 0.00 per share.,SHOQUIST DEBORA C,Officer,,2025-03-10,D
+134,55559,0,,Stock Award(Grant) at price 0.00 per share.,PURI AJAY K,Officer,,2025-03-10,D
+135,8489,0,,Stock Award(Grant) at price 0.00 per share.,ROBERTSON DONALD F JR,Officer,,2025-03-10,D
+136,57106,0,,Stock Award(Grant) at price 0.00 per share.,KRESS COLETTE M.,Chief Financial Officer,,2025-03-10,D
+137,57489,0,,Stock Award(Grant) at price 0.00 per share.,TETER TIMOTHY S,General Counsel,,2025-03-10,D
+138,956480,0,,Stock Award(Grant) at price 0.00 per share.,HUANG JEN-HSUN,Chief Executive Officer,,2025-03-03,D
+139,122220,0,,Stock Award(Grant) at price 0.00 per share.,SHOQUIST DEBORA C,Officer,,2025-03-03,D
+140,135240,0,,Stock Award(Grant) at price 0.00 per share.,PURI AJAY K,Officer,,2025-03-03,D
+141,139640,0,,Stock Award(Grant) at price 0.00 per share.,KRESS COLETTE M.,Chief Financial Officer,,2025-03-03,D
+142,122220,0,,Stock Award(Grant) at price 0.00 per share.,TETER TIMOTHY S,General Counsel,,2025-03-03,D
+143,64080,0,,Stock Gift at price 0.00 per share.,KRESS COLETTE M.,Chief Financial Officer,,2025-02-28,D
+144,36695,5544783,,Sale at price 150.40 - 152.50 per share.,PURI AJAY K,Officer,,2025-01-07,I
+145,385000,0,,Stock Gift at price 0.00 per share.,STEVENS MARK A,Director,,2024-12-18,I
+146,1000000,0,,Stock Gift at price 0.00 per share.,COXE TENCH C,Director,,2024-12-17,I
+147,1000000,131263863,,Sale at price 131.03 - 132.64 per share.,COXE TENCH C,Director,,2024-12-16,I
+148,66670,9027318,,Sale at price 133.24 - 138.88 per share.,KRESS COLETTE M.,Chief Financial Officer,,2024-12-13,D
+149,4500,608775,,Sale at price 133.34 - 138.78 per share.,ROBERTSON DONALD F JR,Officer,,2024-12-13,D
