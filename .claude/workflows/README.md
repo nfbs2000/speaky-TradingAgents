@@ -14,7 +14,13 @@ Claude 에이전트가** 한다. LLM provider API 키는 필요 없다.
 ```
 Workflow(name: "ta-team-run", args: {ticker: "NVDA", date: "2026-08-01"})
 # 선택: context: "검증할 논지"
+#      run_label: "2026-08-04-NVDA"  ← 산출물 디렉터리 이름
 ```
+
+`date`는 **분석 기준일**이고 `run_label`은 **산출물 디렉터리 이름**이다. 기본값은
+`{date}-{ticker}`이므로 같은 분석일을 다시 돌리면 이전 런 디렉터리를 덮어쓴다 —
+재실행에서는 `run_label`에 실행 날짜를 넘겨라. P0의 원장 가드가 `progress.md` 첫 줄이
+다른 런을 지명하면 멈추지만, 디렉터리 이름을 먼저 갈라두는 것이 안전하다.
 
 산출물: `.claude/team-runs/{DATE}-{TICKER}/00…05*.md` — **이 디렉터리가 유일한
 저장 위치다.** 최종 시그널은 `BUY/SELL/HOLD` + 신뢰도 + entry/target/stop

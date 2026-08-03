@@ -1,7 +1,7 @@
 export const meta = {
   name: 'ta-team-run',
   description: '트레이딩 팀런 — 저장소 데이터 툴로 수치를 확정하고 12-에이전트 계통으로 분석해 증거 게이트를 통과시킨다',
-  whenToUse: '한 종목의 팀런을 한 번의 호출로 끝낼 때. args: {ticker: "NVDA", date: "YYYY-MM-DD"}. date는 필수다 — 스크립트는 시계를 읽을 수 없다. 산출물은 .claude/team-runs/{DATE}-{TICKER}/ 에만 저장되고, pytest 증거 게이트를 통과해야 런이 성립한다. 가격·지표·재무·소셜은 저장소 툴이 계산하고 에이전트는 해석한다. LLM provider API 키 불필요.',
+  whenToUse: '한 종목의 팀런을 한 번의 호출로 끝낼 때. args: {ticker: "NVDA", date: "YYYY-MM-DD", run_label: "optional"}. date는 분석 기준일이고 필수다 — 스크립트는 시계를 읽을 수 없다. run_label은 산출물 디렉터리 이름이며 기본값은 {date}-{ticker}이다. 같은 분석일을 다시 돌릴 때는 run_label을 실행 날짜로 넘겨 이전 런을 덮어쓰지 않게 한다. pytest 증거 게이트를 통과해야 런이 성립한다. 가격·지표·재무·소셜은 저장소 툴이 계산하고 에이전트는 해석한다. LLM provider API 키 불필요.',
   phases: [
     { title: 'P0 Repo Tools', detail: '저장소 데이터 툴 호출 → 00-market-data.md + tool-calls/' },
     { title: 'P1 Analysts', detail: 'market / sentiment / news / fundamentals 4인 병렬' },
@@ -38,7 +38,10 @@ if (!input.date || !/^\d{4}-\d{2}-\d{2}$/.test(input.date)) {
 
 const TICKER = input.ticker.toUpperCase()
 const DATE = input.date
-const RUN = `${DATE}-${TICKER}`
+// 런 라벨은 산출물 디렉터리 이름이고 분석 날짜와 별개다. 같은 분석일을 다시
+// 돌릴 때 기본값을 그대로 쓰면 이전 런 디렉터리를 덮어쓴다 — 실제로 한 번
+// 발생했다. 재실행에서는 실행 날짜를 run_label로 넘긴다.
+const RUN = input.run_label || `${DATE}-${TICKER}`
 const RUN_DIR = `.claude/team-runs/${RUN}`
 const EXTRA = input.context ? `\n추가 맥락: ${input.context}` : ''
 const MAX_REPAIR_ROUNDS = 5   // SDD의 태스크당 상한. 초과 시 서킷브레이커.
@@ -132,6 +135,9 @@ log(`${RUN}: 저장소 데이터 툴 호출`)
 const p0 = await agent(
   `TradingAgents 저장소(/Users/realpio/Documents/speaky-TradingAgents)에서 데이터 툴 러너를 실행해라. 분석·해석은 하지 마라 — 실행과 결과 보고가 전부다.
 
+0. **원장 가드부터 확인해라.** ${RUN_DIR}/progress.md 가 이미 존재하면 첫 줄을 읽어라.
+   - 첫 줄이 "run: ${RUN}" 이면 이 런의 원장이다. "Stage" 줄들을 읽어 어디까지 끝났는지 보고하고 이어서 진행해라.
+   - 첫 줄이 **다른 런을 지명하면 남의 진행상황이다.** 그 디렉터리를 건드리지 말고 즉시 ok=false 와 detail="ledger names a different run: <첫 줄>" 로 보고하고 멈춰라. 파일을 덮어쓰지 마라.
 1. 인터프리터: .venv/bin/python 이 있으면 그것, 없으면 python3
 2. 실행: <python> .claude/skills/ta-team-analysis/scripts/repo_market_data.py ${TICKER} ${DATE} ${RUN_DIR}
    (이 러너는 저장소 데이터 툴을 호출하고 원본 출력을 ${RUN_DIR}/tool-calls/ 에 남긴다)
