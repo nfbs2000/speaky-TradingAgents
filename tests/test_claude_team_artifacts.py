@@ -86,15 +86,23 @@ def run_dir() -> Path:
 
 @pytest.fixture(scope="module")
 def ticker_and_date(run_dir: Path) -> tuple[str, str]:
-    """Recover the run's ticker and analysis date from the directory name.
+    """Recover the run's ticker and analysis date from the repo tool's own output.
 
-    The directory is the run's identity, so the gate reads its parameters from
-    there rather than trusting a value restated inside a report.
+    Deliberately *not* the directory name. The directory is a run label chosen
+    by whoever launched the run — a re-run of the same analysis date gets a
+    different label — so it does not identify what was analysed. The analysis
+    date the tools were actually called with is echoed by the tool itself in
+    ``00-market-data.md`` ("Requested analysis date: ..."), and that is the
+    only value the gate can hold the report to.
     """
-    m = re.fullmatch(r"(\d{4}-\d{2}-\d{2})-([A-Z.\-]+)", run_dir.name)
-    if not m:
-        pytest.fail(f"run directory name must be YYYY-MM-DD-TICKER, got {run_dir.name!r}")
-    return m.group(2), m.group(1)
+    text = _read(run_dir, "00-market-data.md")
+    date = re.search(r"Requested analysis date:\s*(\d{4}-\d{2}-\d{2})", text)
+    ticker = re.search(r"^#\s*Repo-tool market data\s*—\s*([A-Z.\-]+)\s*@", text, re.MULTILINE)
+    if not date:
+        pytest.fail("00-market-data.md has no 'Requested analysis date:' line from the repo tool")
+    if not ticker:
+        pytest.fail("00-market-data.md has no '# Repo-tool market data — TICKER @ DATE' header")
+    return ticker.group(1), date.group(1)
 
 
 def _read(run_dir: Path, name: str) -> str:

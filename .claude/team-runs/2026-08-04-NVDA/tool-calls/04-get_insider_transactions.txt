@@ -1,5 +1,5 @@
 # Insider Transactions data for NVDA
-# Data retrieved on: 2026-08-04 08:23:25
+# Data retrieved on: 2026-08-04 08:32:50
 
 ,Shares,Value,URL,Text,Insider,Position,Transaction,Start Date,Ownership
 0,500000,0,,Stock Gift at price 0.00 per share.,COXE TENCH C,Director,,2026-07-01,I

@@ -1,5 +1,5 @@
 # Income Statement data for NVDA (quarterly)
-# Data retrieved on: 2026-08-04 08:23:25
+# Data retrieved on: 2026-08-04 08:32:50
 
 ,2026-04-30,2026-01-31,2025-10-31,2025-07-31,2025-04-30
 Tax Effect Of Unusual Items,0.0,0.0,0.0,0.0,0.0
