@@ -241,10 +241,24 @@ for (const seat of RISK_SEATS) {
 // P6 — Portfolio Manager (리스크 히스토리 + 두 계획 + past_context)
 // ---------------------------------------------------------------------------
 phase('P6 Portfolio Manager')
-const pm = await agent(dispatch('스테이지명: P6'), {
-  label: 'portfolio-manager', phase: 'P6 Portfolio Manager',
-  agentType: 'ta-portfolio-manager', model: TIER.decide, schema: STAGE_SCHEMA,
-})
+const pm = await agent(
+  dispatch(`스테이지명: P6
+반환값의 verdict 필드에는 12-portfolio-decision.md 의 SCHEMA 페이로드에 쓴 rating 값을 그대로 넣어라 — Buy / Overweight / Hold / Underweight / Sell 중 하나이며 다른 문장은 넣지 마라. 워치리스트 랭킹이 이 값을 읽는다.`),
+  {
+    label: 'portfolio-manager', phase: 'P6 Portfolio Manager',
+    agentType: 'ta-portfolio-manager', model: TIER.decide, schema: STAGE_SCHEMA,
+  }
+)
+
+// 랭킹이 PM 산문을 스크래핑하지 않도록 등급을 정규화해 반환한다. 산문에서
+// 뽑으면 "Buy 신호는 없다" 같은 문장에서 Buy를 잘못 집는다.
+const RATING_VALUES = ['Buy', 'Overweight', 'Hold', 'Underweight', 'Sell']
+const portfolioRating = RATING_VALUES.includes((pm?.verdict || '').trim())
+  ? pm.verdict.trim()
+  : 'unknown'
+if (portfolioRating === 'unknown') {
+  log(`경고: PM이 5단계 등급을 verdict로 반환하지 않았다 (verdict=${JSON.stringify(pm?.verdict)}) — 12번 파일이 정본이다`)
+}
 
 // ---------------------------------------------------------------------------
 // P7 — 증거 게이트. 실패하면 담당 스테이지를 재디스패치한다.
@@ -345,6 +359,8 @@ return {
   research_plan: rm?.summary ?? null,
   trader_proposal: trader?.summary ?? null,
   portfolio_decision: pm?.summary ?? null,
+  portfolio_rating: portfolioRating,   // 5단계 PortfolioRating. 랭킹의 1차 기준
+  decision_file: pm?.file ?? null,     // 12-portfolio-decision.md — 등급의 정본
   gate: { green: gate.green, pytest: gate.summary_line, failures: gate.failures },
   repairs,
   web_mismatches: [...analysts, bull, bear, rm, trader, ...riskSeats, pm]
